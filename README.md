@@ -4,10 +4,11 @@ This script was made to select the NoteSkins for people who are just lazy to cha
 
 # Requirements For the script
 
-- Psych Engine
+- [Psych Engine](https://github.com/ShadowMario/FNF-PsychEngine/releases)
 - Computer
 
 # Gaming Features
+<img width="1280" alt="Screen Shot 2022-04-19 at 7 35 58 AM" src="https://user-images.githubusercontent.com/101881784/164354308-0154d3f8-fc07-4c5e-bb01-8343c5764aee.png">
 
 # Main
 
