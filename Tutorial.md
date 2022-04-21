@@ -1,6 +1,8 @@
 # Introduction
 Ever want to add your custom Notskin/NoteSplashes just follow this funny step. Also go to [Psych Engine Wiki](https://github.com/ShadowMario/FNF-PsychEngine/wiki/Lua-Script-API) to understanding the code and [MayoPyschDiscussion](https://github.com/mayo78/PSYCHDISCUSSIONS) for help
 
+_Note: This tutorial will be change in the future_
+
 # Adding The Note Preview
 
 Before adding the note preview you must download 2 of these The NoteSkin and the Note Template
@@ -141,5 +143,8 @@ end
 
 <img width="1040" alt="Screen Shot 2022-04-21 at 3 35 48 PM" src="https://user-images.githubusercontent.com/101881784/164405926-cf513dd3-ed7f-4eaf-a2b2-c1855f12fb17.png">
 
+# Coding The NoteSplashes
+coming soon
 
-
+# Coding The NoteSkins and NoteSplashes in Pixel Mode
+coming soon
