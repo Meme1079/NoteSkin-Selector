@@ -44,3 +44,13 @@ If you want to use the NoteSkin from that stage
 - DO NOT PICK PIXEL SKINS IN [Normal Mode] it crashes the game!
 - DO NOT DOWNLOAD 0.5.3b
 - DO NOT PRESS [SPACE] WHEN YOUR IN A DIALOGUE
+
+# Credits on the NoteSkins Used here
+
+### [VS. Sonic](https://gamebanana.com/mods/316022) | Majin Notes
+
+### [Vs. Tabi](https://gamebanana.com/mods/286388) | Tabi Notes
+
+### [Vs. Flippy](https://gamebanana.com/mods/300838) | Creepy Notes
+
+### [An Ordinary Too Slow Cover](https://gamebanana.com/mods/347720) | NES Notes
