@@ -1,10 +1,11 @@
 # NoteSkin Selector
 
-This script was made to select the NoteSkins for people who are just lazy to change the note
+This script was made to select the NoteSkins for people who are just lazy to change the NoteSkin
 
 # Requirements For the script
 
 - [Psych Engine](https://github.com/ShadowMario/FNF-PsychEngine/releases)
+- [NoteSkin Selector](https://gamebanana.com/mods/369664)
 - Computer
 
 # Note
