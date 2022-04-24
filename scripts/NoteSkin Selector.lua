@@ -493,10 +493,10 @@ function onUpdatePost(elapsed)
         {'note splash blue 2', 'note splash green 2', 'note splash purple 2', 'note splash red 2'}
     }  
 
-SplashX = {290, 375, 210, 465}
+    SplashX = {290, 375, 210, 465}
 
-SplashY = 60
-SplashDADY = 210
+    SplashY = 60
+    SplashDADY = 210
     Splashes = {
         [1] = function()
             objectPlayAnimation(PrefixNameBF[n1], NamePrefix1[n2][n3], false)
