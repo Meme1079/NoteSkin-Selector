@@ -1,6 +1,17 @@
 # NoteSkin Selector
 
-This script was made to select the NoteSkins for people who are just lazy to change the NoteSkin
+Originally posted in Psych Engine Discussions now transfer mayo78 Psych Discussions. And posted in Gamebanana this scrupt makes you select the NoteSkin/NoteSplashes!
+
+# Q&A
+
+## How do I add the my Custom NoteSkins?
+Got o Wiki tab (Work in Progress)
+
+## Why isn't loading? 
+It's because the code target's a specific note until that specific notes appear and if there's another script with another `function onStartCountdown()` it wont load the images but you can select the NoteSkins
+
+## Can I use it in my Mod?
+yes give credit or else
 
 # Requirements For the script
 
