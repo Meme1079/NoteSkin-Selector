@@ -5,7 +5,7 @@ Originally posted in Psych Engine Discussions now transfer mayo78 Psych Discussi
 # Q&A
 
 ## How do I add the my Custom NoteSkins?
-Got o Wiki tab (Work in Progress)
+Got to Wiki tab (Work in Progress)
 
 ## Why isn't loading? 
 It's because the code target's a specific note until that specific notes appear and if there's another script with another `function onStartCountdown()` it wont load the images but you can select the NoteSkins
@@ -39,7 +39,7 @@ yes give credit or else
 # Gaming Features
 <img width="1280" alt="Screen Shot 2022-04-19 at 7 35 58 AM" src="https://user-images.githubusercontent.com/101881784/164354308-0154d3f8-fc07-4c5e-bb01-8343c5764aee.png">
 
-# Main
+## Main
 
 ### Pressing [Space] starts the song
 If your done selecting your notes
