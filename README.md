@@ -19,6 +19,10 @@ yes give credit or else
 - [NoteSkin Selector](https://gamebanana.com/mods/369664)
 - Computer
 
+# Installation
+
+1. Put in the mods folder
+
 # Note
 - Be careful when Pressing [R] it crashes the game!
 - DO NOT PICK NORMAL SKINS IN [Pixel Mode] it crashes the game!
