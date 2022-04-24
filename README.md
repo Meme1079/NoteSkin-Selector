@@ -4,13 +4,13 @@ Originally posted in Psych Engine Discussions now transfer mayo78 Psych Discussi
 
 # Q&A
 
-## How do I add the my Custom NoteSkins?
+### How do I add the my Custom NoteSkins?
 Got to Wiki tab (Work in Progress)
 
-## Why isn't loading? 
+### Why isn't loading? 
 It's because the code target's a specific note until that specific notes appear and if there's another script with another `function onStartCountdown()` it wont load the images but you can select the NoteSkins
 
-## Can I use it in my Mod?
+### Can I use it in my Mod?
 yes give credit or else
 
 # Requirements For the script
