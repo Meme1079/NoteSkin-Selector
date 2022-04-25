@@ -459,14 +459,14 @@ local n2 = 1 -- NamePrefix1
 local n3 = 1 -- NamePrefix1 group
 local n4 = 1 -- XMLAnimation1 and XMLAnimation2 
 local n5 = 1 -- XMLAnimation1 and XMLAnimation2 group
-local n6 = 1
+local n6 = 1 -- SplashX
 
 local n1DAD = 1 -- PrefixNameDAD
 local n2DAD = 1 -- NamePrefix1
 local n3DAD = 1 -- NamePrefix1 group
 local n4DAD = 1 -- XMLAnimation1 and XMLAnimation2 
 local n5DAD = 1 -- XMLAnimation1 and XMLAnimation2 group
-local n6DAD = 1
+local n6DAD = 1 -- SplashX
 function onUpdatePost(elapsed)
     -- Thanks to mayo78 for making me learn tables lel
 
@@ -497,6 +497,7 @@ function onUpdatePost(elapsed)
 
     SplashY = 60
     SplashDADY = 210
+	
     Splashes = {
         [1] = function()
             objectPlayAnimation(PrefixNameBF[n1], NamePrefix1[n2][n3], false)
