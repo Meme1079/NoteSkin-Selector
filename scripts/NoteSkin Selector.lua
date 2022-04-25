@@ -23,10 +23,6 @@ function onCreate()
     setTextAlignment('g', 'middle')
     addLuaText('g', true)
 
-    makeLuaText('z', 'Press [Z] to Get the NoteSkin in the stage', 0, 228);
-    setTextSize('z', '16')
-    addLuaText('z', true)
-
     -- Warn --
 
     makeLuaText('p', 'Prees [P] to Change into Pixel Note', 0, 635)
@@ -53,12 +49,16 @@ function onCreate()
     setTextColor('sidenote', 'ff0000')
     addLuaText('sidenote', true)
 
-    -- Select --
+    -- Setting --
 
     makeLuaText('h', 'Press [H] to Change BG to White', 0, 230);
     setTextSize('h', '20')
     setTextAlignment('h', 'middle')
     addLuaText('h', true)
+
+    makeLuaText('z', 'Press [Z] to Get the NoteSkin in the stage', 0, 228);
+    setTextSize('z', '16')
+    addLuaText('z', true)
 
     -- Background --
 
@@ -100,7 +100,7 @@ function onCreate()
     setProperty('opponentwhitelol.alpha', 0.3)
     addLuaSprite('opponentwhitelol')
 
-    -- Setting --
+    -- Setting BG --
 
     makeLuaSprite('optionlol', nil, 220, 400)
     makeGraphic('optionlol', 400, 350, '000000')
@@ -246,114 +246,18 @@ function onCreate()
     scaleLuaSprite('SplashpreDAD2', 0.5, 0.5)
     addLuaSprite('SplashpreDAD2', true)
 
-    -- Tweens --
-
-    doTweenY('yY', 'y', 120, 0.1, 'linear')
-    doTweenY('tY', 't', 150, 0.1, 'linear')
-
-    doTweenY('fY', 'f', 300, 0.1, 'linear')
-    doTweenY('gY', 'g', 270, 0.1, 'linear')
-
-    doTweenY('pY', 'p', 412, 0.1, 'linear')
-    doTweenY('warnY', 'warn', 450, 0.1, 'linear')
-    doTweenY('warn2Y', 'warn2', 480, 0.1, 'linear')
-    doTweenY('questionY', 'question', 520, 0.1, 'linear')
-    doTweenY('sidenoteY', 'sidenote', 560, 0.1, 'linear')
-
-    doTweenY('spaceY', 'space', 360, 0.1, 'linear')
-
-    doTweenY('noteY0', 'Note', 80, 0.1, 'linear')
-    doTweenY('noteDADY0', 'NoteDAD', 230, 0.1, 'linear')
-
-    doTweenY('SplashpreY0', 'Splashpre0', 1230, 0.001, 'linear')
-    doTweenX('SplashpreX0', 'Splashpre0', 100, 0.001, 'linear')
-    doTweenY('SplashpreY1', 'Splashpre1', 1230, 0.001, 'linear')
-    doTweenX('SplashpreX1', 'Splashpre1', 100, 0.001, 'linear')
-    doTweenY('SplashpreY2', 'Splashpre2', 1230, 0.001, 'linear')
-    doTweenX('SplashpreX2', 'Splashpre2', 100, 0.001, 'linear')
-
-    doTweenY('SplashpreYDAD0', 'SplashpreDAD0', 1230, 0.001, 'linear')
-    doTweenX('SplashpreXDAD0', 'SplashpreDAD0', 100, 0.001, 'linear')
-    doTweenY('SplashpreYDAD1', 'SplashpreDAD1', 1230, 0.001, 'linear')
-    doTweenX('SplashpreXDAD1', 'SplashpreDAD1', 100, 0.001, 'linear')
-    doTweenY('SplashpreYDAD2', 'SplashpreDAD2', 1230, 0.001, 'linear')
-    doTweenX('SplashpreXDAD2', 'SplashpreDAD2', 100, 0.001, 'linear')
-
-    doTweenX('spaceX', 'space', 430, 0.001, 'linear')
-
-    doTweenY('hY', 'h', 410, 0.1, 'linear')
-    doTweenY('zY', 'z', 450, 0.1, 'linear')
-
-    doTweenY('plY', 'pl', 60, 0.1, 'linear')
-    doTweenY('opY', 'op', 210, 0.1, 'linear')
-    doTweenY('seY', 'se', 360, 0.1, 'linear')
-
-    -- Visibility --
-
-    setProperty('Splashpre0.visible', false)
-    setProperty('Splashpre1.visible', false)
-    setProperty('Splashpre2.visible', false) 
-
-    setProperty('SplashpreDAD0.visible', false)
-    setProperty('SplashpreDAD1.visible', false)
-    setProperty('SplashpreDAD2.visible', false) 
-
-    setProperty('preview0.visible', true)
-    setProperty('preview1.visible', false)
-    setProperty('preview2.visible', false)
-    setProperty('preview3.visible', false)
-
-    setProperty('previewDAD0.visible', true)
-    setProperty('previewDAD1.visible', false)
-    setProperty('previewDAD2.visible', false)
-    setProperty('previewDAD3.visible', false)
-
-    setProperty('pixel1.visible', false)
-    setProperty('pixel2.visible', false)
-
-    setProperty('pixelDAD1.visible', false)
-    setProperty('pixelDAD2.visible', false)
-
-    setProperty('whitelol.visible', false)
-    setProperty('playerwhitelol.visible', false)
-    setProperty('opponentwhitelol.visible', false)
-    setProperty('optionwhitelol.visible', false)
-
-    setProperty('warn.alpha', 0)
-    setProperty('warn2.alpha', 0)
-    setProperty('question.alpha', 0)
-    setProperty('sidenote.alpha', 0)
-
-    setProperty('lel.alpha', 0.5)
-
-    -- Precaching --
-
-    precacheImage('NOTE_assets')
-    precacheImage('noteskin/tabi_NOTE_assets')
-    precacheImage('noteskin/Majin_Notes')
-    precacheImage('noteskin/creepy_assets')
-
-    precacheImage('noteseen/normal notes')
-    precacheImage('noteseen/tabi notes')
-    precacheImage('noteseen/majin notes')
-    precacheImage('noteseen/creepy notes')
-
-    precacheImage('noteSplashes')
-    precacheImage('notesplash/Majin_Splashes')
-    precacheImage('notesplash/creepySplashes')
-
-    precacheImage('pixelUI/noteseen/pixel notes')
-    precacheImage('pixelUI/noteseen/NES notes')
-    
-    precacheSound('scrollMenu')
-    precacheSound('ToggleJingle')  
-    
-    -- Others --
+    -- Other --
 
     makeLuaText('esc', 'Press [ESCAPE] to Exit the song', 0, 655);
     setTextSize('esc', '18')
     setTextColor('esc', 'ff0000')
     addLuaText('esc', true)
+    
+    -- Funny --
+
+    onTweenXY()
+    onVisibilty()
+    onPrecaching()
 end  
 
 function onCreatePost()
@@ -380,68 +284,87 @@ function onStartCountdown()
     return Function_Continue;
 end  
 
+local Visible = true;
 function onSongStart()
     Activate = false;
-    Alphalel[1]()
+    Visible = false;
+
+    onRemove() 
+    onTweenAlpha()
+    onRemove()
 end 
+
+local AnnoyingSound = false;
+function goodNoteHit(id, direction, noteType, isSustainNote)  
+    if AnnoyingSound == true and not isSustainNote then
+        playSound('hitsound', 0.5, false)
+    end      
+end    
 
 local Answer = false;
 local WhiteBlack = false;
 local GetOGNotes = false;
-local Visible = true;
 function onUpdate(elapsed)
-    if getPropertyFromClass('flixel.FlxG', 'keys.justPressed.SPACE') and not seenCutscene then
-        startCountdown()
-        Alphalel[1]()
-
-        if Activate == true then
-            playSound('ToggleJingle')
-            cameraFlash('funny', 'ffffff', 0.7, false)   
-            Activate = false;             
+    if Activate == true then
+        if getPropertyFromClass('flixel.FlxG', 'keys.justPressed.SPACE') and not seenCutscene then
+            onTweenAlpha()
+            startCountdown()
+    
+            if Activate == true then
+                playSound('ToggleJingle')
+                cameraFlash('funny', 'ffffff', 0.7, false)   
+                Activate = false;             
+            end   
         end   
-    end 
-    
-    if Activate == true and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.Z') then
-        GetOGNotes = true;
-        
-        if GetOGNotes == true then
-            doTweenColor('zColor', 'z', '00ff00', 0.1, 'linear')
 
-            for i = 0, getProperty('notes.length')-1 do
-                if getPropertyFromGroup('notes', i, 'noteType') == '' and getPropertyFromGroup('notes', i, 'noteType') == 'Dad Skins' then
-                    getPropertyFromGroup('notes', i, 'texture');   
-                    getPropertyFromGroup('notes', i, 'noteSplashTexture');   
-                end    
+        if GetOGNotes == false and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.Z') then
+            GetOGNotes = true;
+            if GetOGNotes == true then
+                doTweenColor('zColor', 'z', '00ff00', 0.1, 'linear')
+    
+                for i = 0, getProperty('notes.length')-1 do
+                    if getPropertyFromGroup('notes', i, 'noteType') == '' then
+                        getPropertyFromGroup('notes', i, 'texture');   
+                        getPropertyFromGroup('notes', i, 'noteSplashTexture');   
+                    end    
+                end
+                
+                for i = 0,4,1 do
+                    if getPropertyFromGroup('notes', i, 'noteType') == '' then
+                        getPropertyFromGroup('playerStrums', i, 'texture');
+                        getPropertyFromGroup('opponentStrums', i, 'texture');  
+                    end     
+                end 
             end
-            
-            for i = 0,4,1 do
-                if getPropertyFromGroup('notes', i, 'noteType') == '' and getPropertyFromGroup('notes', i, 'noteType') == 'Dad Skins' then
-                    getPropertyFromGroup('playerStrums', i, 'texture');
-                    getPropertyFromGroup('opponentStrums', i, 'texture');  
-                end     
-            end 
-        end       
-    end  
-    
-    if getPropertyFromClass('flixel.FlxG', 'keys.justPressed.T') or getPropertyFromClass('flixel.FlxG', 'keys.justPressed.F') then
-        GetOGNotes = false;
-        doTweenColor('zColor', 'z', 'ffffff', 0.1, 'linear')
-    end  
+        
+        elseif GetOGNotes == true and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.Z') then
+            GetOGNotes = false;
+            doTweenColor('zColor', 'z', 'ffffff', 0.1, 'linear')
 
+        end    
+
+
+        if getPropertyFromClass('flixel.FlxG', 'keys.justPressed.ESCAPE') then
+            endSong()      
+        end  
+
+        if AnnoyingSound == false and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.I') then
+            AnnoyingSound = true;
+            doTweenColor('iColor', 'i', '00ff00', 0.1, 'linear')
+
+        elseif AnnoyingSound == true and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.I') then  
+            AnnoyingSound = false;
+            doTweenColor('iColor', 'i', 'ffffff', 0.1, 'linear')
+
+        end 
+    end    
+    
     if getProperty('cpuControlled') == true and Visible == true then
         setProperty('botplayTxt.visible', false)
     end  
     if getProperty('cpuControlled') == true and Visible == false then
         setProperty('botplayTxt.visible', true) 
-    end    
-
-    if curStep == 1 then
-        Visible = false;
-    end    
-
-    if Activate == true and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.ESCAPE') then
-        endSong()
-    end         
+    end          
 end
 
 local NoteskinBF = 0;
@@ -1198,60 +1121,6 @@ function onUpdatePost(elapsed)
             setProperty('optionlol.visible', true)
         end 
     end 
-    
-    if curBeat == 4 then
-        removeLuaText('y', true);
-        removeLuaText('t', true);
-        removeLuaText('space', true);
-
-        removeLuaText('Note', true);
-        removeLuaText('NoteDAD', true);
-
-        removeLuaSprite('preview0', true);
-        removeLuaSprite('preview1', true);
-        removeLuaSprite('preview2', true);
-        removeLuaSprite('preview3', true);
-
-        removeLuaSprite('preview0DAD', true);
-        removeLuaSprite('preview1DAD', true);
-        removeLuaSprite('preview2DAD', true);
-        removeLuaSprite('preview3DAD', true);
-
-        removeLuaSprite('pixel1', true)
-        removeLuaSprite('pixel2', true)
-
-        removeLuaSprite('pixelDAD1', true)
-        removeLuaSprite('pixelDAD2', true)
-
-        removeLuaSprite('Splashpre0', true);
-        removeLuaSprite('Splashpre1', true);
-        removeLuaSprite('Splashpre2', true);
-
-        removeLuaSprite('whitelol', true);
-        removeLuaSprite('playerwhitelol', true);
-        removeLuaSprite('opponentwhitelol', true);
-        removeLuaSprite('optionwhitelol', true);
-
-        removeLuaSprite('blacklol', true);
-        removeLuaSprite('playerlol', true);
-        removeLuaSprite('opponentlol', true);
-        removeLuaSprite('optionlol', true);
-
-        removeLuaSprite('pl', true);
-        removeLuaSprite('op', true);
-        removeLuaSprite('se', true);
-        removeLuaSprite('esc', true);
-
-        removeLuaText('warn', true);
-        removeLuaText('warn2', true);
-        removeLuaText('question', true);
-        removeLuaText('sidenote', true);
-        removeLuaText('p', true);
-
-        removeLuaText('f', true);
-        removeLuaText('g', true);
-        removeLuaText('z', true);
-    end  
 end
 
 Previews = {
@@ -1356,72 +1225,229 @@ PreviewSplash = {
     end,   
 }
 
-Alphalel = {
-    [1] = function()
-        doTweenAlpha('yAlpha', 'y', 0, 0.1, 'linear')
-        doTweenAlpha('tAlpha', 't', 0, 0.1, 'linear')
+function onVisibilty()
+    setProperty('Splashpre0.visible', false)
+    setProperty('Splashpre1.visible', false)
+    setProperty('Splashpre2.visible', false) 
+
+    setProperty('SplashpreDAD0.visible', false)
+    setProperty('SplashpreDAD1.visible', false)
+    setProperty('SplashpreDAD2.visible', false) 
+
+    setProperty('preview0.visible', true)
+    setProperty('preview1.visible', false)
+    setProperty('preview2.visible', false)
+    setProperty('preview3.visible', false)
+
+    setProperty('previewDAD0.visible', true)
+    setProperty('previewDAD1.visible', false)
+    setProperty('previewDAD2.visible', false)
+    setProperty('previewDAD3.visible', false)
+
+    setProperty('pixel1.visible', false)
+    setProperty('pixel2.visible', false)
+
+    setProperty('pixelDAD1.visible', false)
+    setProperty('pixelDAD2.visible', false)
+
+    setProperty('whitelol.visible', false)
+    setProperty('playerwhitelol.visible', false)
+    setProperty('opponentwhitelol.visible', false)
+    setProperty('optionwhitelol.visible', false)
+
+    setProperty('warn.alpha', 0)
+    setProperty('warn2.alpha', 0)
+    setProperty('question.alpha', 0)
+    setProperty('sidenote.alpha', 0)
+end    
+
+function onTweenAlpha()
+    doTweenAlpha('yAlpha', 'y', 0, 0.1, 'linear')
+    doTweenAlpha('tAlpha', 't', 0, 0.1, 'linear')
+
+    doTweenAlpha('fAlpha', 'f', 0, 0.1, 'linear')
+    doTweenAlpha('gAlpha', 'g', 0, 0.1, 'linear')
+
+    doTweenAlpha('hAlpha', 'h', 0, 0.1, 'linear')
+    doTweenAlpha('spaceAlpha', 'space', 0, 0.1, 'linear')
+
+    doTweenAlpha('noteAlpha0', 'Note', 0, 0.1, 'linear')
+    doTweenAlpha('noteDADAlpha0', 'NoteDAD', 0, 0.1, 'linear')
+
+    doTweenAlpha('previewAlpha0', 'preview0', 0, 0.1, 'linear')
+    doTweenAlpha('previewAlpha1', 'preview1', 0, 0.1, 'linear')
+    doTweenAlpha('previewAlpha2', 'preview2', 0, 0.1, 'linear')
+    doTweenAlpha('previewAlpha3', 'preview3', 0, 0.1, 'linear')
+
+    doTweenAlpha('previewAlpha0DAD', 'previewDAD0', 0, 0.1, 'linear')
+    doTweenAlpha('previewAlpha1DAD', 'previewDAD1', 0, 0.1, 'linear')
+    doTweenAlpha('previewAlpha2DAD', 'previewDAD2', 0, 0.1, 'linear')
+    doTweenAlpha('previewAlpha3DAD', 'previewDAD3', 0, 0.1, 'linear')
+
+    doTweenAlpha('pixelAlpha1', 'pixel1', 0, 0.1, 'linear')
+    doTweenAlpha('pixelAlpha2', 'pixel2', 0, 0.1, 'linear')
+
+    doTweenAlpha('pixelAlpha1DAD', 'pixelDAD1', 0, 0.1, 'linear')
+    doTweenAlpha('pixelAlpha2DAD', 'pixelDAD2', 0, 0.1, 'linear')
+
+    doTweenAlpha('SplashpreAlpha0', 'Splashpre0', 0, 0.1, 'linear')
+    doTweenAlpha('SplashpreAlpha1', 'Splashpre1', 0, 0.1, 'linear')
+    doTweenAlpha('SplashpreAlpha2', 'Splashpre2', 0, 0.1, 'linear')
+
+    doTweenAlpha('SplashpreAlphaDAD0', 'SplashpreDAD0', 0, 0.1, 'linear')
+    doTweenAlpha('SplashpreAlphaDAD1', 'SplashpreDAD1', 0, 0.1, 'linear')
+    doTweenAlpha('SplashpreAlphaDAD2', 'SplashpreDAD2', 0, 0.1, 'linear')
+
+    doTweenAlpha('whitelolAlpha', 'whitelol', 0, 0.1, 'linear') 
+    doTweenAlpha('playerwhitelolALpha', 'playerwhitelol', 0, 0.1, 'linear')
+    doTweenAlpha('opponentwhitelolALpha', 'opponentwhitelol', 0, 0.1, 'linear')
+    doTweenAlpha('optionwhitelolALpha', 'optionwhitelol', 0, 0.1, 'linear')
+
+    doTweenAlpha('blacklolAlpha', 'blacklol', 0, 0.1, 'linear')  
+    doTweenAlpha('playerlolALpha', 'playerlol', 0, 0.1, 'linear')
+    doTweenAlpha('opponentlolALpha', 'opponentlol', 0, 0.1, 'linear')
+    doTweenAlpha('optionlolALpha', 'optionlol', 0, 0.1, 'linear')
+
+    doTweenAlpha('warnAplha', 'warn', 0, 0.1, 'linear')
+    doTweenAlpha('warnAplha2', 'warn2', 0, 0.1, 'linear')
+    doTweenAlpha('questionAplha', 'question', 0, 0.1, 'linear')
+    doTweenAlpha('sidenoteAplha', 'sidenote', 0, 0.1, 'linear')
+    doTweenAlpha('pAplha', 'p', 0, 0.1, 'linear')
+
+    doTweenAlpha('plAlpha', 'pl', 0, 0.1, 'linear')
+    doTweenAlpha('opAlpha', 'op', 0, 0.1, 'linear')
+    doTweenAlpha('seAlpha', 'se', 0, 0.1, 'linear')
+    doTweenAlpha('escAlpha', 'esc', 0, 0.1, 'linear')
+
+    doTweenAlpha('zAlpha', 'z', 0, 0.1, 'linear')
+
+    doTweenAlpha('scoreTxtAlpha', 'scoreTxt', 1, 0.1, 'linear')
+    doTweenAlpha('healthBarAlpha', 'healthBar', 1, 0.1, 'linear')
+    doTweenAlpha('healthBarBGAlpha', 'healthBarBG', 1, 0.1, 'linear')
+
+    doTweenAlpha('iconP1Alpha', 'iconP1', 1, 0.1, 'linear')
+    doTweenAlpha('iconP2Alpha', 'iconP2', 1, 0.1, 'linear') 
+end    
+
+function onTweenXY()
+    doTweenY('yY', 'y', 120, 0.1, 'linear')
+    doTweenY('tY', 't', 150, 0.1, 'linear')
+
+    doTweenY('fY', 'f', 300, 0.1, 'linear')
+    doTweenY('gY', 'g', 270, 0.1, 'linear')
+
+    doTweenY('pY', 'p', 412, 0.1, 'linear')
+    doTweenY('warnY', 'warn', 450, 0.1, 'linear')
+    doTweenY('warn2Y', 'warn2', 480, 0.1, 'linear')
+    doTweenY('questionY', 'question', 520, 0.1, 'linear')
+    doTweenY('sidenoteY', 'sidenote', 560, 0.1, 'linear')
+
+    doTweenY('spaceY', 'space', 360, 0.1, 'linear')
+
+    doTweenY('noteY0', 'Note', 80, 0.1, 'linear')
+    doTweenY('noteDADY0', 'NoteDAD', 230, 0.1, 'linear')
+
+    doTweenY('SplashpreY0', 'Splashpre0', 1230, 0.001, 'linear')
+    doTweenX('SplashpreX0', 'Splashpre0', 100, 0.001, 'linear')
+    doTweenY('SplashpreY1', 'Splashpre1', 1230, 0.001, 'linear')
+    doTweenX('SplashpreX1', 'Splashpre1', 100, 0.001, 'linear')
+    doTweenY('SplashpreY2', 'Splashpre2', 1230, 0.001, 'linear')
+    doTweenX('SplashpreX2', 'Splashpre2', 100, 0.001, 'linear')
+
+    doTweenY('SplashpreYDAD0', 'SplashpreDAD0', 1230, 0.001, 'linear')
+    doTweenX('SplashpreXDAD0', 'SplashpreDAD0', 100, 0.001, 'linear')
+    doTweenY('SplashpreYDAD1', 'SplashpreDAD1', 1230, 0.001, 'linear')
+    doTweenX('SplashpreXDAD1', 'SplashpreDAD1', 100, 0.001, 'linear')
+    doTweenY('SplashpreYDAD2', 'SplashpreDAD2', 1230, 0.001, 'linear')
+    doTweenX('SplashpreXDAD2', 'SplashpreDAD2', 100, 0.001, 'linear')
+
+    doTweenX('spaceX', 'space', 430, 0.001, 'linear')
+
+    doTweenY('hY', 'h', 410, 0.1, 'linear')
+    doTweenY('zY', 'z', 450, 0.1, 'linear')
+
+    doTweenY('plY', 'pl', 60, 0.1, 'linear')
+    doTweenY('opY', 'op', 210, 0.1, 'linear')
+    doTweenY('seY', 'se', 360, 0.1, 'linear')
+end    
+
+function onPrecaching()
+    precacheImage('NOTE_assets')
+    precacheImage('noteskin/tabi_NOTE_assets')
+    precacheImage('noteskin/Majin_Notes')
+    precacheImage('noteskin/creepy_assets')
+
+    precacheImage('noteseen/normal notes')
+    precacheImage('noteseen/tabi notes')
+    precacheImage('noteseen/majin notes')
+    precacheImage('noteseen/creepy notes')
+
+    precacheImage('noteSplashes')
+    precacheImage('notesplash/Majin_Splashes')
+    precacheImage('notesplash/creepySplashes')
+
+    precacheImage('pixelUI/noteseen/pixel notes')
+    precacheImage('pixelUI/noteseen/NES notes')
     
-        doTweenAlpha('fAlpha', 'f', 0, 0.1, 'linear')
-        doTweenAlpha('gAlpha', 'g', 0, 0.1, 'linear')
+    precacheSound('scrollMenu')
+    precacheSound('ToggleJingle')  
+    precacheSound('hitsound')
+
+    precacheMusic('offsetSong')
+end
+
+function onRemove()
+    if curBeat == 2 then
+        removeLuaText('y', true);
+        removeLuaText('t', true);
+        removeLuaText('space', true);
     
-        doTweenAlpha('hAlpha', 'h', 0, 0.1, 'linear')
-        doTweenAlpha('spaceAlpha', 'space', 0, 0.1, 'linear')
+        removeLuaText('Note', true);
+        removeLuaText('NoteDAD', true);
     
-        doTweenAlpha('noteAlpha0', 'Note', 0, 0.1, 'linear')
-        doTweenAlpha('noteDADAlpha0', 'NoteDAD', 0, 0.1, 'linear')
+        removeLuaSprite('preview0', true);
+        removeLuaSprite('preview1', true);
+        removeLuaSprite('preview2', true);
+        removeLuaSprite('preview3', true);
     
-        doTweenAlpha('previewAlpha0', 'preview0', 0, 0.1, 'linear')
-        doTweenAlpha('previewAlpha1', 'preview1', 0, 0.1, 'linear')
-        doTweenAlpha('previewAlpha2', 'preview2', 0, 0.1, 'linear')
-        doTweenAlpha('previewAlpha3', 'preview3', 0, 0.1, 'linear')
+        removeLuaSprite('preview0DAD', true);
+        removeLuaSprite('preview1DAD', true);
+        removeLuaSprite('preview2DAD', true);
+        removeLuaSprite('preview3DAD', true);
     
-        doTweenAlpha('previewAlpha0DAD', 'previewDAD0', 0, 0.1, 'linear')
-        doTweenAlpha('previewAlpha1DAD', 'previewDAD1', 0, 0.1, 'linear')
-        doTweenAlpha('previewAlpha2DAD', 'previewDAD2', 0, 0.1, 'linear')
-        doTweenAlpha('previewAlpha3DAD', 'previewDAD3', 0, 0.1, 'linear')
+        removeLuaSprite('pixel1', true)
+        removeLuaSprite('pixel2', true)
     
-        doTweenAlpha('pixelAlpha1', 'pixel1', 0, 0.1, 'linear')
-        doTweenAlpha('pixelAlpha2', 'pixel2', 0, 0.1, 'linear')
+        removeLuaSprite('pixelDAD1', true)
+        removeLuaSprite('pixelDAD2', true)
     
-        doTweenAlpha('pixelAlpha1DAD', 'pixelDAD1', 0, 0.1, 'linear')
-        doTweenAlpha('pixelAlpha2DAD', 'pixelDAD2', 0, 0.1, 'linear')
+        removeLuaSprite('Splashpre0', true);
+        removeLuaSprite('Splashpre1', true);
+        removeLuaSprite('Splashpre2', true);
     
-        doTweenAlpha('SplashpreAlpha0', 'Splashpre0', 0, 0.1, 'linear')
-        doTweenAlpha('SplashpreAlpha1', 'Splashpre1', 0, 0.1, 'linear')
-        doTweenAlpha('SplashpreAlpha2', 'Splashpre2', 0, 0.1, 'linear')
+        removeLuaSprite('whitelol', true);
+        removeLuaSprite('playerwhitelol', true);
+        removeLuaSprite('opponentwhitelol', true);
+        removeLuaSprite('optionwhitelol', true);
     
-        doTweenAlpha('SplashpreAlphaDAD0', 'SplashpreDAD0', 0, 0.1, 'linear')
-        doTweenAlpha('SplashpreAlphaDAD1', 'SplashpreDAD1', 0, 0.1, 'linear')
-        doTweenAlpha('SplashpreAlphaDAD2', 'SplashpreDAD2', 0, 0.1, 'linear')
+        removeLuaSprite('blacklol', true);
+        removeLuaSprite('playerlol', true);
+        removeLuaSprite('opponentlol', true);
+        removeLuaSprite('optionlol', true);
     
-        doTweenAlpha('whitelolAlpha', 'whitelol', 0, 0.1, 'linear') 
-        doTweenAlpha('playerwhitelolALpha', 'playerwhitelol', 0, 0.1, 'linear')
-        doTweenAlpha('opponentwhitelolALpha', 'opponentwhitelol', 0, 0.1, 'linear')
-        doTweenAlpha('optionwhitelolALpha', 'optionwhitelol', 0, 0.1, 'linear')
+        removeLuaSprite('pl', true);
+        removeLuaSprite('op', true);
+        removeLuaSprite('se', true);
+        removeLuaSprite('esc', true);
     
-        doTweenAlpha('blacklolAlpha', 'blacklol', 0, 0.1, 'linear')  
-        doTweenAlpha('playerlolALpha', 'playerlol', 0, 0.1, 'linear')
-        doTweenAlpha('opponentlolALpha', 'opponentlol', 0, 0.1, 'linear')
-        doTweenAlpha('optionlolALpha', 'optionlol', 0, 0.1, 'linear')
+        removeLuaText('warn', true);
+        removeLuaText('warn2', true);
+        removeLuaText('question', true);
+        removeLuaText('sidenote', true);
+        removeLuaText('p', true);
     
-        doTweenAlpha('warnAplha', 'warn', 0, 0.1, 'linear')
-        doTweenAlpha('warnAplha2', 'warn2', 0, 0.1, 'linear')
-        doTweenAlpha('questionAplha', 'question', 0, 0.1, 'linear')
-        doTweenAlpha('sidenoteAplha', 'sidenote', 0, 0.1, 'linear')
-        doTweenAlpha('pAplha', 'p', 0, 0.1, 'linear')
-    
-        doTweenAlpha('plAlpha', 'pl', 0, 0.1, 'linear')
-        doTweenAlpha('opAlpha', 'op', 0, 0.1, 'linear')
-        doTweenAlpha('seAlpha', 'se', 0, 0.1, 'linear')
-        doTweenAlpha('escAlpha', 'esc', 0, 0.1, 'linear')
-    
-        doTweenAlpha('zAlpha', 'z', 0, 0.1, 'linear')
-    
-        doTweenAlpha('scoreTxtAlpha', 'scoreTxt', 1, 0.1, 'linear')
-        doTweenAlpha('healthBarAlpha', 'healthBar', 1, 0.1, 'linear')
-        doTweenAlpha('healthBarBGAlpha', 'healthBarBG', 1, 0.1, 'linear')
-    
-        doTweenAlpha('iconP1Alpha', 'iconP1', 1, 0.1, 'linear')
-        doTweenAlpha('iconP2Alpha', 'iconP2', 1, 0.1, 'linear') 
-    end,    
-}
+        removeLuaText('f', true);
+        removeLuaText('g', true);
+        removeLuaText('z', true);
+    end    
+end    
