@@ -53,12 +53,15 @@ function onCreate()
 
     makeLuaText('h', 'Press [H] to Change BG to White', 0, 230);
     setTextSize('h', '20')
-    setTextAlignment('h', 'middle')
     addLuaText('h', true)
 
     makeLuaText('z', 'Press [Z] to Get the NoteSkin in the stage', 0, 228);
     setTextSize('z', '16')
     addLuaText('z', true)
+
+    makeLuaText('i', 'Press [I] to Enable Hitsounds', 0, 228);
+    setTextSize('i', '16')
+    addLuaText('i', true)
 
     -- Background --
 
@@ -905,6 +908,10 @@ function onUpdatePost(elapsed)
             setProperty('Splashpre0.visible', false)
             setProperty('Splashpre1.visible', false)
             setProperty('Splashpre2.visible', false) 
+
+            setProperty('SplashpreDAD0.visible', false)
+            setProperty('SplashpreDAD1.visible', false)
+            setProperty('SplashpreDAD2.visible', false) 
     
         elseif getPropertyFromClass('flixel.FlxG', 'keys.justPressed.L') and Answer == semifalse then
             Answer = true;
@@ -936,20 +943,92 @@ function onUpdatePost(elapsed)
 
             setProperty('pixelDAD1.visible', false)
             setProperty('pixelDAD2.visible', false)
-    
-            setProperty('preview0.visible', true)
-            setProperty('preview1.visible', false)
-            setProperty('preview2.visible', false)
-            setProperty('preview3.visible', false)    
 
-            setProperty('previewDAD0.visible', true)
-            setProperty('previewDAD1.visible', false)
-            setProperty('previewDAD2.visible', false)
-            setProperty('previewDAD3.visible', false)    
+            if NoteskinBF == 0 then
+                setProperty('preview0.visible', true)
+                setProperty('preview1.visible', false)
+                setProperty('preview2.visible', false)
+                setProperty('preview3.visible', false)  
+
+            elseif NoteskinBF == 1 then   
+                setProperty('preview0.visible', false)
+                setProperty('preview1.visible', true)
+                setProperty('preview2.visible', false)
+                setProperty('preview3.visible', false)  
             
-            setProperty('Splashpre0.visible', true)
-            setProperty('Splashpre1.visible', false)
-            setProperty('Splashpre2.visible', false) 
+            elseif NoteskinBF == 2 then   
+                setProperty('preview0.visible', false)
+                setProperty('preview1.visible', false)
+                setProperty('preview2.visible', true)
+                setProperty('preview3.visible', false)   
+              
+            elseif NoteskinBF == 3 then   
+                setProperty('preview0.visible', false)
+                setProperty('preview1.visible', false)
+                setProperty('preview2.visible', false)
+                setProperty('preview3.visible', true) 
+             
+            end    
+
+            if NoteskinDAD == 0 then
+                setProperty('previewDAD0.visible', true)
+                setProperty('previewDAD1.visible', false)
+                setProperty('previewDAD2.visible', false)
+                setProperty('previewDAD3.visible', false)  
+
+            elseif NoteskinDAD == 1 then   
+                setProperty('previewDAD0.visible', false)
+                setProperty('previewDAD1.visible', true)
+                setProperty('previewDAD2.visible', false)
+                setProperty('previewDAD3.visible', false)  
+            
+            elseif NoteskinDAD == 2 then   
+                setProperty('previewDAD0.visible', false)
+                setProperty('previewDAD1.visible', false)
+                setProperty('previewDAD2.visible', true)
+                setProperty('previewDAD3.visible', false)   
+              
+            elseif NoteskinDAD == 3 then   
+                setProperty('previewDAD0.visible', false)
+                setProperty('previewDAD1.visible', false)
+                setProperty('previewDAD2.visible', false)
+                setProperty('previewDAD3.visible', true) 
+             
+            end  
+
+            if NotesplashBF == 0 or NotesplashBF == 1 then
+                setProperty('Splashpre0.visible', true)
+                setProperty('Splashpre1.visible', false)
+                setProperty('Splashpre2.visible', false) 
+            
+            elseif NotesplashBF == 2 then
+                setProperty('Splashpre0.visible', false)
+                setProperty('Splashpre1.visible', true)
+                setProperty('Splashpre2.visible', false)  
+
+            elseif NotesplashBF == 3 then
+                setProperty('Splashpre0.visible', false)
+                setProperty('Splashpre1.visible', false)
+                setProperty('Splashpre2.visible', true)  
+           
+            end
+
+            if NotesplashDAD == 0 or NotesplashDAD == 1 then
+                setProperty('SplashpreDAD0.visible', true)
+                setProperty('SplashpreDAD1.visible', false)
+                setProperty('SplashpreDAD2.visible', false) 
+            
+            elseif NotesplashDAD == 2 then
+                setProperty('SplashpreDAD0.visible', false)
+                setProperty('SplashpreDAD1.visible', true)
+                setProperty('SplashpreDAD2.visible', false)  
+
+            elseif NotesplashDAD == 3 then
+                setProperty('SplashpreDAD0.visible', false)
+                setProperty('SplashpreDAD1.visible', false)
+                setProperty('SplashpreDAD2.visible', true)  
+           
+            end
         end    
     
         if Answer == true then 
@@ -966,6 +1045,10 @@ function onUpdatePost(elapsed)
             setProperty('Splashpre0.visible', false)
             setProperty('Splashpre1.visible', false)
             setProperty('Splashpre2.visible', false)  
+
+            setProperty('SplashpreDAD0.visible', false)
+            setProperty('SplashpreDAD1.visible', false)
+            setProperty('SplashpreDAD2.visible', false)  
    
             -- BF --
             if PixelskinBF == 0 and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.T') then
@@ -1320,6 +1403,7 @@ function onTweenAlpha()
     doTweenAlpha('escAlpha', 'esc', 0, 0.1, 'linear')
 
     doTweenAlpha('zAlpha', 'z', 0, 0.1, 'linear')
+    doTweenAlpha('iAlpha', 'i', 0, 0.1, 'linear')
 
     doTweenAlpha('scoreTxtAlpha', 'scoreTxt', 1, 0.1, 'linear')
     doTweenAlpha('healthBarAlpha', 'healthBar', 1, 0.1, 'linear')
@@ -1364,7 +1448,8 @@ function onTweenXY()
     doTweenX('spaceX', 'space', 430, 0.001, 'linear')
 
     doTweenY('hY', 'h', 410, 0.1, 'linear')
-    doTweenY('zY', 'z', 450, 0.1, 'linear')
+    doTweenY('zY', 'z', 440, 0.1, 'linear')
+    doTweenY('iY', 'i', 460, 0.1, 'linear')
 
     doTweenY('plY', 'pl', 60, 0.1, 'linear')
     doTweenY('opY', 'op', 210, 0.1, 'linear')
@@ -1449,5 +1534,6 @@ function onRemove()
         removeLuaText('f', true);
         removeLuaText('g', true);
         removeLuaText('z', true);
+        removeLuaText('i', true);
     end    
 end    
