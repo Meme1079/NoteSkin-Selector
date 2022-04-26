@@ -1,6 +1,6 @@
 # NoteSkin Selector
 
-Originally posted in Psych Engine Discussions now transfer mayo78 Psych Discussions. And posted in Gamebanana this scrupt makes you select the NoteSkin/NoteSplashes!
+Originally posted in Psych Engine Discussions now transfer mayo78 Psych Discussions and posted in Gamebanana .This script makes you select the NoteSkin/NoteSplashes!
 
 # Q&A
 
