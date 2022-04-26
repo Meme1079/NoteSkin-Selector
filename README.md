@@ -30,7 +30,7 @@ yes give credit or else
 - DO NOT DOWNLOAD 0.5.3b
 - DO NOT PRESS [SPACE] WHEN YOUR IN A DIALOGUE
 
-# Credits on the NoteSkins Used here
+# Credits on the NoteSkins/NoteSplashes Used here
 
 ### [VS. Sonic](https://gamebanana.com/mods/316022) | Majin Notes
 
@@ -39,6 +39,8 @@ yes give credit or else
 ### [Vs. Flippy](https://gamebanana.com/mods/300838) | Creepy Notes
 
 ### [An Ordinary Too Slow Cover](https://gamebanana.com/mods/347720) | NES Notes
+
+### [Pixelated Note Splashes!](https://gamebanana.com/mods/369664) | Pixel Splashes
 
 # Gaming Features
 <img width="1280" alt="Screen Shot 2022-04-19 at 7 35 58 AM" src="https://user-images.githubusercontent.com/101881784/164354308-0154d3f8-fc07-4c5e-bb01-8343c5764aee.png">
