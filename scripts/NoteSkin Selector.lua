@@ -249,6 +249,16 @@ function onCreate()
     scaleLuaSprite('SplashpreDAD2', 0.5, 0.5)
     addLuaSprite('SplashpreDAD2', true)
 
+    makeAnimatedLuaSprite('SplashPixelpre0', 'notesplash/weeb/noteSplashes', PreX, PreY)
+    setObjectCamera('SplashPixelpre0', 'camHUD')
+    scaleLuaSprite('SplashPixelpre0', 0.5, 0.5)
+    addLuaSprite('SplashPixelpre0', true)
+
+    makeAnimatedLuaSprite('SplashPixelpreDAD0', 'notesplash/weeb/noteSplashes', PreX, PreDADY)
+    setObjectCamera('SplashPixelpreDAD0', 'camHUD')
+    scaleLuaSprite('SplashPixelpreDAD0', 0.5, 0.5)
+    addLuaSprite('SplashPixelpreDAD0', true)
+
     -- Other --
 
     makeLuaText('esc', 'Press [ESCAPE] to Exit the song', 0, 655);
@@ -370,6 +380,185 @@ function onUpdate(elapsed)
     end          
 end
 
+local n1 = 1 -- PrefixNameSplashBF
+local n2 = 1 -- NamePrefix1
+local n3 = 1 -- NamePrefix1 group
+local n4 = 1 -- XMLAnimation1 and XMLAnimation2 
+local n5 = 1 -- XMLAnimation1 and XMLAnimation2 group
+local n6 = 1 -- SplashX
+
+local n1DAD = 1 -- PrefixNameSplashDAD
+local n2DAD = 1 -- NamePrefix1
+local n3DAD = 1 -- NamePrefix1 group
+local n4DAD = 1 -- XMLAnimation1 and XMLAnimation2 
+local n5DAD = 1 -- XMLAnimation1 and XMLAnimation2 group
+local n6DAD = 1 -- SplashX
+function onSplashPrefix()
+    -- Thanks to mayo78 for making me learn tables lel
+    SplashX = {290, 375, 210, 465}
+                    
+    SplashY = 60
+    SplashDADY = 210
+
+    PrefixNameSplashBF = {'Splashpre0', 'Splashpre1', 'Splashpre2'}
+    PrefixNameSplashDAD = {'SplashpreDAD0', 'SplashpreDAD1', 'SplashpreDAD2'}
+                        
+    NamePrefix1 = {
+        {'blue1', 'green1', 'purple1', 'red1'},
+        {'majin-blue1', 'majin-green1', 'majin-purple1', 'majin-red1'},
+        {'creepy-blue1', 'creepy-green1', 'creepy-purple1', 'creepy-red1'}
+    }    
+                        
+    NamePrefix2 = {
+        {'blue2', 'green2', 'purple2', 'red2'},
+        {'majin-blue2', 'majin-green2', 'majin-purple2', 'majin-red2'},
+        {'creepy-blue2', 'creepy-green2', 'creepy-purple2', 'creepy-red2'}
+    }
+                            
+    XMLAnimation1 = {
+        {'note splash blue 1', 'note splash green 1', 'note splash purple 1', 'note splash red 1'}
+    }    
+                            
+    XMLAnimation2 = {
+        {'note splash blue 2', 'note splash green 2', 'note splash purple 2', 'note splash red 2'}
+    }  
+                        
+    Splashes = {
+        [1] = function()
+            objectPlayAnimation(PrefixNameSplashBF[n1], NamePrefix1[n2][n3], false)
+            objectPlayAnimation(PrefixNameSplashBF[n1], NamePrefix2[n2][n3], false)
+            doTweenX('SplashpreX0', PrefixNameSplashBF[n1], SplashX[n6], 0.001, 'linear')
+            doTweenY('SplashpreY0', PrefixNameSplashBF[n1], SplashY, 0.001, 'linear')
+        end, 
+                        
+        [2] = function()
+            objectPlayAnimation(PrefixNameSplashDAD[n1DAD], NamePrefix1[n2DAD][n3DAD], false)
+            objectPlayAnimation(PrefixNameSplashDAD[n1DAD], NamePrefix2[n2DAD][n3DAD], false)
+            doTweenX('SplashpreXDAD0', PrefixNameSplashDAD[n1DAD], SplashX[n6DAD], 0.001, 'linear')
+            doTweenY('SplashpreYDAD0', PrefixNameSplashDAD[n1DAD], SplashDADY, 0.001, 'linear')
+        end,
+    }
+                    
+    luaSpriteAddAnimationByPrefix(PrefixNameSplashBF[n1], NamePrefix1[n2][n3], XMLAnimation1[n4][n5], 24, false);
+    luaSpriteAddAnimationByPrefix(PrefixNameSplashBF[n1], NamePrefix1[n2][n3], XMLAnimation1[n4][n5], 24, false);
+    luaSpriteAddAnimationByPrefix(PrefixNameSplashBF[n1], NamePrefix1[n2][n3], XMLAnimation1[n4][n5], 24, false);
+    luaSpriteAddAnimationByPrefix(PrefixNameSplashBF[n1], NamePrefix1[n2][n3], XMLAnimation1[n4][n5], 24, false);
+                    
+    luaSpriteAddAnimationByPrefix(PrefixNameSplashBF[n1], NamePrefix2[n2][n3], XMLAnimation2[n4][n5], 24, false);
+    luaSpriteAddAnimationByPrefix(PrefixNameSplashBF[n1], NamePrefix2[n2][n3], XMLAnimation2[n4][n5], 24, false);
+    luaSpriteAddAnimationByPrefix(PrefixNameSplashBF[n1], NamePrefix2[n2][n3], XMLAnimation2[n4][n5], 24, false);
+    luaSpriteAddAnimationByPrefix(PrefixNameSplashBF[n1], NamePrefix2[n2][n3], XMLAnimation2[n4][n5], 24, false);
+                    
+    addAnimationByIndices(PrefixNameSplashBF[n1], NamePrefix1[n2][n3], XMLAnimation1[n4][n5], '0,1,2,3', 24)
+    addAnimationByIndices(PrefixNameSplashBF[n1], NamePrefix1[n2][n3], XMLAnimation1[n4][n5], '0,1,2,3', 24)
+    addAnimationByIndices(PrefixNameSplashBF[n1], NamePrefix1[n2][n3], XMLAnimation1[n4][n5], '0,1,2,3', 24)
+    addAnimationByIndices(PrefixNameSplashBF[n1], NamePrefix1[n2][n3], XMLAnimation1[n4][n5], '0,1,2,3', 24)
+                    
+    addAnimationByIndices(PrefixNameSplashBF[n1], NamePrefix2[n2][n3], XMLAnimation2[n4][n5], '0,1,2,3', 24)
+    addAnimationByIndices(PrefixNameSplashBF[n1], NamePrefix2[n2][n3], XMLAnimation2[n4][n5], '0,1,2,3', 24)
+    addAnimationByIndices(PrefixNameSplashBF[n1], NamePrefix2[n2][n3], XMLAnimation2[n4][n5], '0,1,2,3', 24)
+    addAnimationByIndices(PrefixNameSplashBF[n1], NamePrefix2[n2][n3], XMLAnimation2[n4][n5], '0,1,2,3', 24)
+                    
+                    
+    luaSpriteAddAnimationByPrefix(PrefixNameSplashDAD[n1DAD], NamePrefix1[n2DAD][n3DAD], XMLAnimation1[n4DAD][n5DAD], 24, false);
+    luaSpriteAddAnimationByPrefix(PrefixNameSplashDAD[n1DAD], NamePrefix1[n2DAD][n3DAD], XMLAnimation1[n4DAD][n5DAD], 24, false);
+    luaSpriteAddAnimationByPrefix(PrefixNameSplashDAD[n1DAD], NamePrefix1[n2DAD][n3DAD], XMLAnimation1[n4DAD][n5DAD], 24, false);
+    luaSpriteAddAnimationByPrefix(PrefixNameSplashDAD[n1DAD], NamePrefix1[n2DAD][n3DAD], XMLAnimation1[n4DAD][n5DAD], 24, false);
+                    
+    luaSpriteAddAnimationByPrefix(PrefixNameSplashDAD[n1DAD], NamePrefix2[n2DAD][n3DAD], XMLAnimation2[n4DAD][n5DAD], 24, false);
+    luaSpriteAddAnimationByPrefix(PrefixNameSplashDAD[n1DAD], NamePrefix2[n2DAD][n3DAD], XMLAnimation2[n4DAD][n5DAD], 24, false);
+    luaSpriteAddAnimationByPrefix(PrefixNameSplashDAD[n1DAD], NamePrefix2[n2DAD][n3DAD], XMLAnimation2[n4DAD][n5DAD], 24, false);
+    luaSpriteAddAnimationByPrefix(PrefixNameSplashDAD[n1DAD], NamePrefix2[n2DAD][n3DAD], XMLAnimation2[n4DAD][n5DAD], 24, false);
+                    
+    addAnimationByIndices(PrefixNameSplashDAD[n1DAD], NamePrefix1[n2DAD][n3DAD], XMLAnimation1[n4DAD][n5DAD], '0,1,2,3', 24)
+    addAnimationByIndices(PrefixNameSplashDAD[n1DAD], NamePrefix1[n2DAD][n3DAD], XMLAnimation1[n4DAD][n5DAD], '0,1,2,3', 24)
+    addAnimationByIndices(PrefixNameSplashDAD[n1DAD], NamePrefix1[n2DAD][n3DAD], XMLAnimation1[n4DAD][n5DAD], '0,1,2,3', 24)
+    addAnimationByIndices(PrefixNameSplashDAD[n1DAD], NamePrefix1[n2DAD][n3DAD], XMLAnimation1[n4DAD][n5DAD], '0,1,2,3', 24)
+                    
+    addAnimationByIndices(PrefixNameSplashDAD[n1DAD], NamePrefix2[n2DAD][n3DAD], XMLAnimation2[n4DAD][n5DAD], '0,1,2,3', 24)
+    addAnimationByIndices(PrefixNameSplashDAD[n1DAD], NamePrefix2[n2DAD][n3DAD], XMLAnimation2[n4DAD][n5DAD], '0,1,2,3', 24)
+    addAnimationByIndices(PrefixNameSplashDAD[n1DAD], NamePrefix2[n2DAD][n3DAD], XMLAnimation2[n4DAD][n5DAD], '0,1,2,3', 24)
+    addAnimationByIndices(PrefixNameSplashDAD[n1DAD], NamePrefix2[n2DAD][n3DAD], XMLAnimation2[n4DAD][n5DAD], '0,1,2,3', 24)
+
+    if Answer == true then
+        PrefixNameSPixelBF = {'SplashPixelpre0'}
+        PrefixNameSPixelDAD = {'SplashPixelpreDAD0'}
+                        
+        NamePrefixPixel1 = {
+            {'blue1', 'green1', 'purple1', 'red1'}
+        }    
+                            
+        NamePrefixPixel2 = {
+            {'blue2', 'green2', 'purple2', 'red2'}
+        }
+                                
+        XMLAnimationPixel1 = {
+            {'note splash blue 1', 'note splash green 1', 'note splash purple 1', 'note splash red 1'}
+        }    
+                                
+        XMLAnimationPixel2 = {
+            {'note splash blue 2', 'note splash green 2', 'note splash purple 2', 'note splash red 2'}
+        }  
+                            
+        SplashesPixel = {
+            [1] = function()
+                objectPlayAnimation(PrefixNameSPixelBF[n1], NamePrefixPixel1[n2][n3], false)
+                objectPlayAnimation(PrefixNameSPixelBF[n1], NamePrefixPixel2[n2][n3], false)
+                doTweenX('SplashPixelpreX0', PrefixNameSPixelBF[n1], SplashX[n6], 0.001, 'linear')
+                doTweenY('SplashPixelpreY0', PrefixNameSPixelBF[n1], SplashY, 0.001, 'linear')
+            end, 
+                            
+            [2] = function()
+                objectPlayAnimation(PrefixNameSPixelDAD[n1DAD], NamePrefixPixel1[n2DAD][n3DAD], false)
+                objectPlayAnimation(PrefixNameSPixelDAD[n1DAD], NamePrefixPixel2[n2DAD][n3DAD], false)
+                doTweenX('SplashPixelpreXDAD0', PrefixNameSPixelDAD[n1DAD], SplashX[n6DAD], 0.001, 'linear')
+                doTweenY('SplashPixelpreYDAD0', PrefixNameSPixelDAD[n1DAD], SplashDADY, 0.001, 'linear')
+            end,
+        }
+                        
+        luaSpriteAddAnimationByPrefix(PrefixNameSPixelBF[n1], NamePrefixPixel1[n2][n3], XMLAnimationPixel1[n4][n5], 24, false);
+        luaSpriteAddAnimationByPrefix(PrefixNameSPixelBF[n1], NamePrefixPixel1[n2][n3], XMLAnimationPixel1[n4][n5], 24, false);
+        luaSpriteAddAnimationByPrefix(PrefixNameSPixelBF[n1], NamePrefixPixel1[n2][n3], XMLAnimationPixel1[n4][n5], 24, false);
+        luaSpriteAddAnimationByPrefix(PrefixNameSPixelBF[n1], NamePrefixPixel1[n2][n3], XMLAnimationPixel1[n4][n5], 24, false);
+                        
+        luaSpriteAddAnimationByPrefix(PrefixNameSPixelBF[n1], NamePrefixPixel2[n2][n3], XMLAnimationPixel2[n4][n5], 24, false);
+        luaSpriteAddAnimationByPrefix(PrefixNameSPixelBF[n1], NamePrefixPixel2[n2][n3], XMLAnimationPixel2[n4][n5], 24, false);
+        luaSpriteAddAnimationByPrefix(PrefixNameSPixelBF[n1], NamePrefixPixel2[n2][n3], XMLAnimationPixel2[n4][n5], 24, false);
+        luaSpriteAddAnimationByPrefix(PrefixNameSPixelBF[n1], NamePrefixPixel2[n2][n3], XMLAnimationPixel2[n4][n5], 24, false);
+                        
+        addAnimationByIndices(PrefixNameSPixelBF[n1], NamePrefixPixel1[n2][n3], XMLAnimationPixel1[n4][n5], '0,1,2,3', 24)
+        addAnimationByIndices(PrefixNameSPixelBF[n1], NamePrefixPixel1[n2][n3], XMLAnimationPixel1[n4][n5], '0,1,2,3', 24)
+        addAnimationByIndices(PrefixNameSPixelBF[n1], NamePrefixPixel1[n2][n3], XMLAnimationPixel1[n4][n5], '0,1,2,3', 24)
+        addAnimationByIndices(PrefixNameSPixelBF[n1], NamePrefixPixel1[n2][n3], XMLAnimationPixel1[n4][n5], '0,1,2,3', 24)
+                        
+        addAnimationByIndices(PrefixNameSPixelBF[n1], NamePrefixPixel2[n2][n3], XMLAnimationPixel2[n4][n5], '0,1,2,3', 24)
+        addAnimationByIndices(PrefixNameSPixelBF[n1], NamePrefixPixel2[n2][n3], XMLAnimationPixel2[n4][n5], '0,1,2,3', 24)
+        addAnimationByIndices(PrefixNameSPixelBF[n1], NamePrefixPixel2[n2][n3], XMLAnimationPixel2[n4][n5], '0,1,2,3', 24)
+        addAnimationByIndices(PrefixNameSPixelBF[n1], NamePrefixPixel2[n2][n3], XMLAnimationPixel2[n4][n5], '0,1,2,3', 24)
+                        
+                        
+        luaSpriteAddAnimationByPrefix(PrefixNameSPixelDAD[n1DAD], NamePrefixPixel1[n2DAD][n3DAD], XMLAnimationPixel1[n4DAD][n5DAD], 24, false);
+        luaSpriteAddAnimationByPrefix(PrefixNameSPixelDAD[n1DAD], NamePrefixPixel1[n2DAD][n3DAD], XMLAnimationPixel1[n4DAD][n5DAD], 24, false);
+        luaSpriteAddAnimationByPrefix(PrefixNameSPixelDAD[n1DAD], NamePrefixPixel1[n2DAD][n3DAD], XMLAnimationPixel1[n4DAD][n5DAD], 24, false);
+        luaSpriteAddAnimationByPrefix(PrefixNameSPixelDAD[n1DAD], NamePrefixPixel1[n2DAD][n3DAD], XMLAnimationPixel1[n4DAD][n5DAD], 24, false);
+                        
+        luaSpriteAddAnimationByPrefix(PrefixNameSPixelDAD[n1DAD], NamePrefixPixel2[n2DAD][n3DAD], XMLAnimationPixel2[n4DAD][n5DAD], 24, false);
+        luaSpriteAddAnimationByPrefix(PrefixNameSPixelDAD[n1DAD], NamePrefixPixel2[n2DAD][n3DAD], XMLAnimationPixel2[n4DAD][n5DAD], 24, false);
+        luaSpriteAddAnimationByPrefix(PrefixNameSPixelDAD[n1DAD], NamePrefixPixel2[n2DAD][n3DAD], XMLAnimationPixel2[n4DAD][n5DAD], 24, false);
+        luaSpriteAddAnimationByPrefix(PrefixNameSPixelDAD[n1DAD], NamePrefixPixel2[n2DAD][n3DAD], XMLAnimationPixel2[n4DAD][n5DAD], 24, false);
+                        
+        addAnimationByIndices(PrefixNameSPixelDAD[n1DAD], NamePrefixPixel1[n2DAD][n3DAD], XMLAnimationPixel1[n4DAD][n5DAD], '0,1,2,3', 24)
+        addAnimationByIndices(PrefixNameSPixelDAD[n1DAD], NamePrefixPixel1[n2DAD][n3DAD], XMLAnimationPixel1[n4DAD][n5DAD], '0,1,2,3', 24)
+        addAnimationByIndices(PrefixNameSPixelDAD[n1DAD], NamePrefixPixel1[n2DAD][n3DAD], XMLAnimationPixel1[n4DAD][n5DAD], '0,1,2,3', 24)
+        addAnimationByIndices(PrefixNameSPixelDAD[n1DAD], NamePrefixPixel1[n2DAD][n3DAD], XMLAnimationPixel1[n4DAD][n5DAD], '0,1,2,3', 24)
+                        
+        addAnimationByIndices(PrefixNameSPixelDAD[n1DAD], NamePrefixPixel2[n2DAD][n3DAD], XMLAnimationPixel2[n4DAD][n5DAD], '0,1,2,3', 24)
+        addAnimationByIndices(PrefixNameSPixelDAD[n1DAD], NamePrefixPixel2[n2DAD][n3DAD], XMLAnimationPixel2[n4DAD][n5DAD], '0,1,2,3', 24)
+        addAnimationByIndices(PrefixNameSPixelDAD[n1DAD], NamePrefixPixel2[n2DAD][n3DAD], XMLAnimationPixel2[n4DAD][n5DAD], '0,1,2,3', 24)
+        addAnimationByIndices(PrefixNameSPixelDAD[n1DAD], NamePrefixPixel2[n2DAD][n3DAD], XMLAnimationPixel2[n4DAD][n5DAD], '0,1,2,3', 24)
+    end    
+end        
+
 local NoteskinBF = 0;
 local NotesplashBF = 0;
 local PixelskinBF = 0;
@@ -380,134 +569,34 @@ local NotesplashDAD = 0;
 local PixelskinDAD = 0;
 local PixelsplashDAD = 0;
 
-local n1 = 1 -- PrefixNameBF
-local n2 = 1 -- NamePrefix1
-local n3 = 1 -- NamePrefix1 group
-local n4 = 1 -- XMLAnimation1 and XMLAnimation2 
-local n5 = 1 -- XMLAnimation1 and XMLAnimation2 group
-local n6 = 1 -- SplashX
-
-local n1DAD = 1 -- PrefixNameDAD
-local n2DAD = 1 -- NamePrefix1
-local n3DAD = 1 -- NamePrefix1 group
-local n4DAD = 1 -- XMLAnimation1 and XMLAnimation2 
-local n5DAD = 1 -- XMLAnimation1 and XMLAnimation2 group
-local n6DAD = 1 -- SplashX
 function onUpdatePost(elapsed)
-    -- Thanks to mayo78 for making me learn tables lel
-
-    PrefixNameBF = {'Splashpre0', 'Splashpre1', 'Splashpre2'}
-    PrefixNameDAD = {'SplashpreDAD0', 'SplashpreDAD1', 'SplashpreDAD2'}
-    
-    NamePrefix1 = {
-        {'blue1', 'green1', 'purple1', 'red1'},
-        {'majin-blue1', 'majin-green1', 'majin-purple1', 'majin-red1'},
-        {'creepy-blue1', 'creepy-green1', 'creepy-purple1', 'creepy-red1'}
-    }    
-    
-    NamePrefix2 = {
-        {'blue2', 'green2', 'purple2', 'red2'},
-        {'majin-blue2', 'majin-green2', 'majin-purple2', 'majin-red2'},
-        {'creepy-blue2', 'creepy-green2', 'creepy-purple2', 'creepy-red2'}
-    }
-        
-    XMLAnimation1 = {
-        {'note splash blue 1', 'note splash green 1', 'note splash purple 1', 'note splash red 1'}
-    }    
-        
-    XMLAnimation2 = {
-        {'note splash blue 2', 'note splash green 2', 'note splash purple 2', 'note splash red 2'}
-    }  
-
-    SplashX = {290, 375, 210, 465}
-
-    SplashY = 60
-    SplashDADY = 210
-	
-    Splashes = {
-        [1] = function()
-            objectPlayAnimation(PrefixNameBF[n1], NamePrefix1[n2][n3], false)
-            objectPlayAnimation(PrefixNameBF[n1], NamePrefix2[n2][n3], false)
-            doTweenX('SplashpreX0', PrefixNameBF[n1], SplashX[n6], 0.001, 'linear')
-            doTweenY('SplashpreY0', PrefixNameBF[n1], SplashY, 0.001, 'linear')
-        end, 
-    
-        [2] = function()
-            objectPlayAnimation(PrefixNameDAD[n1DAD], NamePrefix1[n2DAD][n3DAD], false)
-            objectPlayAnimation(PrefixNameDAD[n1DAD], NamePrefix2[n2DAD][n3DAD], false)
-            doTweenX('SplashpreXDAD0', PrefixNameDAD[n1DAD], SplashX[n6DAD], 0.001, 'linear')
-            doTweenY('SplashpreYDAD0', PrefixNameDAD[n1DAD], SplashDADY, 0.001, 'linear')
-        end,
-    }
-
-    luaSpriteAddAnimationByPrefix(PrefixNameBF[n1], NamePrefix1[n2][n3], XMLAnimation1[n4][n5], 24, false);
-    luaSpriteAddAnimationByPrefix(PrefixNameBF[n1], NamePrefix1[n2][n3], XMLAnimation1[n4][n5], 24, false);
-    luaSpriteAddAnimationByPrefix(PrefixNameBF[n1], NamePrefix1[n2][n3], XMLAnimation1[n4][n5], 24, false);
-    luaSpriteAddAnimationByPrefix(PrefixNameBF[n1], NamePrefix1[n2][n3], XMLAnimation1[n4][n5], 24, false);
-
-    luaSpriteAddAnimationByPrefix(PrefixNameBF[n1], NamePrefix2[n2][n3], XMLAnimation2[n4][n5], 24, false);
-    luaSpriteAddAnimationByPrefix(PrefixNameBF[n1], NamePrefix2[n2][n3], XMLAnimation2[n4][n5], 24, false);
-    luaSpriteAddAnimationByPrefix(PrefixNameBF[n1], NamePrefix2[n2][n3], XMLAnimation2[n4][n5], 24, false);
-    luaSpriteAddAnimationByPrefix(PrefixNameBF[n1], NamePrefix2[n2][n3], XMLAnimation2[n4][n5], 24, false);
-
-    addAnimationByIndices(PrefixNameBF[n1], NamePrefix1[n2][n3], XMLAnimation1[n4][n5], '0,1,2,3', 24)
-    addAnimationByIndices(PrefixNameBF[n1], NamePrefix1[n2][n3], XMLAnimation1[n4][n5], '0,1,2,3', 24)
-    addAnimationByIndices(PrefixNameBF[n1], NamePrefix1[n2][n3], XMLAnimation1[n4][n5], '0,1,2,3', 24)
-    addAnimationByIndices(PrefixNameBF[n1], NamePrefix1[n2][n3], XMLAnimation1[n4][n5], '0,1,2,3', 24)
-
-    addAnimationByIndices(PrefixNameBF[n1], NamePrefix2[n2][n3], XMLAnimation2[n4][n5], '0,1,2,3', 24)
-    addAnimationByIndices(PrefixNameBF[n1], NamePrefix2[n2][n3], XMLAnimation2[n4][n5], '0,1,2,3', 24)
-    addAnimationByIndices(PrefixNameBF[n1], NamePrefix2[n2][n3], XMLAnimation2[n4][n5], '0,1,2,3', 24)
-    addAnimationByIndices(PrefixNameBF[n1], NamePrefix2[n2][n3], XMLAnimation2[n4][n5], '0,1,2,3', 24)
-
-
-    luaSpriteAddAnimationByPrefix(PrefixNameDAD[n1DAD], NamePrefix1[n2DAD][n3DAD], XMLAnimation1[n4DAD][n5DAD], 24, false);
-    luaSpriteAddAnimationByPrefix(PrefixNameDAD[n1DAD], NamePrefix1[n2DAD][n3DAD], XMLAnimation1[n4DAD][n5DAD], 24, false);
-    luaSpriteAddAnimationByPrefix(PrefixNameDAD[n1DAD], NamePrefix1[n2DAD][n3DAD], XMLAnimation1[n4DAD][n5DAD], 24, false);
-    luaSpriteAddAnimationByPrefix(PrefixNameDAD[n1DAD], NamePrefix1[n2DAD][n3DAD], XMLAnimation1[n4DAD][n5DAD], 24, false);
-
-    luaSpriteAddAnimationByPrefix(PrefixNameDAD[n1DAD], NamePrefix2[n2DAD][n3DAD], XMLAnimation2[n4DAD][n5DAD], 24, false);
-    luaSpriteAddAnimationByPrefix(PrefixNameDAD[n1DAD], NamePrefix2[n2DAD][n3DAD], XMLAnimation2[n4DAD][n5DAD], 24, false);
-    luaSpriteAddAnimationByPrefix(PrefixNameDAD[n1DAD], NamePrefix2[n2DAD][n3DAD], XMLAnimation2[n4DAD][n5DAD], 24, false);
-    luaSpriteAddAnimationByPrefix(PrefixNameDAD[n1DAD], NamePrefix2[n2DAD][n3DAD], XMLAnimation2[n4DAD][n5DAD], 24, false);
-
-    addAnimationByIndices(PrefixNameDAD[n1DAD], NamePrefix1[n2DAD][n3DAD], XMLAnimation1[n4DAD][n5DAD], '0,1,2,3', 24)
-    addAnimationByIndices(PrefixNameDAD[n1DAD], NamePrefix1[n2DAD][n3DAD], XMLAnimation1[n4DAD][n5DAD], '0,1,2,3', 24)
-    addAnimationByIndices(PrefixNameDAD[n1DAD], NamePrefix1[n2DAD][n3DAD], XMLAnimation1[n4DAD][n5DAD], '0,1,2,3', 24)
-    addAnimationByIndices(PrefixNameDAD[n1DAD], NamePrefix1[n2DAD][n3DAD], XMLAnimation1[n4DAD][n5DAD], '0,1,2,3', 24)
-
-    addAnimationByIndices(PrefixNameDAD[n1DAD], NamePrefix2[n2DAD][n3DAD], XMLAnimation2[n4DAD][n5DAD], '0,1,2,3', 24)
-    addAnimationByIndices(PrefixNameDAD[n1DAD], NamePrefix2[n2DAD][n3DAD], XMLAnimation2[n4DAD][n5DAD], '0,1,2,3', 24)
-    addAnimationByIndices(PrefixNameDAD[n1DAD], NamePrefix2[n2DAD][n3DAD], XMLAnimation2[n4DAD][n5DAD], '0,1,2,3', 24)
-    addAnimationByIndices(PrefixNameDAD[n1DAD], NamePrefix2[n2DAD][n3DAD], XMLAnimation2[n4DAD][n5DAD], '0,1,2,3', 24)
-
-
+    onSplashPrefix()
     if Activate == true and Answer == false then
         -- BF --
         if NoteskinBF == 0 and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.T') then
             NoteskinBF = 1;
-            Previews[1]()
+            PreviewBF[1]()
 
             playSound('scrollMenu', 0.5, false)
         elseif NoteskinBF == 1 and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.T') then   
             NoteskinBF = 2;
-            Previews[2]()
+            PreviewBF[2]()
 
             playSound('scrollMenu', 0.5, false)
         elseif NoteskinBF == 2 and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.T') then   
             NoteskinBF = 3;
-            Previews[3]()
+            PreviewBF[3]()
 
             playSound('scrollMenu', 0.5, false)
         elseif NoteskinBF == 3 and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.T') then  
             NoteskinBF = 0;
-            Previews[4]()
+            PreviewBF[4]()
 
             playSound('scrollMenu', 0.5, false)
         end
 
         if NoteskinBF == 0 or NoteskinBF == 1 then  
-            PreviewSplash[1]()
+            PreviewSplashBF[1]()
             n1 = 1
             n2 = 1
             n4 = 1
@@ -546,7 +635,7 @@ function onUpdatePost(elapsed)
 
             end 
         elseif NoteskinBF == 2 then 
-            PreviewSplash[2]()
+            PreviewSplashBF[2]()
             n1 = 2
             n2 = 2
             n4 = 1
@@ -585,7 +674,7 @@ function onUpdatePost(elapsed)
 
             end 
         elseif NoteskinBF == 3 then 
-            PreviewSplash[3]()
+            PreviewSplashBF[3]()
             n1 = 3
             n2 = 3
             n4 = 1
@@ -628,28 +717,28 @@ function onUpdatePost(elapsed)
         -- DAD --
         if NoteskinDAD == 0 and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.F') then
             NoteskinDAD = 1;
-            Previews[5]()
+            PreviewDAD[1]()
 
             playSound('scrollMenu', 0.5, false)
         elseif NoteskinDAD == 1 and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.F') then   
             NoteskinDAD = 2;
-            Previews[6]()
+            PreviewDAD[2]()
 
             playSound('scrollMenu', 0.5, false)
         elseif NoteskinDAD == 2 and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.F') then   
             NoteskinDAD = 3;
-            Previews[7]()
+            PreviewDAD[3]()
 
             playSound('scrollMenu', 0.5, false)
         elseif NoteskinDAD == 3 and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.F') then  
             NoteskinDAD = 0;
-            Previews[8]()
+            PreviewDAD[4]()
 
             playSound('scrollMenu', 0.5, false)
         end
 
         if NoteskinDAD == 0 or NoteskinDAD == 1 then  
-            PreviewSplash[4]()
+            PreviewSplashDAD[1]()
             n1DAD = 1
             n2DAD = 1
             n4DAD = 1
@@ -688,7 +777,7 @@ function onUpdatePost(elapsed)
 
             end 
         elseif NoteskinDAD == 2 then 
-            PreviewSplash[5]()
+            PreviewSplashDAD[2]()
             n1DAD = 2
             n2DAD = 2
             n4DAD = 1
@@ -727,7 +816,7 @@ function onUpdatePost(elapsed)
 
             end 
         elseif NoteskinDAD == 3 then 
-            PreviewSplash[6]()
+            PreviewSplashDAD[3]()
             n1DAD = 3
             n2DAD = 3
             n4DAD = 1
@@ -792,11 +881,11 @@ function onUpdatePost(elapsed)
                 if Answer == true then 
                     if PixelskinBF == 0 then
                         setPropertyFromGroup('notes', i, 'texture', 'NOTE_assets');  
-                        setPropertyFromGroup('notes', i, 'noteSplashTexture', 'noteSplashes');
+                        setPropertyFromGroup('notes', i, 'noteSplashTexture', 'notesplash/weeb/noteSplashes');
                     end    
                     if PixelskinBF == 1 then
                         setPropertyFromGroup('notes', i, 'texture', 'noteskin/NESNOTE_assets');  
-                        setPropertyFromGroup('notes', i, 'noteSplashTexture', 'noteSplashes');
+                        setPropertyFromGroup('notes', i, 'noteSplashTexture', 'notesplash/weeb/noteSplashes');
                     end 
                 end
             
@@ -821,19 +910,19 @@ function onUpdatePost(elapsed)
                 if Answer == true then 
                     if PixelskinDAD == 0 then
                         setPropertyFromGroup('notes', i, 'texture', 'NOTE_assets');  
-                        setPropertyFromGroup('notes', i, 'noteSplashTexture', 'noteSplashes');
+                        setPropertyFromGroup('notes', i, 'noteSplashTexture', 'notesplash/weeb/noteSplashes');
                     end    
                     if PixelskinDAD == 1 then
                         setPropertyFromGroup('notes', i, 'texture', 'noteskin/NESNOTE_assets');  
-                        setPropertyFromGroup('notes', i, 'noteSplashTexture', 'noteSplashes');
+                        setPropertyFromGroup('notes', i, 'noteSplashTexture', 'notesplash/weeb/noteSplashes');
                     end 
                 end
             end    
         end        
-    end 
-        
-    -- Note Strums --
-    for i = 0,4,1 do
+    end
+
+    -- Note Strums -- 
+    for i = 0,4,1 do   
         if getPropertyFromGroup('notes', i, 'noteType') == '' and GetOGNotes == false then
             if NoteskinBF == 0 then
                 setPropertyFromGroup('playerStrums', i, 'texture', 'NOTE_assets');  
@@ -927,7 +1016,6 @@ function onUpdatePost(elapsed)
 
             setProperty('pixelDAD1.visible', true)
             setProperty('pixelDAD2.visible', false)
-    
     
         elseif getPropertyFromClass('flixel.FlxG', 'keys.justPressed.K') and Answer == semifalse then 
             Answer = false;
@@ -1049,36 +1137,32 @@ function onUpdatePost(elapsed)
             setProperty('SplashpreDAD0.visible', false)
             setProperty('SplashpreDAD1.visible', false)
             setProperty('SplashpreDAD2.visible', false)  
+
+            setProperty('SplashPixelpre0.visible', false)
    
+            setProperty('SplashPixelpreDAD0.visible', false)
             -- BF --
             if PixelskinBF == 0 and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.T') then
                 PixelskinBF = 1;
-    
-                playSound('scrollMenu', 0.5, false)
-                setTextString('Note', "NoteSkin: NES")
-    
-                setProperty('pixel1.visible', false)
-                setProperty('pixel2.visible', true)
-            
+                PreviewPixelBF[1]()
+
+                playSound('scrollMenu', 0.5, false)            
             elseif PixelskinBF == 1 and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.T') then 
                 PixelskinBF = 0;
+                PreviewPixelBF[2]()
     
                 playSound('scrollMenu', 0.5, false)
-                setTextString('Note', "NoteSkin: Pixel")
-    
-                setProperty('pixel1.visible', true)
-                setProperty('pixel2.visible', false)
             end    
 
             if PixelskinBF == 0 or PixelskinBF == 1 then  
-                PreviewSplash[1]()
+                PreviewSplashPixelBF[1]()
                 n1 = 1
                 n2 = 1
                 n4 = 1 
 
                 if PixelsplashBF == 0 and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.Y') then
                     PixelsplashBF = 1;
-                    Splashes[1]()
+                    SplashesPixel[1]()
 
                     n3 = 2
                     n5 = 2
@@ -1086,7 +1170,7 @@ function onUpdatePost(elapsed)
 
                 elseif PixelsplashBF == 1 and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.Y') then  
                     PixelsplashBF = 2;
-                    Splashes[1]()
+                    SplashesPixel[1]()
 
                     n3 = 3
                     n5 = 3
@@ -1094,7 +1178,7 @@ function onUpdatePost(elapsed)
 
                 elseif PixelsplashBF == 2 and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.Y') then
                     PixelsplashBF = 3;
-                    Splashes[1]()
+                    SplashesPixel[1]()
 
                     n3 = 4
                     n5 = 4
@@ -1102,7 +1186,7 @@ function onUpdatePost(elapsed)
 
                 elseif PixelsplashBF == 3 and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.Y') then  
                     PixelsplashBF = 0;
-                    Splashes[1]()
+                    SplashesPixel[1]()
 
                     n3 = 1
                     n5 = 1
@@ -1114,32 +1198,25 @@ function onUpdatePost(elapsed)
             -- DAD --
             if PixelskinDAD == 0 and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.F') then
                 PixelskinDAD = 1;
+                PrefixPixelDAD[1]()
     
-                playSound('scrollMenu', 0.5, false)
-                setTextString('NoteDAD', "NoteSkin: NES")
-    
-                setProperty('pixelDAD1.visible', false)
-                setProperty('pixelDAD2.visible', true)
-            
+                playSound('scrollMenu', 0.5, false)            
             elseif PixelskinDAD == 1 and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.F') then 
                 PixelskinDAD = 0;
+                PrefixPixelDAD[2]()
     
                 playSound('scrollMenu', 0.5, false)
-                setTextString('NoteDAD', "NoteSkin: Pixel")
-    
-                setProperty('pixelDAD1.visible', true)
-                setProperty('pixelDAD2.visible', false)
             end    
 
             if PixelskinDAD == 0 or PixelskinDAD == 1 then  
-                PreviewSplash[4]() 
+                PreviewSplashPixelDAD[1]() 
                 n1DAD = 1
                 n2DAD = 1
                 n4DAD = 1
 
                 if PixelsplashDAD == 0 and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.G') then
                     PixelsplashDAD = 1;
-                    Splashes[2]()
+                    SplashesPixel[2]()
 
                     n3DAD = 2
                     n5DAD = 2
@@ -1147,7 +1224,7 @@ function onUpdatePost(elapsed)
 
                 elseif PixelsplashDAD == 1 and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.G') then  
                     PixelsplashDAD = 2;
-                    Splashes[2]()
+                    SplashesPixel[2]()
 
                     n3DAD = 3
                     n5DAD = 3
@@ -1155,7 +1232,7 @@ function onUpdatePost(elapsed)
 
                 elseif PixelsplashDAD == 2 and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.G') then
                     PixelsplashDAD = 3;
-                    Splashes[2]()
+                    SplashesPixel[2]()
 
                     n3DAD = 4
                     n5DAD = 4
@@ -1163,7 +1240,7 @@ function onUpdatePost(elapsed)
 
                 elseif PixelsplashDAD == 3 and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.G') then  
                     PixelsplashDAD = 0;
-                    Splashes[2]()
+                    SplashesPixel[2]()
 
                     n3DAD = 1
                     n5DAD = 1
@@ -1206,7 +1283,7 @@ function onUpdatePost(elapsed)
     end 
 end
 
-Previews = {
+PreviewBF = {
     [1] = function()
         setTextString('Note', "NoteSkin: Tabi")
 
@@ -1238,9 +1315,11 @@ Previews = {
         setProperty('preview1.visible', false)
         setProperty('preview2.visible', false)
         setProperty('preview3.visible', false)
-    end,    
-    
-    [5] = function()
+    end,
+}
+
+PreviewDAD = {
+    [1] = function()
         setTextString('NoteDAD', "NoteSkin: Tabi")
 
         setProperty('previewDAD0.visible', false)
@@ -1248,7 +1327,7 @@ Previews = {
         setProperty('previewDAD2.visible', false)
         setProperty('previewDAD3.visible', false)
     end,
-    [6] = function()
+    [2] = function()
         setTextString('NoteDAD', "NoteSkin: Majin")
 
         setProperty('previewDAD0.visible', false)
@@ -1256,7 +1335,7 @@ Previews = {
         setProperty('previewDAD2.visible', true)
         setProperty('previewDAD3.visible', false)
     end,  
-    [7] = function()
+    [3] = function()
         setTextString('NoteDAD', "NoteSkin: Creepy")
 
         setProperty('previewDAD0.visible', false)
@@ -1264,17 +1343,47 @@ Previews = {
         setProperty('previewDAD2.visible', false)
         setProperty('previewDAD3.visible', true)
     end, 
-    [8] = function()
+    [4] = function()
         setTextString('NoteDAD', "NoteSkin: Normal")
 
         setProperty('previewDAD0.visible', true)
         setProperty('previewDAD1.visible', false)
         setProperty('previewDAD2.visible', false)
         setProperty('previewDAD3.visible', false)
-    end 
+    end, 
 }
 
-PreviewSplash = {
+PreviewPixelBF = {
+    [1] = function()
+        setTextString('Note', "NoteSkin: NES")
+    
+        setProperty('pixel1.visible', false)
+        setProperty('pixel2.visible', true)
+    end,  
+    [2] = function()
+        setTextString('Note', "NoteSkin: Pixel")
+    
+        setProperty('pixel1.visible', true)
+        setProperty('pixel2.visible', false)
+    end,      
+}
+
+PrefixPixelDAD = {
+    [1] = function()
+        setTextString('NoteDAD', "NoteSkin: NES")
+    
+        setProperty('pixelDAD1.visible', false)
+        setProperty('pixelDAD2.visible', true)
+    end,
+    [2] = function()
+        setTextString('NoteDAD', "NoteSkin: Pixel")
+    
+        setProperty('pixelDAD1.visible', true)
+        setProperty('pixelDAD2.visible', false)
+    end,    
+}
+
+PreviewSplashBF = {
     [1] = function()
         setProperty('Splashpre0.visible', true)
         setProperty('Splashpre1.visible', false)
@@ -1289,34 +1398,40 @@ PreviewSplash = {
         setProperty('Splashpre0.visible', false)
         setProperty('Splashpre1.visible', false)
         setProperty('Splashpre2.visible', true) 
-    end,     
+    end,  
+}
 
-    [4] = function()
+PreviewSplashDAD = {
+    [1] = function()
         setProperty('SplashpreDAD0.visible', true)
         setProperty('SplashpreDAD1.visible', false)
         setProperty('SplashpreDAD2.visible', false)
     end,
-    [5] = function()
+    [2] = function()
         setProperty('SplashpreDAD0.visible', false)
         setProperty('SplashpreDAD1.visible', true)
         setProperty('SplashpreDAD2.visible', false) 
     end,
-    [6] = function()   
+    [3] = function()   
         setProperty('SplashpreDAD0.visible', false)
         setProperty('SplashpreDAD1.visible', false)
         setProperty('SplashpreDAD2.visible', true) 
-    end,   
+    end,  
 }
 
+PreviewSplashPixelBF = {
+    [1] = function()
+        setProperty('SplashPixelpre0.visible', true)
+    end,
+}        
+
+PreviewSplashPixelDAD = {
+    [1] = function()
+        setProperty('SplashPixelpreDAD0.visible', true)
+    end,
+}   
+
 function onVisibilty()
-    setProperty('Splashpre0.visible', false)
-    setProperty('Splashpre1.visible', false)
-    setProperty('Splashpre2.visible', false) 
-
-    setProperty('SplashpreDAD0.visible', false)
-    setProperty('SplashpreDAD1.visible', false)
-    setProperty('SplashpreDAD2.visible', false) 
-
     setProperty('preview0.visible', true)
     setProperty('preview1.visible', false)
     setProperty('preview2.visible', false)
@@ -1327,11 +1442,22 @@ function onVisibilty()
     setProperty('previewDAD2.visible', false)
     setProperty('previewDAD3.visible', false)
 
+    setProperty('Splashpre0.visible', false)
+    setProperty('Splashpre1.visible', false)
+    setProperty('Splashpre2.visible', false) 
+
+    setProperty('SplashpreDAD0.visible', false)
+    setProperty('SplashpreDAD1.visible', false)
+    setProperty('SplashpreDAD2.visible', false) 
+
     setProperty('pixel1.visible', false)
     setProperty('pixel2.visible', false)
 
     setProperty('pixelDAD1.visible', false)
     setProperty('pixelDAD2.visible', false)
+
+    setProperty('SplashPixelpre0.visible', false)
+    setProperty('SplashPixelpreDAD0.visible', false)
 
     setProperty('whitelol.visible', false)
     setProperty('playerwhitelol.visible', false)
@@ -1380,6 +1506,10 @@ function onTweenAlpha()
     doTweenAlpha('SplashpreAlphaDAD0', 'SplashpreDAD0', 0, 0.1, 'linear')
     doTweenAlpha('SplashpreAlphaDAD1', 'SplashpreDAD1', 0, 0.1, 'linear')
     doTweenAlpha('SplashpreAlphaDAD2', 'SplashpreDAD2', 0, 0.1, 'linear')
+
+    doTweenAlpha('SplashPixelpreAlpha0', 'SplashPixelpre0', 0, 0.1, 'linear')
+
+    doTweenAlpha('SplashPixelpreAlphaDAD0', 'SplashPixelpreDAD0', 0, 0.1, 'linear')
 
     doTweenAlpha('whitelolAlpha', 'whitelol', 0, 0.1, 'linear') 
     doTweenAlpha('playerwhitelolALpha', 'playerwhitelol', 0, 0.1, 'linear')
@@ -1444,6 +1574,12 @@ function onTweenXY()
     doTweenX('SplashpreXDAD1', 'SplashpreDAD1', 100, 0.001, 'linear')
     doTweenY('SplashpreYDAD2', 'SplashpreDAD2', 1230, 0.001, 'linear')
     doTweenX('SplashpreXDAD2', 'SplashpreDAD2', 100, 0.001, 'linear')
+
+    doTweenY('SplashPixelpreY0', 'SplashPixelpre0', 1230, 0.001, 'linear')
+    doTweenX('SplashPixelpreX0', 'SplashPixelpre0', 100, 0.001, 'linear')
+
+    doTweenY('SplashPixelpreYDAD0', 'SplashPixelpreDAD0', 1230, 0.001, 'linear')
+    doTweenX('SplashPixelpreXDAD0', 'SplashPixelpreDAD0', 100, 0.001, 'linear')
 
     doTweenX('spaceX', 'space', 430, 0.001, 'linear')
 
