@@ -1,6 +1,6 @@
 # NoteSkin Selector
 
-Originally posted in Psych Engine Discussions now transfer mayo78 Psych Discussions and posted in Gamebanana. This script makes you select the NoteSkin/NoteSplashes!
+This script makes you select NoteSkin/NoteSplashes and even on Pixel Notes. Originally posted in Psych Engine Discussions on March 25th now deleted in April 1st then transfer mayo78 PsychDiscussions and then posted in Gamebanana.
 
 # Q&A
 
