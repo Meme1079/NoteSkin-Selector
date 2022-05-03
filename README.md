@@ -32,15 +32,15 @@ yes give credit or else
 
 # Credits on the NoteSkins/NoteSplashes Used here
 
-### [VS. Sonic](https://gamebanana.com/mods/316022) | Majin Notes
+### VS. Sonic | [Majin Notes](https://gamebanana.com/mods/316022)
 
-### [Vs. Tabi](https://gamebanana.com/mods/286388) | Tabi Notes
+### Vs. Tabi | [Tabi Notes](https://gamebanana.com/mods/286388)
 
-### [Vs. Flippy](https://gamebanana.com/mods/300838) | Creepy Notes
+### Vs. Flippy | [Creepy Notes](https://gamebanana.com/mods/300838)
 
-### [An Ordinary Too Slow Cover](https://gamebanana.com/mods/347720) | NES Notes
+### An Ordinary Too Slow Cover | [NES Notes](https://gamebanana.com/mods/347720)
 
-### [Pixelated Note Splashes!](https://gamebanana.com/mods/369664) | Pixel Splashes
+### Pixelated Note Splashes! | [Pixel Splashes](https://gamebanana.com/mods/369664)
 
 # Gaming Features
 <img width="1280" alt="Screen Shot 2022-04-19 at 7 35 58 AM" src="https://user-images.githubusercontent.com/101881784/164354308-0154d3f8-fc07-4c5e-bb01-8343c5764aee.png">
