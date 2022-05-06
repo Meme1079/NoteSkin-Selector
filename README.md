@@ -40,7 +40,7 @@ yes give credit or else
 
 ### An Ordinary Too Slow Cover | [NES Notes](https://gamebanana.com/mods/347720)
 
-### Pixelated Note Splashes! | [Pixel Splashes](https://gamebanana.com/mods/369664)
+### Pixelated Note Splashes! | [Pixel Splashes](https://gamebanana.com/mods/360401)
 
 # Gaming Features
 <img width="1280" alt="Screen Shot 2022-04-19 at 7 35 58 AM" src="https://user-images.githubusercontent.com/101881784/164354308-0154d3f8-fc07-4c5e-bb01-8343c5764aee.png">
