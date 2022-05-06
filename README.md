@@ -2,27 +2,31 @@
 
 This script makes you select NoteSkin/NoteSplashes and even on Pixel Notes. Originally posted in Psych Engine Discussions on March 25th now deleted in April 1st then transfer mayo78 PsychDiscussions and then posted in Gamebanana.
 
+***
 # Q&A
 
 ### How do I add the my Custom NoteSkins?
 Got to Wiki tab (Work in Progress)
 
-### Why isn't loading? 
-It's because the code target's a specific note until that specific notes appear and if there's another script with another `function onStartCountdown()` it wont load the images but you can select the NoteSkins
+### Why does it crashes on a random song?
+i litteraly don't know but am working on it to fix it
 
 ### Can I use it in my Mod?
 yes give credit or else
 
+***
 # Requirements For the script
 
 - [Psych Engine](https://github.com/ShadowMario/FNF-PsychEngine/releases)
 - [NoteSkin Selector](https://gamebanana.com/mods/369664)
 - Computer
 
+***
 # Installation
 
 1. Put in the mods folder
 
+***
 # Note
 - Be careful when Pressing [R] it crashes the game!
 - DO NOT PICK NORMAL SKINS IN [Pixel Mode] it crashes the game!
@@ -30,6 +34,7 @@ yes give credit or else
 - DO NOT DOWNLOAD 0.5.3b
 - DO NOT PRESS [SPACE] WHEN YOUR IN A DIALOGUE
 
+***
 # Credits on the NoteSkins/NoteSplashes Used here
 
 ### VS. Sonic | [Majin Notes](https://gamebanana.com/mods/316022)
@@ -42,6 +47,7 @@ yes give credit or else
 
 ### Pixelated Note Splashes! | [Pixel Splashes](https://gamebanana.com/mods/360401)
 
+***
 # Gaming Features
 <img width="1280" alt="Screen Shot 2022-04-19 at 7 35 58 AM" src="https://user-images.githubusercontent.com/101881784/164354308-0154d3f8-fc07-4c5e-bb01-8343c5764aee.png">
 
@@ -65,10 +71,10 @@ Pixel mode makes the NoteSkin/NoteSplashes change thier texture into pixel this 
 ### Pressing [Escape] Leaves the song
 I added this because it was just annoying to press [Space] and press [Enter] just to leave the song
 
-# Settings
+## Settings
 
 ### Press [H] to change the background to white or black
-Press it if you have troble seeing the text or NoteSkins
+Press it if you have trouble seeing the text or NoteSkins
 
 ### Press [Z] to get the NoteSkin from that stage
 If you want to use the NoteSkin from that stage
@@ -76,5 +82,5 @@ If you want to use the NoteSkin from that stage
 ### Press [X] to Enable Hitsounds
 Plays a Sound when hitting a note because Why not?
 
-## Press [C] to Change Opponent Scroll
+### Press [C] to Change Opponent Scroll
 if your in upscroll then it will be downscroll for the opponent if its in downscroll then upscroll for the opponent 
