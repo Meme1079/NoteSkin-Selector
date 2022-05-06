@@ -72,3 +72,9 @@ Press it if you have troble seeing the text or NoteSkins
 
 ### Press [Z] to get the NoteSkin from that stage
 If you want to use the NoteSkin from that stage
+
+### Press [X] to Enable Hitsounds
+Plays a Sound when hitting a note because Why not?
+
+## Press [C] to Change Opponent Scroll
+if your in upscroll then it will be downscroll for the opponent if its in downscroll then upscroll for the opponent 
