@@ -8,9 +8,6 @@ This script makes you select NoteSkin/NoteSplashes and even on Pixel Notes. Orig
 ### How do I add the my Custom NoteSkins?
 Got to Wiki tab (Work in Progress)
 
-### Why does it crashes on a random song?
-i litteraly don't know but am working on it to fix it
-
 ### Can I use it in my Mod?
 yes give credit or else
 
