@@ -62,6 +62,9 @@ it just changes the Noteskin
 ### Pressing [Y] or [G] Change The NoteSplashes 
 it can change the texture depending the NoteSkin Selected
 
+### Pressing [E] to Change both NoteSkin
+It will change both of them at the same time
+
 ### Pressing [P] will turn into Pixel mode 
 Pixel mode makes the NoteSkin/NoteSplashes change thier texture into pixel this only work in pixel stages. Also it give a **Warning**
 
