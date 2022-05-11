@@ -594,6 +594,7 @@ function onBlackWhite()
     -- coming soon lol
 end    
 
+-- i'm gonna place this on a other script on the next beta [onCustomSplash() and onSplashPrefix()]
 function onCustomSplash()
     -- i hate this
 end
