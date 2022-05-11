@@ -42,6 +42,8 @@ yes give credit or else
 
 ### An Ordinary Too Slow Cover | [NES Notes](https://gamebanana.com/mods/347720)
 
+### Doki Doki Takeover! | [Doki Doki Notes](https://gamebanana.com/mods/47364)
+
 ### Pixelated Note Splashes! | [Pixel Splashes](https://gamebanana.com/mods/360401)
 
 ***
