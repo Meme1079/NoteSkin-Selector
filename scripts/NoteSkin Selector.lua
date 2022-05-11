@@ -119,16 +119,6 @@ function onCreate()
     setObjectCamera('DADblacklol', 'camHUD')
     addLuaSprite('DADblacklol')
 
-    makeLuaSprite('BFwhitelol', nil, 730, 0)
-    makeGraphic('BFwhitelol', 450, 1000, 'ffffff')
-    setObjectCamera('BFwhitelol', 'camHUD')
-    addLuaSprite('BFwhitelol')
-
-    makeLuaSprite('DADwhitelol', nil, 90, 0)
-    makeGraphic('DADwhitelol', 450, 1000, 'ffffff')
-    setObjectCamera('DADwhitelol', 'camHUD')
-    addLuaSprite('DADwhitelol')
-
     -- NoteSkin Background -- 
 
     makeLuaSprite('playerlol', nil, 220, 100)
@@ -240,7 +230,6 @@ function onSongStart()
 
     doTweenAlpha('iconP1Alpha', 'iconP1', 1, 0.1, 'linear')
     doTweenAlpha('iconP2Alpha', 'iconP2', 1, 0.1, 'linear') 
-
     doTweenAlpha('scoreTxtAlpha', 'scoreTxt', 1, 0.1, 'linear')
     doTweenAlpha('healthBarAlpha', 'healthBar', 1, 0.1, 'linear')
     doTweenAlpha('healthBarBGAlpha', 'healthBarBG', 1, 0.1, 'linear')
@@ -279,18 +268,6 @@ function getPos(obj)
     return {getProperty(obj..'.x'), getProperty(obj..'.y')}
 end
 
-function tableToString(table, sep)
-	str = ''
-	for k,v in pairs(table) do
-		if k ~= #table then
-			str = str..v..sep
-		else
-			str = str..v
-		end
-	end
-	return str;
-end
-
 local count = 1
 
 local Answer = false;
@@ -304,6 +281,9 @@ function onUpdate(elapsed)
         onRemove()
     end 
 
+    local green = '00ff00'
+    local white = 'ffffff'
+
     if Activate == true then
         if getPropertyFromClass('flixel.FlxG', 'keys.justPressed.SPACE') and not seenCutscene then
             startCountdown()
@@ -311,14 +291,13 @@ function onUpdate(elapsed)
 
             doTweenAlpha('iconP1Alpha', 'iconP1', 1, 0.1, 'linear')
             doTweenAlpha('iconP2Alpha', 'iconP2', 1, 0.1, 'linear') 
-
             doTweenAlpha('scoreTxtAlpha', 'scoreTxt', 1, 0.1, 'linear')
             doTweenAlpha('healthBarAlpha', 'healthBar', 1, 0.1, 'linear')
             doTweenAlpha('healthBarBGAlpha', 'healthBarBG', 1, 0.1, 'linear')
 
             if Activate == true then
                 playSound('ToggleJingle')
-                cameraFlash('funny', 'ffffff', 0.7, false)      
+                cameraFlash('funny', white, 0.7, false)      
             end 
     
             Activate = false; 
@@ -330,36 +309,36 @@ function onUpdate(elapsed)
         
         if getPropertyFromClass('flixel.FlxG', 'keys.justPressed.ESCAPE') then
             endSong()      
-        end    
+        end   
 
         if AllToggles == false and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.Q') then
             AllToggles = true;
-            doTweenColor('qColor', 'q', '00ff00', 0.1, 'linear')
+            doTweenColor('qColor', 'q', green, 0.1, 'linear')
             playSound('confirmMenu', 0.4, false)  
 
-            doTweenColor('e1Color', 'e1', '00ff00', 0.1, 'linear')
-            doTweenColor('e2Color', 'e2', '00ff00', 0.1, 'linear')
-            doTweenColor('e3Color', 'e3', '00ff00', 0.1, 'linear')
-            doTweenColor('e4Color', 'e4', '00ff00', 0.1, 'linear')
+            doTweenColor('e1Color', 'e1', green, 0.1, 'linear')
+            doTweenColor('e2Color', 'e2', green, 0.1, 'linear')
+            doTweenColor('e3Color', 'e3', green, 0.1, 'linear')
+            doTweenColor('e4Color', 'e4', green, 0.1, 'linear')
 
             GetOGNotes = true;
             AnnoyingSound = true;
-            ChangeScroll = true;
             BGNote = true;
+            ChangeScroll = true;   
         elseif AllToggles == true and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.Q') then
             AllToggles = false;
-            doTweenColor('qColor', 'q', 'ffffff', 0.1, 'linear')
+            doTweenColor('qColor', 'q', white, 0.1, 'linear')
             playSound('cancelMenu', 0.4, false)  
 
-            doTweenColor('e1Color', 'e1', 'ffffff', 0.1, 'linear')
-            doTweenColor('e2Color', 'e2', 'ffffff', 0.1, 'linear')
-            doTweenColor('e3Color', 'e3', 'ffffff', 0.1, 'linear')
-            doTweenColor('e4Color', 'e4', 'ffffff', 0.1, 'linear')
+            doTweenColor('e1Color', 'e1', white, 0.1, 'linear')
+            doTweenColor('e2Color', 'e2', white, 0.1, 'linear')
+            doTweenColor('e3Color', 'e3', white, 0.1, 'linear')
+            doTweenColor('e4Color', 'e4', white, 0.1, 'linear')
 
             GetOGNotes = false;
             AnnoyingSound = false;
-            ChangeScroll = false;
             BGNote = false;
+            ChangeScroll = false;   
         end    
         
         if WhiteBlack == false and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.H') then
@@ -393,11 +372,11 @@ function onUpdate(elapsed)
         if count == 1 then
             if GetOGNotes == false and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.ENTER') then
                 GetOGNotes = true;
-                doTweenColor('e1Color', 'e1', '00ff00', 0.1, 'linear')
+                doTweenColor('e1Color', 'e1', green, 0.1, 'linear')
                 playSound('confirmMenu', 0.4, false) 
             elseif GetOGNotes == true and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.ENTER') then
                 GetOGNotes = false;
-                doTweenColor('e1Color', 'e1', 'ffffff', 0.1, 'linear')
+                doTweenColor('e1Color', 'e1', white, 0.1, 'linear')
                 playSound('cancelMenu', 0.4, false)
             end    
         end
@@ -421,11 +400,11 @@ function onUpdate(elapsed)
         if count == 2 then
             if AnnoyingSound == false and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.ENTER') then
                 AnnoyingSound = true;
-                doTweenColor('e2Color', 'e2', '00ff00', 0.1, 'linear')
+                doTweenColor('e2Color', 'e2', green, 0.1, 'linear')
                 playSound('confirmMenu', 0.4, false)  
             elseif AnnoyingSound == true and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.ENTER') then  
                 AnnoyingSound = false;
-                doTweenColor('e2Color', 'e2', 'ffffff', 0.1, 'linear')
+                doTweenColor('e2Color', 'e2', white, 0.1, 'linear')
                 playSound('cancelMenu', 0.4, false)
             end 
         end 
@@ -433,15 +412,15 @@ function onUpdate(elapsed)
         if count == 3 then
             if ChangeScroll == false and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.ENTER') then
                 ChangeScroll = true;
-                doTweenColor('e3Color', 'e3', '00ff00', 0.1, 'linear')
+                doTweenColor('e3Color', 'e3', green, 0.1, 'linear')
                 playSound('confirmMenu', 0.4, false)  
         
             elseif ChangeScroll == true and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.ENTER') then    
                 ChangeScroll = false;
-                doTweenColor('e3Color', 'e3', 'ffffff', 0.1, 'linear')
+                doTweenColor('e3Color', 'e3', white, 0.1, 'linear')
                 playSound('cancelMenu', 0.4, false) 
             end
-        end        
+        end    
         
         if ChangeScroll == true then
             for i = 0,7 do
@@ -463,13 +442,6 @@ function onUpdate(elapsed)
                     setPos('iconP1', {nil, 30})
                     setPos('iconP2', {nil, 30})
                     setPos('scoreTxt', {nil, 130})
-                end    
-                    
-                if not middlescroll then
-                    setPos('healthBar', {650, nil})
-                    setPos('healthBarBG', {646, nil})
-                    setPos('scoreTxt', {300, nil})
-                    setTextSize('scoreTxt', 18)   
                 end    
             end
         end
@@ -493,12 +465,12 @@ function onUpdate(elapsed)
         if count == 4 then
             if BGNote == false and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.ENTER') then
                 BGNote = true;
-                doTweenColor('e4Color', 'e4', '00ff00', 0.1, 'linear')
+                doTweenColor('e4Color', 'e4', green, 0.1, 'linear')
                 playSound('confirmMenu', 0.4, false)  
         
             elseif BGNote == true and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.ENTER') then    
                 BGNote = false;
-                doTweenColor('e4Color', 'e4', 'ffffff', 0.1, 'linear')
+                doTweenColor('e4Color', 'e4', white, 0.1, 'linear')
                 playSound('cancelMenu', 0.4, false) 
             end
         end  
@@ -506,21 +478,18 @@ function onUpdate(elapsed)
 
     if Activate == false then
         if BGNote == true then
-            if WhiteBlack == false then
-                setProperty('BFblacklol.alpha', 0.5)  
-                setProperty('DADblacklol.alpha', 0.5)  
+            setProperty('BFblacklol.alpha', 0.5)  
+            setProperty('DADblacklol.alpha', 0.5)  
 
-                setProperty('BFwhitelol.alpha', 0)  
-                setProperty('DADwhitelol.alpha', 0)  
-            end 
-            
-            if WhiteBlack == true then    
-                setProperty('BFwhitelol.alpha', 0.5)
-                setProperty('DADwhitelol.alpha', 0.5)
+            if middlescroll then
+                removeLuaSprite('DADblacklol', true)
+                setPos('BFblacklol', {410, nil})
 
-                setProperty('BFblacklol.alpha', 0)  
-                setProperty('DADblacklol.alpha', 0)  
-            end 
+                noteTweenAlpha('Oppo0', 0, 0, 0.001, 'linear')  
+                noteTweenAlpha('Oppo1', 1, 0, 0.001, 'linear')  
+                noteTweenAlpha('Oppo2', 2, 0, 0.001, 'linear')  
+                noteTweenAlpha('Oppo3', 3, 0, 0.001, 'linear')  
+            end    
         end   
     end 
 
@@ -831,8 +800,6 @@ function onVisibilty()
 
     setProperty('BFblacklol.alpha', 0)
     setProperty('DADblacklol.alpha', 0)
-    setProperty('BFwhitelol.alpha', 0)
-    setProperty('DADwhitelol.alpha', 0)
 
     setProperty('warn.alpha', 0)
     setProperty('warn2.alpha', 0)
