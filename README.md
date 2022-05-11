@@ -46,7 +46,7 @@ yes give credit or else
 
 ***
 # Gaming Features
-<img width="1280" alt="Screen Shot 2022-04-19 at 7 35 58 AM" src="https://user-images.githubusercontent.com/101881784/164354308-0154d3f8-fc07-4c5e-bb01-8343c5764aee.png">
+<img width="1440" alt="Screen Shot 2022-05-11 at 2 53 44 PM" src="https://user-images.githubusercontent.com/101881784/167787269-c0ae2e50-a358-49da-ad8c-48e8266c0485.png">
 
 ## Main
 
