@@ -73,11 +73,14 @@ I added this because it was just annoying to press [Space] and press [Enter] jus
 ### Press [H] to change the background to white or black
 Press it if you have trouble seeing the text or NoteSkins
 
-### Press [Z] to get the NoteSkin from that stage
+### Toggles
+Press [Enter] or [Return] to select it
+
+### Toggle to get the NoteSkin from that stage
 If you want to use the NoteSkin from that stage
 
-### Press [X] to Enable Hitsounds
+### Toggle to Enable Hitsounds
 Plays a Sound when hitting a note because Why not?
 
-### Press [C] to Change Opponent Scroll
+### Toggle to Change Opponent Scroll
 if your in upscroll then it will be downscroll for the opponent if its in downscroll then upscroll for the opponent 
