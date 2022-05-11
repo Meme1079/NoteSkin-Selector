@@ -76,6 +76,9 @@ I added this because it was just annoying to press [Space] and press [Enter] jus
 ### Press [H] to change the background to white or black
 Press it if you have trouble seeing the text or NoteSkins
 
+### Press [Q] to Select the Toggles
+it says in the title
+
 ### Toggles
 Press [Enter] or [Return] to select it
 
