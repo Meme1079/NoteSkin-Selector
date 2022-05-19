@@ -96,68 +96,38 @@ function onCreate()
     -- Background --
 
     makeLuaSprite('blacklol', nil, 630, 0)  -- if you don't know what nil is, it's means no value 
-    makeGraphic('blacklol', 400, 1000, '000000')
     setObjectCamera('blacklol', 'camHUD')
     setProperty('blacklol.alpha', 0.3)
     addLuaSprite('blacklol')
 
-    makeLuaSprite('whitelol', nil, 630, 0)
-    makeGraphic('whitelol', 400, 1000, 'ffffff')
-    setObjectCamera('whitelol', 'camHUD')
-    setProperty('whitelol.alpha', 0.3)
-    addLuaSprite('whitelol')
-
     -- GamePlay Background --
 
     makeLuaSprite('BFblacklol', nil, 730, 0)
-    makeGraphic('BFblacklol', 450, 1000, '000000')
     setObjectCamera('BFblacklol', 'camHUD')
     addLuaSprite('BFblacklol')
 
     makeLuaSprite('DADblacklol', nil, 90, 0)
-    makeGraphic('DADblacklol', 450, 1000, '000000')
     setObjectCamera('DADblacklol', 'camHUD')
     addLuaSprite('DADblacklol')
 
     -- NoteSkin Background -- 
 
     makeLuaSprite('playerlol', nil, 220, 100)
-    makeGraphic('playerlol', 400, 100, '000000')
     setObjectCamera('playerlol', 'camHUD')
     setProperty('playerlol.alpha', 0.3)
     addLuaSprite('playerlol')
 
     makeLuaSprite('opponentlol', nil, 220, 250)
-    makeGraphic('opponentlol', 400, 100, '000000')
     setObjectCamera('opponentlol', 'camHUD')
     setProperty('opponentlol.alpha', 0.3)
     addLuaSprite('opponentlol')
 
-    makeLuaSprite('playerwhitelol', nil, 220, 100)
-    makeGraphic('playerwhitelol', 400, 100, 'ffffff')
-    setObjectCamera('playerwhitelol', 'camHUD')
-    setProperty('playerwhitelol.alpha', 0.3)
-    addLuaSprite('playerwhitelol')
-
-    makeLuaSprite('opponentwhitelol', nil, 220, 250)
-    makeGraphic('opponentwhitelol', 400, 100, 'ffffff')
-    setObjectCamera('opponentwhitelol', 'camHUD')
-    setProperty('opponentwhitelol.alpha', 0.3)
-    addLuaSprite('opponentwhitelol')
-
     -- Setting BG --
 
     makeLuaSprite('optionlol', nil, 220, 400)
-    makeGraphic('optionlol', 400, 350, '000000')
     setObjectCamera('optionlol', 'camHUD')
     setProperty('optionlol.alpha', 0.3)
     addLuaSprite('optionlol')
-
-    makeLuaSprite('optionwhitelol', nil, 220, 400)
-    makeGraphic('optionwhitelol', 400, 350, 'ffffff')
-    setObjectCamera('optionwhitelol', 'camHUD')
-    setProperty('optionwhitelol.alpha', 0.3)
-    addLuaSprite('optionwhitelol')
 
     -- Text Thingy --
 
@@ -192,24 +162,21 @@ function onCreate()
 
     -- Functions --
 
-    onVisibilty()
+    onAlpha()
     onTweenXY()
     onPrecaching() 
+    onBlackWhite(black) 
 end    
 
 function onCreatePost()
-    setProperty('scoreTxt.alpha', 0)
-    setProperty('healthBar.alpha', 0)
-    setProperty('healthBarBG.alpha', 0)
-    setProperty('iconP1.alpha', 0)
-    setProperty('iconP2.alpha', 0)
+    onHideHealthBar(false)
 end   
-
+  
 local Activate = true;
 local allowCountdown = false;
 function onStartCountdown()
     if not allowCountdown then -- Block the first countdown
-        allowCountdown = true; 
+        allowCountdown = true;         
         if Activate == true then
             playMusic('offsetSong')
         end       
@@ -226,24 +193,31 @@ function onSongStart()
     Activate = false;
     Visible = false;   
 
-    onRemove()
-
-    doTweenAlpha('iconP1Alpha', 'iconP1', 1, 0.1, 'linear')
-    doTweenAlpha('iconP2Alpha', 'iconP2', 1, 0.1, 'linear') 
-    doTweenAlpha('scoreTxtAlpha', 'scoreTxt', 1, 0.1, 'linear')
-    doTweenAlpha('healthBarAlpha', 'healthBar', 1, 0.1, 'linear')
-    doTweenAlpha('healthBarBGAlpha', 'healthBarBG', 1, 0.1, 'linear')
+    onRemove() 
+    onHideHealthBar(true)
 end 
 
-function onCountdownTick(counter)
-    if counter == 1 then
-        onRemove()
-    end    
-end
+local WhiteBlack = false;    -- It changes the BG Notes to white or black, also [true] is white and black is [flase]
+local AnnoyingSound = false; -- Plays a HitSounds when true
+local BGNote = false;        -- For concentrating
+local GetOGNotes = false;    -- Dont use this only if you dont want the NoteSkins from that stage
+local ChangeScroll = false;  -- Changes scroll on the opponent depending on your scroll
+local AllToggles = false;    -- If true then all the toggles will be turn on
 
-local AnnoyingSound = false;
-local BGNote = false;
-local WhiteBlack = false;
+-- Set these things into true if you want it to be default
+-- Also you want to Change the NoteSkin to be default set ns1 or ns2 in to any number
+-- Same works in PixelSkins
+
+local SkipThis = false; -- If you want to skip
+
+-- if [false] wont skip, if [true] it skip
+
+local ns1 = 1
+local ns2 = 1
+
+local ps1 = 1
+local ps2 = 1
+
 function goodNoteHit(id, direction, noteType, isSustainNote)  
     if AnnoyingSound == true and not isSustainNote then
         playSound('hitsound', 0.5, false)
@@ -268,12 +242,13 @@ function getPos(obj)
     return {getProperty(obj..'.x'), getProperty(obj..'.y')}
 end
 
-local count = 1
+black = '000000'
+green = '00ff00'
+red = 'ff0000'
+white = 'ffffff'
 
+local count = 1
 local Answer = false;
-local GetOGNotes = false;
-local ChangeScroll = false;
-local AllToggles = false;
 function onUpdate(elapsed)
     if getProperty('inCutscene') == true then
         Activate = false;
@@ -281,24 +256,25 @@ function onUpdate(elapsed)
         onRemove()
     end 
 
-    local green = '00ff00'
-    local white = 'ffffff'
+    if SkipThis == true then
+        startCountdown()
+        onRemove()
+    end  
 
     if Activate == true then
-        if getPropertyFromClass('flixel.FlxG', 'keys.justPressed.SPACE') and not seenCutscene then
+        onCustomNotes()
+        onPlus()
+        onReset()
+
+        if getPropertyFromClass('flixel.FlxG', 'keys.justPressed.SPACE') and not SkipThis then
             startCountdown()
             onRemove()
 
-            doTweenAlpha('iconP1Alpha', 'iconP1', 1, 0.1, 'linear')
-            doTweenAlpha('iconP2Alpha', 'iconP2', 1, 0.1, 'linear') 
-            doTweenAlpha('scoreTxtAlpha', 'scoreTxt', 1, 0.1, 'linear')
-            doTweenAlpha('healthBarAlpha', 'healthBar', 1, 0.1, 'linear')
-            doTweenAlpha('healthBarBGAlpha', 'healthBarBG', 1, 0.1, 'linear')
-
             if Activate == true then
                 playSound('ToggleJingle')
-                cameraFlash('funny', white, 0.7, false)      
-            end 
+                cameraFlash('funny', white, 0.7, false)     
+                onHideHealthBar(true) 
+            end
     
             Activate = false; 
         end 
@@ -345,29 +321,17 @@ function onUpdate(elapsed)
             WhiteBlack = true;
     
             setTextString('h', "Press [H] to Change BG to Black")
-            setProperty('whitelol.visible', true)
-            setProperty('playerwhitelol.visible', true)
-            setProperty('opponentwhitelol.visible', true)
-            setProperty('optionwhitelol.visible', true)
-
-            setProperty('blacklol.visible', false)
-            setProperty('playerlol.visible', false)
-            setProperty('opponentlol.visible', false) 
-            setProperty('optionlol.visible', false)
+            onBlackWhite(white) 
         elseif WhiteBlack == true and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.H') then
             WhiteBlack = false;
     
             setTextString('h', "Press [H] to Change BG to White")
-            setProperty('whitelol.visible', false)
-            setProperty('playerwhitelol.visible', false)
-            setProperty('opponentwhitelol.visible', false)
-            setProperty('optionwhitelol.visible', false)
-
-            setProperty('blacklol.visible', true)
-            setProperty('playerlol.visible', true)
-            setProperty('opponentlol.visible', true)
-            setProperty('optionlol.visible', true)
+            onBlackWhite(black) 
         end
+
+        if WhiteBlack == true then
+            onBlackWhite(white) 
+        end    
 
         if count == 1 then
             if GetOGNotes == false and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.ENTER') then
@@ -427,11 +391,12 @@ function onUpdate(elapsed)
                 setPropertyFromGroup('opponentStrums', i, 'downScroll', true)
                 setPropertyFromGroup('opponentStrums', i, 'y', 570)
         
-                setPos('healthBar', {nil, 620})
+                setPos('healthBar', {650, 620})
                 setPos('healthBarBG', {nil, 616})
                 setPos('iconP1', {nil, 550})
                 setPos('iconP2', {nil, 550})
-                setPos('scoreTxt', {nil, 650})
+                setPos('scoreTxt', {300, 650})
+                setTextSize('scoreTxt', 18)   
         
                 if downscroll then
                     setPropertyFromGroup('opponentStrums', i, 'downScroll', false)
@@ -472,25 +437,35 @@ function onUpdate(elapsed)
                 BGNote = false;
                 doTweenColor('e4Color', 'e4', white, 0.1, 'linear')
                 playSound('cancelMenu', 0.4, false) 
-            end
-        end  
-    end   
-
+            end           
+        end   
+    end      
+    
     if Activate == false then
         if BGNote == true then
-            setProperty('BFblacklol.alpha', 0.5)  
-            setProperty('DADblacklol.alpha', 0.5)  
-
+            doTweenAlpha('BFblacklolAlpha', 'BFblacklol', 0.5, 0.0001, 'linear')
+            doTweenAlpha('DADblacklolAlpha', 'DADblacklol', 0.5, 0.0001, 'linear')   
+    
             if middlescroll then
                 removeLuaSprite('DADblacklol', true)
                 setPos('BFblacklol', {410, nil})
-
-                noteTweenAlpha('Oppo0', 0, 0, 0.001, 'linear')  
-                noteTweenAlpha('Oppo1', 1, 0, 0.001, 'linear')  
-                noteTweenAlpha('Oppo2', 2, 0, 0.001, 'linear')  
-                noteTweenAlpha('Oppo3', 3, 0, 0.001, 'linear')  
-            end    
-        end   
+        
+                for i = 0,7 do
+                    setPropertyFromGroup('opponentStrums', i, 'x', -500)
+                    setPropertyFromGroup('opponentStrums', i, 'alpha', 0)
+                end  
+                
+                if ChangeScroll == true then
+                    setPos('healthBar', {343.5, nil})
+                    setPos('healthBarBG', {339.5, nil})
+                    setPos('iconP1', {610, nil})
+                    setPos('iconP2', {509, nil})
+                    setPos('scoreTxt', {0, nil})
+                    setTextSize('scoreTxt', 20)  
+                end    
+            end  
+            Activate = gaming -- no more lag
+        end
     end 
 
     if getProperty('cpuControlled') == true and Visible == true then
@@ -498,8 +473,8 @@ function onUpdate(elapsed)
     end  
     if getProperty('cpuControlled') == true and Visible == false then
         setProperty('botplayTxt.visible', true) 
-    end
-end  
+    end 
+end 
 
 PreX = 255
 PreY = 90
@@ -520,56 +495,52 @@ PixelNameDAD = {'PixelpreviewDAD0', 'PixelpreviewDAD1', 'PixelpreviewDAD2', 'Pix
 
 PixelString = {pUI..'pixel notes', pUI..'NES notes', pUI..'dokidoki notes'}
 PixelStringDAD = {pUI..'pixel notes', pUI..'NES notes', pUI..'dokidoki notes'}
-
-local ns1 = 1
-local ns2 = 1
-
-local ps1 = 1
-local ps2 = 1
 function onCustomNotes()
-    onNoteText()
-    if Answer == false then
-        for i = 1, #NoteName do
-            makeLuaSprite('preview', NoteString[ns1], PreX, PreY)
-            setObjectCamera('preview', 'camHUD')
-            scaleObject('preview', 0.5, 0.5)
-            addLuaSprite('preview', true)
-        end  
-
-        for i = 1, #NoteNameDAD do
-            makeLuaSprite('previewDAD', NoteStringDAD[ns2], PreX, PreDADY)
-            setObjectCamera('previewDAD', 'camHUD')
-            scaleObject('previewDAD', 0.5, 0.5)
-            addLuaSprite('previewDAD', true)
-        end 
-    end  
+    if SkipThis == false then
+        onNoteText()
+        if Answer == false then
+            for i = 1, #NoteName do
+                makeLuaSprite('preview', NoteString[ns1], PreX, PreY)
+                setObjectCamera('preview', 'camHUD')
+                scaleObject('preview', 0.5, 0.5)
+                addLuaSprite('preview', true)
+            end  
     
-    if Answer == true then
-        for i = 1, #PixelName do
-            makeLuaSprite('Pixelpreview', PixelString[ps1], PreX, PreY)
-            setObjectCamera('Pixelpreview', 'camHUD')
-            setProperty('Pixelpreview.antialiasing', false)
-            scaleObject('Pixelpreview', 0.5, 0.5)
-            addLuaSprite('Pixelpreview', true)
+            for i = 1, #NoteNameDAD do
+                makeLuaSprite('previewDAD', NoteStringDAD[ns2], PreX, PreDADY)
+                setObjectCamera('previewDAD', 'camHUD')
+                scaleObject('previewDAD', 0.5, 0.5)
+                addLuaSprite('previewDAD', true)
+            end 
         end  
-
-        for i = 1, #PixelNameDAD do
-            makeLuaSprite('PixelpreviewDAD', PixelStringDAD[ps2], PreX, PreDADY)
-            setObjectCamera('PixelpreviewDAD', 'camHUD')
-            setProperty('PixelpreviewDAD.antialiasing', false)
-            scaleObject('PixelpreviewDAD', 0.5, 0.5)
-            addLuaSprite('PixelpreviewDAD', true)
+        
+        if Answer == true then
+            for i = 1, #PixelName do
+                makeLuaSprite('Pixelpreview', PixelString[ps1], PreX, PreY)
+                setObjectCamera('Pixelpreview', 'camHUD')
+                setProperty('Pixelpreview.antialiasing', false)
+                scaleObject('Pixelpreview', 0.5, 0.5)
+                addLuaSprite('Pixelpreview', true)
+            end  
+    
+            for i = 1, #PixelNameDAD do
+                makeLuaSprite('PixelpreviewDAD', PixelStringDAD[ps2], PreX, PreDADY)
+                setObjectCamera('PixelpreviewDAD', 'camHUD')
+                setProperty('PixelpreviewDAD.antialiasing', false)
+                scaleObject('PixelpreviewDAD', 0.5, 0.5)
+                addLuaSprite('PixelpreviewDAD', true)
+            end 
         end 
-    end    
+    end       
 end    
 
 sn = 'NoteSkin: '
 
-NoteText = {sn..'Defualt', sn..'Tabi', sn..'Majin', sn..'Creepy', sn..'HD'}
-NoteTextDAD = {sn..'Defualt', sn..'Tabi', sn..'Majin', sn..'Creepy', sn..'HD'}
+NoteText = {sn..'Defualt', sn..'Tabi', sn..'Majin', sn..'Creepy'}
+NoteTextDAD = {sn..'Defualt', sn..'Tabi', sn..'Majin', sn..'Creepy'}
 
-PixelText = {sn..'Defualt', sn..'NES', sn..'DokiDoki', sn..'HD'}
-PixelTextDAD = {sn..'Defualt', sn..'NES', sn..'DokiDoki', sn..'HD'}
+PixelText = {sn..'Defualt', sn..'NES', sn..'DokiDoki'}
+PixelTextDAD = {sn..'Defualt', sn..'NES', sn..'DokiDoki'}
 function onNoteText()
     if Answer == false then
         for i = 1, #NoteText do
@@ -587,20 +558,26 @@ function onNoteText()
         for i = 1, #PixelTextDAD do
             setTextString('NoteDAD', PixelText[ps2])
         end
-    end    
+    end  
 end
 
-function onBlackWhite()   
-    -- coming soon lol
-end    
+vi = '.visible'
 
--- i'm gonna place this on a other script on the next beta [onCustomSplash() and onSplashPrefix()]
-function onCustomSplash()
-    -- i hate this
-end
+function onHideHealthBar(boolean) -- soooo much better
+    setProperty('scoreTxt'..vi, boolean) -- uhh ignore the green color, i dunno wut color it is
+    setProperty('healthBar'..vi, boolean)
+    setProperty('healthBarBG'..vi, boolean)
+    setProperty('iconP1'..vi, boolean)
+    setProperty('iconP2'..vi, boolean) 
+end  
 
-function onSplashPrefix()
-    -- i hate this
+function onBlackWhite(color)  
+    makeGraphic('blacklol', 400, 1000, color)
+    makeGraphic('playerlol', 400, 100, color)
+    makeGraphic('opponentlol', 400, 100, color)
+    makeGraphic('optionlol', 400, 350, color)
+    makeGraphic('BFblacklol', 450, 1000, color)
+    makeGraphic('DADblacklol', 450, 1000, color)
 end    
 
 local pos = 460
@@ -654,7 +631,7 @@ function onPlus()
             ps2 = ps2 + 1
         end 
     end  
-end
+end    
 
 n = 5 -- Normal
 p = 4 -- Pixel
@@ -744,10 +721,6 @@ function onUpdatePost(elapsed)
     end   
 
     if Activate == true then
-        onCustomNotes()
-        onPlus()
-        onReset()
-
         if getPropertyFromClass('flixel.FlxG', 'keys.justPressed.P') then
             Answer = semifalse;
 
@@ -760,10 +733,7 @@ function onUpdatePost(elapsed)
             doTweenAlpha('PixelpreAlpha', 'Pixelpreview', 0, 0.1, 'linear') 
             doTweenAlpha('PixelpreDADAlpha', 'PixelpreviewDAD', 0, 0.1, 'linear')
 
-            doTweenAlpha('warnAplha', 'warn', 1, 0.5, 'linear')
-            doTweenAlpha('warnAplha2', 'warn2', 1, 0.5, 'linear')
-            doTweenAlpha('questionAplha', 'question', 1, 0.5, 'linear')
-            doTweenAlpha('sidenoteAplha', 'sidenote', 1, 0.5, 'linear')   
+            WarningScreen(1)   
         elseif getPropertyFromClass('flixel.FlxG', 'keys.justPressed.L') and Answer == semifalse then
             Answer = true;
             playSound('confirmMenu', 0.4, false)  
@@ -771,10 +741,7 @@ function onUpdatePost(elapsed)
             doTweenAlpha('PixelpreAlpha', 'Pixelpreview', 1, 0.1, 'linear') 
             doTweenAlpha('PixelpreDADAlpha', 'PixelpreviewDAD', 1, 0.1, 'linear')
     
-            doTweenAlpha('warnAplha', 'warn', 0, 0.5, 'linear')
-            doTweenAlpha('warnAplha2', 'warn2', 0, 0.5, 'linear')
-            doTweenAlpha('questionAplha', 'question', 0, 0.5, 'linear')
-            doTweenAlpha('sidenoteAplha', 'sidenote', 0, 0.5, 'linear')    
+            WarningScreen(0) 
         elseif getPropertyFromClass('flixel.FlxG', 'keys.justPressed.K') and Answer == semifalse then 
             Answer = false;
             playSound('cancelMenu', 0.4, false)
@@ -785,20 +752,19 @@ function onUpdatePost(elapsed)
             doTweenAlpha('PixelpreAlpha', 'Pixelpreview', 0, 0.1, 'linear') 
             doTweenAlpha('PixelpreDADAlpha', 'PixelpreviewDAD', 0, 0.1, 'linear')
 
-            doTweenAlpha('warnAplha', 'warn', 0, 0.5, 'linear')
-            doTweenAlpha('warnAplha2', 'warn2', 0, 0.5, 'linear')
-            doTweenAlpha('questionAplha', 'question', 0, 0.5, 'linear')
-            doTweenAlpha('sidenoteAplha', 'sidenote', 0, 0.5, 'linear')    
+            WarningScreen(0)   
         end
     end    
 end    
 
-function onVisibilty()
-    setProperty('whitelol.visible', false)
-    setProperty('playerwhitelol.visible', false)
-    setProperty('opponentwhitelol.visible', false)
-    setProperty('optionwhitelol.visible', false)
+function WarningScreen(opacity)
+    doTweenAlpha('warnAplha', 'warn', opacity, 0.5, 'linear')
+    doTweenAlpha('warnAplha2', 'warn2', opacity, 0.5, 'linear')
+    doTweenAlpha('questionAplha', 'question', opacity, 0.5, 'linear')
+    doTweenAlpha('sidenoteAplha', 'sidenote', opacity, 0.5, 'linear')
+end    
 
+function onAlpha() -- no .visible so alpha
     setProperty('BFblacklol.alpha', 0)
     setProperty('DADblacklol.alpha', 0)
 
@@ -824,7 +790,7 @@ function onTweenXY()
     doTweenY('sidenoteY', 'sidenote', 590, 0.1, 'linear')
 
     doTweenY('spaceY', 'space', 410, 0.1, 'linear')
-    doTweenX('spaceX', 'space', 430, 0.1, 'linear')
+    doTweenX('spaceX', 'space', 430, 0.1, 'linear') -- Only X lol
 
     doTweenY('noteY0', 'Note', 80, 0.1, 'linear')
     doTweenY('noteDADY0', 'NoteDAD', 230, 0.1, 'linear')   
@@ -875,6 +841,17 @@ function onPrecaching()
 end
 
 function onRemove() 
+    removeLuaSprite('preview', true);
+    removeLuaSprite('previewDAD', true);
+
+    removeLuaSprite('Pixelpreview', true);
+    removeLuaSprite('PixelpreviewDAD', true);
+
+    removeLuaSprite('blacklol', true);
+    removeLuaSprite('playerlol', true);
+    removeLuaSprite('opponentlol', true);
+    removeLuaSprite('optionlol', true);
+
     removeLuaText('y', true);
     removeLuaText('t', true);
 
@@ -886,22 +863,6 @@ function onRemove()
 
     removeLuaText('Note', true);
     removeLuaText('NoteDAD', true);
-
-    removeLuaSprite('preview', true);
-    removeLuaSprite('previewDAD', true);
-
-    removeLuaSprite('Pixelpreview', true)
-    removeLuaSprite('PixelpreviewDAD', true)
-
-    removeLuaSprite('whitelol', true);
-    removeLuaSprite('playerwhitelol', true);
-    removeLuaSprite('opponentwhitelol', true);
-    removeLuaSprite('optionwhitelol', true);
-
-    removeLuaSprite('blacklol', true);
-    removeLuaSprite('playerlol', true);
-    removeLuaSprite('opponentlol', true);
-    removeLuaSprite('optionlol', true);
 
     removeLuaText('pl', true);
     removeLuaText('op', true);
