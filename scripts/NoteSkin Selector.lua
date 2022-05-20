@@ -1,7 +1,4 @@
-if SkipThis == true then
-    startCountdown()
-    onRemove()
-end  function onCreate()
+function onCreate()
     makeLuaText('space', 'Press [SPACE] to Start', 800, 735);
     setTextSize('space', 30)
     addLuaText('space', true)
@@ -214,7 +211,7 @@ local AllToggles = false;    -- If true then all the toggles will be turn on
 -- Same works in PixelSkins
 -- But there's a limit to changing these to any number just go to the onReset()
 
-local SkipThis = true; -- If you want to skip
+local SkipThis = false; -- If you want to skip
 
 -- if [false] wont skip, if [true] it skip
 
