@@ -10,7 +10,7 @@ function onCreate()
 
     makeLuaText('y', 'Press [Y] to Check Note Splashes', 0, 635);
     setTextSize('y', 20)
-    setTextColor('y', 'ff0000')
+    setTextColor('y', red)
     setTextAlignment('y', 'middle')
     addLuaText('y', true)
 
@@ -21,7 +21,7 @@ function onCreate()
 
     makeLuaText('g', 'Press [G] to Check Note Splashes', 0, 635);
     setTextSize('g', 20)
-    setTextColor('g', 'ff0000')
+    setTextColor('g', red)
     setTextAlignment('g', 'middle')
     addLuaText('g', true)
 
@@ -32,7 +32,7 @@ function onCreate()
 
     makeLuaText('esc', 'Press [ESCAPE] to Exit the song', 0, 655);
     setTextSize('esc', 18)
-    setTextColor('esc', 'ff0000')
+    setTextColor('esc', red)
     addLuaText('esc', true)
 
     makeLuaText('Arrow', '>', 0, 228);
@@ -47,22 +47,22 @@ function onCreate()
 
     makeLuaText('warn', 'This only works in Pixel Stages', 0, 655)
     setTextSize('warn', 19)
-    setTextColor('warn', 'ff0000')
+    setTextColor('warn', red)
     addLuaText('warn', true)
 
     makeLuaText('warn2', 'Are you sure you want to proceed?', 0, 646)
     setTextSize('warn2', 19)
-    setTextColor('warn2', 'ff0000')
+    setTextColor('warn2', red)
     addLuaText('warn2', true)
 
     makeLuaText('question', '[K] or [L]', 0, 735)
     setTextSize('question', 30)
-    setTextColor('question', 'ff0000')
+    setTextColor('question', red)
     addLuaText('question', true)
 
     makeLuaText('sidenote', 'SideNote: [K] = Normal and [L] = Pixel', 0, 655)
     setTextSize('sidenote', 16)
-    setTextColor('sidenote', 'ff0000')
+    setTextColor('sidenote', red)
     addLuaText('sidenote', true)
 
     -- Setting --
@@ -104,10 +104,12 @@ function onCreate()
 
     makeLuaSprite('BFblacklol', nil, 730, 0)
     setObjectCamera('BFblacklol', 'camHUD')
+    setProperty('BFblacklol.alpha', 0.5)
     addLuaSprite('BFblacklol')
 
     makeLuaSprite('DADblacklol', nil, 90, 0)
     setObjectCamera('DADblacklol', 'camHUD')
+    setProperty('DADblacklol.alpha', 0.5)
     addLuaSprite('DADblacklol')
 
     -- NoteSkin Background -- 
@@ -162,7 +164,7 @@ function onCreate()
 
     -- Functions --
 
-    onAlpha()
+    onVisibleAlpha()
     onTweenXY()
     onPrecaching() 
     onBlackWhite(black) 
@@ -207,6 +209,7 @@ local AllToggles = false;    -- If true then all the toggles will be turn on
 -- Set these things into true if you want it to be default
 -- Also you want to Change the NoteSkin to be default set ns1 or ns2 in to any number
 -- Same works in PixelSkins
+-- But there's a limit to changing these to any number just go to the onReset()
 
 local SkipThis = false; -- If you want to skip
 
@@ -232,7 +235,7 @@ function setPos(obj, pos)
         setProperty(obj..'.x', pos[1])
     end
     if pos[2] ~= nil then
-        setProperty(obj..'.y', pos[2])
+        setProperty(obj..'.y', pos[2]) 
     end
 end
 
@@ -250,14 +253,9 @@ white = 'ffffff'
 local count = 1
 local Answer = false;
 function onUpdate(elapsed)
-    if getProperty('inCutscene') == true then
+    if getProperty('inCutscene') == true or SkipThis == true then
         Activate = false;
         playMusic('')
-        onRemove()
-    end 
-
-    if SkipThis == true then
-        startCountdown()
         onRemove()
     end  
 
@@ -267,15 +265,13 @@ function onUpdate(elapsed)
         onReset()
 
         if getPropertyFromClass('flixel.FlxG', 'keys.justPressed.SPACE') and not SkipThis then
-            startCountdown()
-            onRemove()
-
             if Activate == true then
+                startCountdown()
+                onHideHealthBar(true) 
+                onRemove()
                 playSound('ToggleJingle')
                 cameraFlash('funny', white, 0.7, false)     
-                onHideHealthBar(true) 
             end
-    
             Activate = false; 
         end 
 
@@ -284,7 +280,7 @@ function onUpdate(elapsed)
         end   
         
         if getPropertyFromClass('flixel.FlxG', 'keys.justPressed.ESCAPE') then
-            endSong()      
+            exitSong()      
         end   
 
         if AllToggles == false and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.Q') then
@@ -391,23 +387,25 @@ function onUpdate(elapsed)
                 setPropertyFromGroup('opponentStrums', i, 'downScroll', true)
                 setPropertyFromGroup('opponentStrums', i, 'y', 570)
         
-                setPos('healthBar', {650, 620})
-                setPos('healthBarBG', {nil, 616})
-                setPos('iconP1', {nil, 550})
-                setPos('iconP2', {nil, 550})
-                setPos('scoreTxt', {300, 650})
-                setTextSize('scoreTxt', 18)   
-        
-                if downscroll then
-                    setPropertyFromGroup('opponentStrums', i, 'downScroll', false)
-                    setPropertyFromGroup('opponentStrums', i, 'y', 50)
-        
-                    setPos('healthBar', {nil, 100})                
-                    setPos('healthBarBG', {nil, 96})
-                    setPos('iconP1', {nil, 30})
-                    setPos('iconP2', {nil, 30})
-                    setPos('scoreTxt', {nil, 130})
-                end    
+                if not middlescroll then
+                    setPos('healthBar', {650, 620})
+                    setPos('healthBarBG', {nil, 616})
+                    setPos('iconP1', {nil, 550})
+                    setPos('iconP2', {nil, 550})
+                    setPos('scoreTxt', {300, 650})
+                    setTextSize('scoreTxt', 18) 
+
+                    if downscroll then
+                        setPropertyFromGroup('opponentStrums', i, 'downScroll', false)
+                        setPropertyFromGroup('opponentStrums', i, 'y', 50)
+            
+                        setPos('healthBar', {nil, 100})                
+                        setPos('healthBarBG', {nil, 96})
+                        setPos('iconP1', {nil, 30})
+                        setPos('iconP2', {nil, 30})
+                        setPos('scoreTxt', {nil, 130})
+                    end   
+                end     
             end
         end
         if ChangeScroll == false then
@@ -443,8 +441,8 @@ function onUpdate(elapsed)
     
     if Activate == false then
         if BGNote == true then
-            doTweenAlpha('BFblacklolAlpha', 'BFblacklol', 0.5, 0.0001, 'linear')
-            doTweenAlpha('DADblacklolAlpha', 'DADblacklol', 0.5, 0.0001, 'linear')   
+            setProperty('BFblacklol.visible', true)
+            setProperty('DADblacklol.visible', true) 
     
             if middlescroll then
                 removeLuaSprite('DADblacklol', true)
@@ -764,9 +762,9 @@ function WarningScreen(opacity)
     doTweenAlpha('sidenoteAplha', 'sidenote', opacity, 0.5, 'linear')
 end    
 
-function onAlpha() -- no .visible so alpha
-    setProperty('BFblacklol.alpha', 0)
-    setProperty('DADblacklol.alpha', 0)
+function onVisibleAlpha()
+    setProperty('BFblacklol.visible', false)
+    setProperty('DADblacklol.visible', false)
 
     setProperty('warn.alpha', 0)
     setProperty('warn2.alpha', 0)
