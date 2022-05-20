@@ -1,4 +1,7 @@
-function onCreate()
+if SkipThis == true then
+    startCountdown()
+    onRemove()
+end  function onCreate()
     makeLuaText('space', 'Press [SPACE] to Start', 800, 735);
     setTextSize('space', 30)
     addLuaText('space', true)
@@ -211,7 +214,7 @@ local AllToggles = false;    -- If true then all the toggles will be turn on
 -- Same works in PixelSkins
 -- But there's a limit to changing these to any number just go to the onReset()
 
-local SkipThis = false; -- If you want to skip
+local SkipThis = true; -- If you want to skip
 
 -- if [false] wont skip, if [true] it skip
 
@@ -253,11 +256,16 @@ white = 'ffffff'
 local count = 1
 local Answer = false;
 function onUpdate(elapsed)
-    if getProperty('inCutscene') == true or SkipThis == true then
+    if getProperty('inCutscene') == true then
         Activate = false;
         playMusic('')
         onRemove()
     end  
+
+    if SkipThis == true then
+        startCountdown()
+        onRemove()
+    end    
 
     if Activate == true then
         onCustomNotes()
@@ -280,7 +288,7 @@ function onUpdate(elapsed)
         end   
         
         if getPropertyFromClass('flixel.FlxG', 'keys.justPressed.ESCAPE') then
-            exitSong()      
+            endSong()      
         end   
 
         if AllToggles == false and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.Q') then
