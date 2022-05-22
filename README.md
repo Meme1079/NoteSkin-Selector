@@ -11,6 +11,9 @@ Got to Wiki tab (Work in Progress)
 ### Can I use it in my Mod?
 yes give credit or else
 
+### Why does it crash when I used other scripts?
+Stop using the script and use other script that doesn't interfere the NoteSkin script
+
 ***
 # Requirements For the script
 
