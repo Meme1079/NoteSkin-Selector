@@ -104,13 +104,13 @@ function onCreate()
 
     makeLuaSprite('BFblacklol', nil, 730, 0)
     setObjectCamera('BFblacklol', 'camHUD')
-    setProperty('BFblacklol.alpha', 0.5)
-    addLuaSprite('BFblacklol')
+    setProperty('BFblacklol.alpha', BLOpacity)
+    addLuaSprite('BFblacklol', false)
 
     makeLuaSprite('DADblacklol', nil, 90, 0)
     setObjectCamera('DADblacklol', 'camHUD')
-    setProperty('DADblacklol.alpha', 0.5)
-    addLuaSprite('DADblacklol')
+    setProperty('DADblacklol.alpha', BLOpacity)
+    addLuaSprite('DADblacklol', false)
 
     -- NoteSkin Background -- 
 
@@ -162,6 +162,12 @@ function onCreate()
     setTextAlignment('NoteDAD', 'middle')
     addLuaText('NoteDAD', true)
 
+    -- HitSounds -- 
+
+    makeLuaText('hs', '('..HSName[hss]..')', 0, 400);
+    setTextSize('hs', 16)
+    addLuaText('hs', true)
+
     -- Functions --
 
     onVisibleAlpha()
@@ -171,7 +177,7 @@ function onCreate()
 end    
 
 function onCreatePost()
-    onHideHealthBar(false)
+    onHideHealthBar(false) 
 end   
   
 local Activate = true;
@@ -180,11 +186,8 @@ function onStartCountdown()
     if not allowCountdown then -- Block the first countdown
         allowCountdown = true;         
         if Activate == true then
-            playMusic('offsetSong')
+            playMusic('breakfast-Bsides', 0.5, true)
         end       
-        if Activate == false then
-            playMusic('')
-        end 
         return Function_Stop; 
     end 
     return Function_Continue;
@@ -196,34 +199,47 @@ function onSongStart()
     Visible = false;   
 
     onRemove() 
-    onHideHealthBar(true)
+    onHideHealthBar(true)  
 end 
 
-local WhiteBlack = false;    -- It changes the BG Notes to white or black, also [true] is white and black is [flase]
+local WhiteBlack = false;    -- It changes the BG Notes to white or black, also [true] is white and black is [false]
 local AnnoyingSound = false; -- Plays a HitSounds when true
-local BGNote = false;        -- For concentrating
+local BGNote = false;        -- Make's a Backround behind the notes! (For concentrating)
 local GetOGNotes = false;    -- Dont use this only if you dont want the NoteSkins from that stage
 local ChangeScroll = false;  -- Changes scroll on the opponent depending on your scroll
-local AllToggles = false;    -- If true then all the toggles will be turn on
+local AllToggles = false;    -- If [true] then all the toggles will be "turn on"
 
--- Set these things into true if you want it to be default
--- Also you want to Change the NoteSkin to be default set ns1 or ns2 in to any number
--- Same works in PixelSkins
+-- Set these things into [true] if you want it to be default
+-- Also if you want to Change the NoteSkin to be default set ns1 or ns2 in to any number
+-- Same works in PixelSkins, set ps1 and ps2 to any number
 -- But there's a limit to changing these to any number just go to the onReset()
+-- If you to disable this script just set the (GetOGNotes) into [true] and (SkipThis) into [true], or you can just remove this script
 
 local SkipThis = false; -- If you want to skip
 
--- if [false] wont skip, if [true] it skip
+-- if [false] wont skip, if [true] it's skip
 
-local ns1 = 1
-local ns2 = 1
+local ns1 = 4 -- BF
+local ns2 = 1 -- DAD
 
-local ps1 = 1
-local ps2 = 1
+local ps1 = 1 -- BF (Pixel) 
+local ps2 = 1 -- BF (Pixel)
 
+BLOpacity = 0.5 -- Opacity of the BGNote 
+
+-- [0.5 or higer] (Optional)
+-- [0.5] (Recommended)
+-- [0.4 or below] (Not Recommended)
+
+hs = 'hitsounds/'
+
+HitSounds = {'hitsound', hs..'Hit Alt', hs..'Cherry HitSounds', hs..'Snare Hit'} -- dumb hitsounds
+HSName = {'Defualt', 'Hit Alt', 'Cherry HitSounds', 'Snare Hit'} -- name of hitsounds
+
+hss = 1 -- just change the number lol
 function goodNoteHit(id, direction, noteType, isSustainNote)  
-    if AnnoyingSound == true and not isSustainNote then
-        playSound('hitsound', 0.5, false)
+    if AnnoyingSound and not isSustainNote then
+        playSound(HitSounds[hss], 0.5, false)
     end  
 end  
 
@@ -259,10 +275,17 @@ function onUpdate(elapsed)
         onRemove()
     end  
 
+    if getProperty('cpuControlled') == true and Visible then
+        setProperty('botplayTxt.visible', false)
+    end
+    if getProperty('cpuControlled') == true and not Visible then
+        setProperty('botplayTxt.visible', true)    
+    end
+
     if SkipThis == true then
         startCountdown()
         onRemove()
-    end    
+    end
 
     if Activate == true then
         onCustomNotes()
@@ -271,11 +294,13 @@ function onUpdate(elapsed)
 
         if getPropertyFromClass('flixel.FlxG', 'keys.justPressed.SPACE') and not SkipThis then
             if Activate == true then
+                playSound('ToggleJingle')
+                playMusic('')
+                cameraFlash('funny', white, 0.7, false)   
+
                 startCountdown()
                 onHideHealthBar(true) 
                 onRemove()
-                playSound('ToggleJingle')
-                cameraFlash('funny', white, 0.7, false)     
             end
             Activate = false; 
         end 
@@ -317,7 +342,21 @@ function onUpdate(elapsed)
             BGNote = false;
             ChangeScroll = false;   
         end    
-        
+
+        if AllToggles == true then
+            doTweenColor('qColor', 'q', green, 0.1, 'linear')
+
+            doTweenColor('e1Color', 'e1', green, 0.1, 'linear')
+            doTweenColor('e2Color', 'e2', green, 0.1, 'linear')
+            doTweenColor('e3Color', 'e3', green, 0.1, 'linear')
+            doTweenColor('e4Color', 'e4', green, 0.1, 'linear')
+
+            GetOGNotes = true;
+            AnnoyingSound = true;
+            BGNote = true;
+            ChangeScroll = true;   
+        end    
+
         if WhiteBlack == false and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.H') then
             WhiteBlack = true;
     
@@ -331,6 +370,7 @@ function onUpdate(elapsed)
         end
 
         if WhiteBlack == true then
+            setTextString('h', "Press [H] to Change BG to White")
             onBlackWhite(white) 
         end    
 
@@ -346,7 +386,8 @@ function onUpdate(elapsed)
             end    
         end
         
-        if GetOGNotes == true then
+        if GetOGNotes == true then            
+            doTweenColor('e1Color', 'e1', green, 0.1, 'linear')
             for i = 0, getProperty('notes.length')-1 do
                 if getPropertyFromGroup('notes', i, 'noteType') == '' then
                     getPropertyFromGroup('notes', i, 'texture');   
@@ -373,13 +414,16 @@ function onUpdate(elapsed)
                 playSound('cancelMenu', 0.4, false)
             end 
         end 
+
+        if AnnoyingSound == true then
+            doTweenColor('e2Color', 'e2', green, 0.1, 'linear') 
+        end    
         
         if count == 3 then
             if ChangeScroll == false and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.ENTER') then
                 ChangeScroll = true;
                 doTweenColor('e3Color', 'e3', green, 0.1, 'linear')
                 playSound('confirmMenu', 0.4, false)  
-        
             elseif ChangeScroll == true and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.ENTER') then    
                 ChangeScroll = false;
                 doTweenColor('e3Color', 'e3', white, 0.1, 'linear')
@@ -388,6 +432,7 @@ function onUpdate(elapsed)
         end    
         
         if ChangeScroll == true then
+            doTweenColor('e3Color', 'e3', green, 0.1, 'linear')
             for i = 0,7 do
                 setPropertyFromGroup('opponentStrums', i, 'downScroll', true)
                 setPropertyFromGroup('opponentStrums', i, 'y', 570)
@@ -413,6 +458,7 @@ function onUpdate(elapsed)
                 end     
             end
         end
+
         if ChangeScroll == false then
             setPos('healthBar', {343.5, nil})
             setPos('healthBarBG', {339.5, nil})
@@ -435,13 +481,16 @@ function onUpdate(elapsed)
                 BGNote = true;
                 doTweenColor('e4Color', 'e4', green, 0.1, 'linear')
                 playSound('confirmMenu', 0.4, false)  
-        
             elseif BGNote == true and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.ENTER') then    
                 BGNote = false;
                 doTweenColor('e4Color', 'e4', white, 0.1, 'linear')
                 playSound('cancelMenu', 0.4, false) 
             end           
         end   
+
+        if BGNote == true then
+            doTweenColor('e4Color', 'e4', green, 0.1, 'linear')
+        end    
     end      
     
     if Activate == false then
@@ -452,11 +501,6 @@ function onUpdate(elapsed)
             if middlescroll then
                 removeLuaSprite('DADblacklol', true)
                 setPos('BFblacklol', {410, nil})
-        
-                for i = 0,7 do
-                    setPropertyFromGroup('opponentStrums', i, 'x', -500)
-                    setPropertyFromGroup('opponentStrums', i, 'alpha', 0)
-                end  
                 
                 if ChangeScroll == true then
                     setPos('healthBar', {343.5, nil})
@@ -469,13 +513,6 @@ function onUpdate(elapsed)
             end  
             Activate = gaming -- no more lag
         end
-    end 
-
-    if getProperty('cpuControlled') == true and Visible == true then
-        setProperty('botplayTxt.visible', false)
-    end  
-    if getProperty('cpuControlled') == true and Visible == false then
-        setProperty('botplayTxt.visible', true) 
     end 
 end 
 
@@ -564,14 +601,14 @@ function onNoteText()
     end  
 end
 
-vi = '.visible'
-
 function onHideHealthBar(boolean) -- soooo much better
-    setProperty('scoreTxt'..vi, boolean) -- uhh ignore the green color, i dunno wut color it is
-    setProperty('healthBar'..vi, boolean)
-    setProperty('healthBarBG'..vi, boolean)
-    setProperty('iconP1'..vi, boolean)
-    setProperty('iconP2'..vi, boolean) 
+    if not hideHud then
+        setProperty('scoreTxt.visible', boolean) -- uhh ignore the green color, i dunno wut color it is
+        setProperty('healthBar.visible', boolean)
+        setProperty('healthBarBG.visible', boolean)
+        setProperty('iconP1.visible', boolean)
+        setProperty('iconP2.visible', boolean) 
+    end    
 end  
 
 function onBlackWhite(color)  
@@ -666,6 +703,14 @@ function onReset()
     end    
 end
 
+NoteType = {
+	['No Animation'] = true,
+    ['Alt Animation'] = true,
+    ['Hey!'] = true,
+    ['GF Sing'] = true,
+	[''] = true
+}
+
 nw = 'notesplash/weeb/'
 npl = 'notesplash/'
 
@@ -684,7 +729,7 @@ PixelSplashAssets = {nw..'noteSplashes', nw..'noteSplashes', nw..'dokidokiSplash
 PixelSplashAssetsDAD = {nw..'noteSplashes', nw..'noteSplashes', nw..'dokidokiSplashes'}
 function onUpdatePost(elapsed)
     for i = 0, getProperty('notes.length')-1 do
-        if getPropertyFromGroup('notes', i, 'noteType') == '' and GetOGNotes == false then
+        if NoteType[getPropertyFromGroup('notes', i, 'noteType')] and GetOGNotes == false then
             if getPropertyFromGroup('notes', i, 'mustPress') then -- Player Section
                 if Answer == false then
                     setPropertyFromGroup('notes', i, 'texture', NoteAssets[ns1]);  
@@ -707,7 +752,7 @@ function onUpdatePost(elapsed)
                 end
             end
         end
-    end 
+    end        
     
     for i = 0,4,1 do   
         if GetOGNotes == false then
@@ -811,6 +856,8 @@ function onTweenXY()
     doTweenY('plY', 'pl', 60, 0.1, 'linear')
     doTweenY('opY', 'op', 210, 0.1, 'linear')
     doTweenY('seY', 'se', 360, 0.1, 'linear')
+
+    doTweenY('hsY', 'hs', 480, 0.1, 'linear')
 end    
 
 function onPrecaching()
@@ -840,7 +887,7 @@ function onPrecaching()
     precacheSound('ToggleJingle')  
     precacheSound('hitsound')
 
-    precacheMusic('offsetSong')
+    precacheMusic('breakfast-Bsides')
 end
 
 function onRemove() 
@@ -883,6 +930,7 @@ function onRemove()
 
     removeLuaText('h', true);
     removeLuaText('q', true);
+    removeLuaText('hs', true);
 
     removeLuaText('e1', true);
     removeLuaText('e2', true);
