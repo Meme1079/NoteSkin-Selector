@@ -187,7 +187,7 @@ function onStartCountdown()
         allowCountdown = true;         
         if Activate == true then
             playMusic('breakfast-Bsides', 0.5, true)
-        end       
+        end  
         return Function_Stop; 
     end 
     return Function_Continue;
@@ -213,7 +213,7 @@ local AllToggles = false;    -- If [true] then all the toggles will be "turn on"
 -- Also if you want to Change the NoteSkin to be default set ns1 or ns2 in to any number
 -- Same works in PixelSkins, set ps1 and ps2 to any number
 -- But there's a limit to changing these to any number just go to the onReset()
--- If you to disable this script just set the (GetOGNotes) into [true] and (SkipThis) into [true], or you can just remove this script
+-- To disable this script just set the (GetOGNotes) and (SkipThis) into [true], or you can just remove this script
 
 local SkipThis = false; -- If you want to skip
 
@@ -269,19 +269,6 @@ white = 'ffffff'
 local count = 1
 local Answer = false;
 function onUpdate(elapsed)
-    if getProperty('inCutscene') == true then
-        Activate = false;
-        playMusic('')
-        onRemove()
-    end  
-
-    if getProperty('cpuControlled') == true and Visible then
-        setProperty('botplayTxt.visible', false)
-    end
-    if getProperty('cpuControlled') == true and not Visible then
-        setProperty('botplayTxt.visible', true)    
-    end
-
     if SkipThis == true then
         startCountdown()
         onRemove()
@@ -294,9 +281,11 @@ function onUpdate(elapsed)
 
         if getPropertyFromClass('flixel.FlxG', 'keys.justPressed.SPACE') and not SkipThis then
             if Activate == true then
+                if not flashingLights then
+                    cameraFlash('funny', white, 0.7, false) 
+                end       
                 playSound('ToggleJingle')
-                playMusic('')
-                cameraFlash('funny', white, 0.7, false)   
+                playMusic('')  
 
                 startCountdown()
                 onHideHealthBar(true) 
@@ -359,12 +348,10 @@ function onUpdate(elapsed)
 
         if WhiteBlack == false and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.H') then
             WhiteBlack = true;
-    
             setTextString('h', "Press [H] to Change BG to Black")
             onBlackWhite(white) 
         elseif WhiteBlack == true and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.H') then
             WhiteBlack = false;
-    
             setTextString('h', "Press [H] to Change BG to White")
             onBlackWhite(black) 
         end
@@ -514,6 +501,19 @@ function onUpdate(elapsed)
             Activate = gaming -- no more lag
         end
     end 
+
+    if getProperty('inCutscene') == true then
+        Activate = false;
+        playMusic('')
+        onRemove()
+    end  
+
+    if botPlay and Visible then
+        setProperty('botplayTxt.visible', false)
+    end
+    if botPlay and not Visible then
+        setProperty('botplayTxt.visible', true)    
+    end
 end 
 
 PreX = 255
@@ -704,11 +704,11 @@ function onReset()
 end
 
 NoteType = {
-	['No Animation'] = true,
+    ['No Animation'] = true,
     ['Alt Animation'] = true,
     ['Hey!'] = true,
     ['GF Sing'] = true,
-	[''] = true
+    [''] = true
 }
 
 nw = 'notesplash/weeb/'
