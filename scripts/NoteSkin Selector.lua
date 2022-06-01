@@ -190,12 +190,12 @@ function onStartCountdown()
         end  
         return Function_Stop; 
     end 
+    Activate = false;
     return Function_Continue;
 end 
 
 local Visible = true;
 function onSongStart()
-    Activate = false;
     Visible = false;   
 
     onRemove() 
@@ -219,7 +219,7 @@ local SkipThis = false; -- If you want to skip
 
 -- if [false] wont skip, if [true] it's skip
 
-local ns1 = 4 -- BF
+local ns1 = 1 -- BF
 local ns2 = 1 -- DAD
 
 local ps1 = 1 -- BF (Pixel) 
@@ -229,7 +229,7 @@ BLOpacity = 0.5 -- Opacity of the BGNote
 
 -- [0.5 or higer] (Optional)
 -- [0.5] (Recommended)
--- [0.4 or below] (Not Recommended)
+-- [0.5 or below] (Not Recommended)
 
 hs = 'hitsounds/'
 
@@ -260,6 +260,14 @@ function getPos(obj)
     -- example: debugPrint(getPos('obj'))
     return {getProperty(obj..'.x'), getProperty(obj..'.y')}
 end
+
+NoteType = {
+    ['No Animation'] = true,
+    ['Alt Animation'] = true,
+    ['Hey!'] = true,
+    ['GF Sing'] = true,
+    [''] = true
+}
 
 black = '000000'
 green = '00ff00'
@@ -307,44 +315,21 @@ function onUpdate(elapsed)
             doTweenColor('qColor', 'q', green, 0.1, 'linear')
             playSound('confirmMenu', 0.4, false)  
 
-            doTweenColor('e1Color', 'e1', green, 0.1, 'linear')
-            doTweenColor('e2Color', 'e2', green, 0.1, 'linear')
-            doTweenColor('e3Color', 'e3', green, 0.1, 'linear')
-            doTweenColor('e4Color', 'e4', green, 0.1, 'linear')
-
-            GetOGNotes = true;
-            AnnoyingSound = true;
-            BGNote = true;
-            ChangeScroll = true;   
+            onDumbTogglesColor(green)
+            onDumbToggles(true)
         elseif AllToggles == true and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.Q') then
             AllToggles = false;
             doTweenColor('qColor', 'q', white, 0.1, 'linear')
             playSound('cancelMenu', 0.4, false)  
 
-            doTweenColor('e1Color', 'e1', white, 0.1, 'linear')
-            doTweenColor('e2Color', 'e2', white, 0.1, 'linear')
-            doTweenColor('e3Color', 'e3', white, 0.1, 'linear')
-            doTweenColor('e4Color', 'e4', white, 0.1, 'linear')
-
-            GetOGNotes = false;
-            AnnoyingSound = false;
-            BGNote = false;
-            ChangeScroll = false;   
-        end    
-
-        if AllToggles == true then
+            onDumbTogglesColor(white)
+            onDumbToggles(false) 
+        elseif AllToggles == true then    
             doTweenColor('qColor', 'q', green, 0.1, 'linear')
 
-            doTweenColor('e1Color', 'e1', green, 0.1, 'linear')
-            doTweenColor('e2Color', 'e2', green, 0.1, 'linear')
-            doTweenColor('e3Color', 'e3', green, 0.1, 'linear')
-            doTweenColor('e4Color', 'e4', green, 0.1, 'linear')
-
-            GetOGNotes = true;
-            AnnoyingSound = true;
-            BGNote = true;
-            ChangeScroll = true;   
-        end    
+            onDumbTogglesColor(white)
+            onDumbToggles(true)
+        end   
 
         if WhiteBlack == false and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.H') then
             WhiteBlack = true;
@@ -354,12 +339,10 @@ function onUpdate(elapsed)
             WhiteBlack = false;
             setTextString('h', "Press [H] to Change BG to White")
             onBlackWhite(black) 
-        end
-
-        if WhiteBlack == true then
+        elseif WhiteBlack == true then
             setTextString('h', "Press [H] to Change BG to White")
             onBlackWhite(white) 
-        end    
+        end  
 
         if count == 1 then
             if GetOGNotes == false and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.ENTER') then
@@ -376,18 +359,14 @@ function onUpdate(elapsed)
         if GetOGNotes == true then            
             doTweenColor('e1Color', 'e1', green, 0.1, 'linear')
             for i = 0, getProperty('notes.length')-1 do
-                if getPropertyFromGroup('notes', i, 'noteType') == '' then
+                if NoteType[getPropertyFromGroup('notes', i, 'noteType')] then
                     getPropertyFromGroup('notes', i, 'texture');   
-                    getPropertyFromGroup('notes', i, 'noteSplashTexture');   
-                end    
-            end
-            
-            for i = 0,4,1 do
-                if getPropertyFromGroup('notes', i, 'noteType') == '' then
+                    getPropertyFromGroup('notes', i, 'noteSplashTexture'); 
+                    
                     getPropertyFromGroup('playerStrums', i, 'texture');
                     getPropertyFromGroup('opponentStrums', i, 'texture');  
-                end     
-            end 
+                end    
+            end
         end  
         
         if count == 2 then
@@ -502,7 +481,9 @@ function onUpdate(elapsed)
         end
     end 
 
-    if getProperty('inCutscene') == true then
+    local inCutscene = getProperty('inCutscene')
+
+    if inCutscene == true then
         Activate = false;
         playMusic('')
         onRemove()
@@ -601,7 +582,8 @@ function onNoteText()
     end  
 end
 
-function onHideHealthBar(boolean) -- soooo much better
+-- uhh these dumb function are for campcating the code
+function onHideHealthBar(boolean) 
     if not hideHud then
         setProperty('scoreTxt.visible', boolean) -- uhh ignore the green color, i dunno wut color it is
         setProperty('healthBar.visible', boolean)
@@ -611,6 +593,13 @@ function onHideHealthBar(boolean) -- soooo much better
     end    
 end  
 
+function onDumbToggles(boolean)
+    GetOGNotes = boolean;
+    AnnoyingSound = boolean;
+    BGNote = boolean;
+    ChangeScroll = boolean;   
+end
+
 function onBlackWhite(color)  
     makeGraphic('blacklol', 400, 1000, color)
     makeGraphic('playerlol', 400, 100, color)
@@ -619,6 +608,13 @@ function onBlackWhite(color)
     makeGraphic('BFblacklol', 450, 1000, color)
     makeGraphic('DADblacklol', 450, 1000, color)
 end    
+
+function onDumbTogglesColor(color)
+    doTweenColor('e1Color', 'e1', color, 0.1, 'linear')
+    doTweenColor('e2Color', 'e2', color, 0.1, 'linear')
+    doTweenColor('e3Color', 'e3', color, 0.1, 'linear')
+    doTweenColor('e4Color', 'e4', color, 0.1, 'linear')
+end
 
 local pos = 460
 function onPlus()
@@ -702,14 +698,6 @@ function onReset()
         count = 4
     end    
 end
-
-NoteType = {
-    ['No Animation'] = true,
-    ['Alt Animation'] = true,
-    ['Hey!'] = true,
-    ['GF Sing'] = true,
-    [''] = true
-}
 
 nw = 'notesplash/weeb/'
 npl = 'notesplash/'
