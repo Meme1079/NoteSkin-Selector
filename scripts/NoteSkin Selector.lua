@@ -178,6 +178,8 @@ end
 
 function onCreatePost()
     onHideHealthBar(false) 
+    onCustomSplash()
+    onSplashPrefix()
 end   
   
 local Activate = true;
@@ -301,10 +303,6 @@ function onUpdate(elapsed)
             end
             Activate = false; 
         end 
-
-        if getPropertyFromClass('flixel.FlxG', 'keys.justPressed.Y') or getPropertyFromClass('flixel.FlxG', 'keys.justPressed.G') then
-            playSound('deniedMOMENT', 0.5, false)
-        end   
         
         if getPropertyFromClass('flixel.FlxG', 'keys.justPressed.ESCAPE') then
             endSong()      
@@ -524,14 +522,14 @@ function onCustomNotes()
                 makeLuaSprite('preview', NoteString[ns1], PreX, PreY)
                 setObjectCamera('preview', 'camHUD')
                 scaleObject('preview', 0.5, 0.5)
-                addLuaSprite('preview', true)
+                addLuaSprite('preview', false)
             end  
     
             for i = 1, #NoteNameDAD do
                 makeLuaSprite('previewDAD', NoteStringDAD[ns2], PreX, PreDADY)
                 setObjectCamera('previewDAD', 'camHUD')
                 scaleObject('previewDAD', 0.5, 0.5)
-                addLuaSprite('previewDAD', true)
+                addLuaSprite('previewDAD', false)
             end 
         end  
         
@@ -541,7 +539,7 @@ function onCustomNotes()
                 setObjectCamera('Pixelpreview', 'camHUD')
                 setProperty('Pixelpreview.antialiasing', false)
                 scaleObject('Pixelpreview', 0.5, 0.5)
-                addLuaSprite('Pixelpreview', true)
+                addLuaSprite('Pixelpreview', false)
             end  
     
             for i = 1, #PixelNameDAD do
@@ -549,7 +547,7 @@ function onCustomNotes()
                 setObjectCamera('PixelpreviewDAD', 'camHUD')
                 setProperty('PixelpreviewDAD.antialiasing', false)
                 scaleObject('PixelpreviewDAD', 0.5, 0.5)
-                addLuaSprite('PixelpreviewDAD', true)
+                addLuaSprite('PixelpreviewDAD', false)
             end 
         end 
     end       
@@ -581,6 +579,126 @@ function onNoteText()
         end
     end  
 end
+
+NameSplash = {'Splashpreview0', 'Splashpreview1', 'Splashpreview2', 'Splashpreview4'}
+NameSplashDAD = {'SplashpreviewDAD0', 'SplashpreviewDAD1', 'SplashpreviewDAD2', 'SplashpreviewDAD4'}
+
+NamePixelSplash = {'SplashPixelpre0', 'SplashPixelpre1', 'SplashPixelpre2', 'SplashPixelpre4'}
+NamePixelSplashDAD = {'SplashPixelpreDAD0', 'SplashPixelpreDAD1', 'SplashPixelpreDAD2', 'SplashPixelpreDAD4'}
+
+local s1 = 1
+local s1DAD = 1
+
+local sp1 = 1
+local sp1DAD = 1
+function onCustomSplash()
+    if Answer == false then
+        for i = 1, #NameSplash do
+            makeAnimatedLuaSprite('Splashpreview', SplashAssets[s1], PreX, PreY)
+            setObjectCamera('Splashpreview', 'camHUD')
+            scaleLuaSprite('Splashpreview', 0.5, 0.5)
+            addLuaSprite('Splashpreview', true) 
+        end     
+    
+        for i = 1, #NameSplashDAD do
+            makeAnimatedLuaSprite('SplashpreviewDAD', SplashAssetsDAD[s1DAD], PreX, PreDADY)
+            setObjectCamera('SplashpreviewDAD', 'camHUD')
+            scaleLuaSprite('SplashpreviewDAD', 0.5, 0.5)
+            addLuaSprite('SplashpreviewDAD', true)
+        end
+    end
+
+    --[[
+    if Answer == true then
+        for i = 1, #PixelSplashskin do
+            makeAnimatedLuaSprite('SplashPixelpre', Splashskin[sp1], PreX, PreY)
+            setObjectCamera('SplashPixelpre', 'camHUD')
+            scaleLuaSprite('SplashPixelpre', 0.5, 0.5)
+            addLuaSprite('SplashPixelpre', true) 
+        end     
+    
+        for i = 1, #PixelSplashskinDAD do
+            makeAnimatedLuaSprite('SplashPixelpreDAD', SplashskinDAD[sp1DAD], PreX, PreDADY)
+            setObjectCamera('SplashPixelpreDAD', 'camHUD')
+            scaleLuaSprite('SplashPixelpreDAD', 0.5, 0.5)
+            addLuaSprite('SplashPixelpreDAD', true)
+        end
+    end
+    --]]
+end
+
+local n1 = 1
+local n2 = 1
+
+local n1DAD = 1
+local n2DAD = 1
+
+local p1 = 1
+local p2 = 1
+
+local p1DAD = 1
+local p2DAD = 1
+function onSplashPrefix()
+    -- Thanks to mayo78 for making me learn tables lel
+    SplashX = {290, 375, 210, 465}
+    SplashDADX = {290, 375, 210, 465}
+                    
+    SplashY = 60
+    SplashDADY = 210
+
+    NamePrefix1 = {'blue1', 'green1', 'purple1', 'red1'}
+    NamePrefix2 = {'blue2', 'green2', 'purple2', 'red2'} 
+       
+    Splashes = {
+        [1] = function()
+            for i = 1, #NameSplash do
+                objectPlayAnimation('Splashpreview', NamePrefix1[n1], false)
+                objectPlayAnimation('Splashpreview', NamePrefix2[n1], false)
+                setProperty('Splashpreview.x', SplashX[n2])
+                setProperty('Splashpreview.y', SplashY)
+            end    
+        end,
+
+        [2] = function()
+            for i = 1, #NameSplashDAD do
+                objectPlayAnimation('SplashpreviewDAD', NamePrefix1[n1DAD], false)
+                objectPlayAnimation('SplashpreviewDAD', NamePrefix2[n1DAD], false)
+                setProperty('SplashpreviewDAD.x', SplashDADX[n2DAD])
+                setProperty('SplashpreviewDAD.y', SplashDADY)
+            end    
+        end,    
+    }  
+    
+    for i = 1, #NameSplash do
+        doTweenY('SplashpreY', 'Splashpreview', 1230, 0.001, 'linear')
+        doTweenX('SplashpreX', 'Splashpreview', 100, 0.001, 'linear')
+    end   
+
+    for i = 1, #NameSplashDAD do
+        doTweenY('SplashpreYDAD', 'SplashpreviewDAD', 1230, 0.001, 'linear')
+        doTweenX('SplashpreXDAD', 'SplashpreviewDAD', 100, 0.001, 'linear')
+    end 
+    
+    luaSpriteAddAnimationByPrefix('Splashpreview', 'blue1', 'note splash blue 1', 24, false);
+    luaSpriteAddAnimationByPrefix('Splashpreview', 'green1', 'note splash green 1', 24, false);
+    luaSpriteAddAnimationByPrefix('Splashpreview', 'purple1', 'note splash purple 1', 24, false);
+    luaSpriteAddAnimationByPrefix('Splashpreview', 'red1', 'note splash red 1', 24, false);
+                    
+    luaSpriteAddAnimationByPrefix('Splashpreview', 'blue2', 'note splash blue 2', 24, false);
+    luaSpriteAddAnimationByPrefix('Splashpreview', 'green2', 'note splash green 2', 24, false);
+    luaSpriteAddAnimationByPrefix('Splashpreview', 'purple2', 'note splash purple 2', 24, false);
+    luaSpriteAddAnimationByPrefix('Splashpreview', 'red2', 'note splash red 2', 24, false);
+
+    luaSpriteAddAnimationByPrefix('SplashpreviewDAD', 'blue1', 'note splash blue 1', 24, false);
+    luaSpriteAddAnimationByPrefix('SplashpreviewDAD', 'green1', 'note splash green 1', 24, false);
+    luaSpriteAddAnimationByPrefix('SplashpreviewDAD', 'purple1', 'note splash purple 1', 24, false);
+    luaSpriteAddAnimationByPrefix('SplashpreviewDAD', 'red1', 'note splash red 1', 24, false);
+                    
+    luaSpriteAddAnimationByPrefix('SplashpreviewDAD', 'blue2', 'note splash blue 2', 24, false);
+    luaSpriteAddAnimationByPrefix('SplashpreviewDAD', 'green2', 'note splash green 2', 24, false);
+    luaSpriteAddAnimationByPrefix('SplashpreviewDAD', 'purple2', 'note splash purple 2', 24, false);
+    luaSpriteAddAnimationByPrefix('SplashpreviewDAD', 'red2', 'note splash red 2', 24, false);
+end 
 
 -- uhh these dumb function are for campcating the code
 function onHideHealthBar(boolean) 
@@ -636,18 +754,34 @@ function onPlus()
         if getPropertyFromClass('flixel.FlxG', 'keys.justPressed.T') then
             playSound('scrollMenu', 0.5, false)
             ns1 = ns1 + 1
+            s1 = s1 + 1
         end  
     
         if getPropertyFromClass('flixel.FlxG', 'keys.justPressed.F') then
             playSound('scrollMenu', 0.5, false)
             ns2 = ns2 + 1
+            s1DAD = s1DAD + 1
         end  
 
         if getPropertyFromClass('flixel.FlxG', 'keys.justPressed.E') then
             playSound('scrollMenu', 0.5, false)
             ns1 = ns1 + 1
             ns2 = ns2 + 1
+            s1 = s1 + 1
+            s1DAD = s1DAD + 1
         end  
+
+        if getPropertyFromClass('flixel.FlxG', 'keys.justPressed.Y') then
+            Splashes[1]()
+            n1 = n1 + 1
+            n2 = n2 + 1
+        end
+
+        if getPropertyFromClass('flixel.FlxG', 'keys.justPressed.G') then
+            Splashes[2]()
+            n1DAD = n1DAD + 1
+            n2DAD = n2DAD + 1
+        end
     end    
 
     if Answer == true then
@@ -684,8 +818,29 @@ function onReset()
     end
     if ps2 == p then
         ps2 = 1
-    end   
-    
+    end  
+
+    if s1 == n then
+        s1 = 1
+    end
+    if s1DAD == n then
+        s1DAD = 1
+    end
+
+    if n1 == n then
+        n1 = 1
+    end
+    if n2 == n then
+        n2 = 1
+    end
+
+    if n1DAD == n then
+        n1DAD = 1
+    end
+    if n2DAD == n then
+        n2DAD = 1
+    end
+
     if count == 5 then
         setPos('Arrow', {nil, 460})
         pos = 460
