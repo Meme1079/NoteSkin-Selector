@@ -178,15 +178,15 @@ end
 
 function onCreatePost()
     onHideHealthBar(false) 
-    onCustomSplash()
-    onSplashPrefix()
 end   
   
 local Activate = true;
 local allowCountdown = false;
 function onStartCountdown()
     if not allowCountdown then -- Block the first countdown
-        allowCountdown = true;         
+        allowCountdown = true;  
+        onCustomSplash()
+        onSplashPrefix()       
         if Activate == true then
             playMusic('breakfast-Bsides', 0.5, true)
         end  
@@ -1039,6 +1039,9 @@ function onRemove()
 
     removeLuaSprite('Pixelpreview', true);
     removeLuaSprite('PixelpreviewDAD', true);
+
+    removeLuaSprite('Splashpreview', true);
+    removeLuaSprite('SplashpreviewDAD', true);
 
     removeLuaSprite('blacklol', true);
     removeLuaSprite('playerlol', true);
