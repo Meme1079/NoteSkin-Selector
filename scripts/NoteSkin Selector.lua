@@ -187,9 +187,13 @@ function onStartCountdown()
         allowCountdown = true;  
         onCustomSplash()
         onSplashPrefix()       
-        if Activate == true then
+        if Activate and not MuteMusic then
             playMusic('breakfast-Bsides', 0.5, true)
         end  
+        if SkipThis then
+            startCountdown()
+            onRemove()
+        end
         return Function_Stop; 
     end 
     Activate = false;
@@ -217,7 +221,8 @@ local AllToggles = false;    -- If [true] then all the toggles will be "turn on"
 -- But there's a limit to changing these to any number just go to the onReset()
 -- To disable this script just set the (GetOGNotes) and (SkipThis) into [true], or you can just remove this script
 
-local SkipThis = false; -- If you want to skip
+SkipThis = false; -- If you want to skip
+MuteMusic = false; -- It just mute the music
 
 -- if [false] wont skip, if [true] it's skip
 
@@ -279,12 +284,7 @@ white = 'ffffff'
 local count = 1
 local Answer = false;
 function onUpdate(elapsed)
-    if SkipThis == true then
-        startCountdown()
-        onRemove()
-    end
-
-    if Activate == true then
+    if Activate then
         onCustomNotes()
         onPlus()
         onReset()
@@ -457,7 +457,7 @@ function onUpdate(elapsed)
         end    
     end      
     
-    if Activate == false then
+    if not Activate then
         if BGNote == true then
             setProperty('BFblacklol.visible', true)
             setProperty('DADblacklol.visible', true) 
@@ -594,14 +594,14 @@ local sp1DAD = 1
 function onCustomSplash()
     if Answer == false then
         for i = 1, #NameSplash do
-            makeAnimatedLuaSprite('Splashpreview', SplashAssets[s1], PreX, PreY)
+            makeAnimatedLuaSprite('Splashpreview', SplashAssets[s1], 100, 1230)
             setObjectCamera('Splashpreview', 'camHUD')
             scaleLuaSprite('Splashpreview', 0.5, 0.5)
             addLuaSprite('Splashpreview', true) 
         end     
     
         for i = 1, #NameSplashDAD do
-            makeAnimatedLuaSprite('SplashpreviewDAD', SplashAssetsDAD[s1DAD], PreX, PreDADY)
+            makeAnimatedLuaSprite('SplashpreviewDAD', SplashAssets[s1DAD], 100, 1230)
             setObjectCamera('SplashpreviewDAD', 'camHUD')
             scaleLuaSprite('SplashpreviewDAD', 0.5, 0.5)
             addLuaSprite('SplashpreviewDAD', true)
@@ -670,34 +670,28 @@ function onSplashPrefix()
     }  
     
     for i = 1, #NameSplash do
-        doTweenY('SplashpreY', 'Splashpreview', 1230, 0.001, 'linear')
-        doTweenX('SplashpreX', 'Splashpreview', 100, 0.001, 'linear')
-    end   
+        luaSpriteAddAnimationByPrefix('Splashpreview', 'blue1', 'note splash blue 1', 24, false);
+        luaSpriteAddAnimationByPrefix('Splashpreview', 'green1', 'note splash green 1', 24, false);
+        luaSpriteAddAnimationByPrefix('Splashpreview', 'purple1', 'note splash purple 1', 24, false);
+        luaSpriteAddAnimationByPrefix('Splashpreview', 'red1', 'note splash red 1', 24, false);
+                        
+        luaSpriteAddAnimationByPrefix('Splashpreview', 'blue2', 'note splash blue 2', 24, false);
+        luaSpriteAddAnimationByPrefix('Splashpreview', 'green2', 'note splash green 2', 24, false);
+        luaSpriteAddAnimationByPrefix('Splashpreview', 'purple2', 'note splash purple 2', 24, false);
+        luaSpriteAddAnimationByPrefix('Splashpreview', 'red2', 'note splash red 2', 24, false);
+    end
 
     for i = 1, #NameSplashDAD do
-        doTweenY('SplashpreYDAD', 'SplashpreviewDAD', 1230, 0.001, 'linear')
-        doTweenX('SplashpreXDAD', 'SplashpreviewDAD', 100, 0.001, 'linear')
-    end 
-    
-    luaSpriteAddAnimationByPrefix('Splashpreview', 'blue1', 'note splash blue 1', 24, false);
-    luaSpriteAddAnimationByPrefix('Splashpreview', 'green1', 'note splash green 1', 24, false);
-    luaSpriteAddAnimationByPrefix('Splashpreview', 'purple1', 'note splash purple 1', 24, false);
-    luaSpriteAddAnimationByPrefix('Splashpreview', 'red1', 'note splash red 1', 24, false);
-                    
-    luaSpriteAddAnimationByPrefix('Splashpreview', 'blue2', 'note splash blue 2', 24, false);
-    luaSpriteAddAnimationByPrefix('Splashpreview', 'green2', 'note splash green 2', 24, false);
-    luaSpriteAddAnimationByPrefix('Splashpreview', 'purple2', 'note splash purple 2', 24, false);
-    luaSpriteAddAnimationByPrefix('Splashpreview', 'red2', 'note splash red 2', 24, false);
-
-    luaSpriteAddAnimationByPrefix('SplashpreviewDAD', 'blue1', 'note splash blue 1', 24, false);
-    luaSpriteAddAnimationByPrefix('SplashpreviewDAD', 'green1', 'note splash green 1', 24, false);
-    luaSpriteAddAnimationByPrefix('SplashpreviewDAD', 'purple1', 'note splash purple 1', 24, false);
-    luaSpriteAddAnimationByPrefix('SplashpreviewDAD', 'red1', 'note splash red 1', 24, false);
-                    
-    luaSpriteAddAnimationByPrefix('SplashpreviewDAD', 'blue2', 'note splash blue 2', 24, false);
-    luaSpriteAddAnimationByPrefix('SplashpreviewDAD', 'green2', 'note splash green 2', 24, false);
-    luaSpriteAddAnimationByPrefix('SplashpreviewDAD', 'purple2', 'note splash purple 2', 24, false);
-    luaSpriteAddAnimationByPrefix('SplashpreviewDAD', 'red2', 'note splash red 2', 24, false);
+        luaSpriteAddAnimationByPrefix('SplashpreviewDAD', 'blue1', 'note splash blue 1', 24, false);
+        luaSpriteAddAnimationByPrefix('SplashpreviewDAD', 'green1', 'note splash green 1', 24, false);
+        luaSpriteAddAnimationByPrefix('SplashpreviewDAD', 'purple1', 'note splash purple 1', 24, false);
+        luaSpriteAddAnimationByPrefix('SplashpreviewDAD', 'red1', 'note splash red 1', 24, false);
+                        
+        luaSpriteAddAnimationByPrefix('SplashpreviewDAD', 'blue2', 'note splash blue 2', 24, false);
+        luaSpriteAddAnimationByPrefix('SplashpreviewDAD', 'green2', 'note splash green 2', 24, false);
+        luaSpriteAddAnimationByPrefix('SplashpreviewDAD', 'purple2', 'note splash purple 2', 24, false);
+        luaSpriteAddAnimationByPrefix('SplashpreviewDAD', 'red2', 'note splash red 2', 24, false);
+    end
 end 
 
 -- uhh these dumb function are for campcating the code
@@ -819,6 +813,7 @@ function onReset()
     if ps2 == p then
         ps2 = 1
     end  
+    -- Note texture
 
     if s1 == n then
         s1 = 1
@@ -826,6 +821,7 @@ function onReset()
     if s1DAD == n then
         s1DAD = 1
     end
+    -- Splash texture
 
     if n1 == n then
         n1 = 1
@@ -840,6 +836,7 @@ function onReset()
     if n2DAD == n then
         n2DAD = 1
     end
+    -- Splash Prefixes
 
     if count == 5 then
         setPos('Arrow', {nil, 460})
