@@ -95,3 +95,5 @@ Plays a Sound when hitting a note because Why not?
 
 ### Toggle to Change Opponent Scroll
 if your in upscroll then it will be downscroll for the opponent if its in downscroll then upscroll for the opponent 
+
+i fogro
