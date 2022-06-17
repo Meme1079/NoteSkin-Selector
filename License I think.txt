@@ -1,9 +1,4 @@
 If you remove this from the folder you are not allowed to use this or you can credit me somewhere, I dunno lol
 
-
-
-
-
-
 Note:
-I don't know why you would use this in your mod? especially lua, it's just weird to see it on there  and very unfitting tbh
+I don't know why you would use this in your mod? especially lua, it's just weird to see it on there and very unfitting tbh
