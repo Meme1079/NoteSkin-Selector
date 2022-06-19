@@ -1,31 +1,31 @@
 function onCreate()
-    makeLuaText('space', 'Press [SPACE] to Start', 800, 735);
+    makeLuaText('space', 'Press [SPACE] to Start', 800, 430, 410);
     setTextSize('space', 30)
     addLuaText('space', true)
 
-    makeLuaText('t', 'Press [T] to Change NoteSkin', 0, 660);
+    makeLuaText('t', 'Press [T] to Change NoteSkin', 0, 660, 150);
     setTextSize('t', 20)
     setTextAlignment('t', 'middle')
     addLuaText('t', true)
 
-    makeLuaText('y', 'Press [Y] to Check Note Splashes', 0, 635);
+    makeLuaText('y', 'Press [Y] to Check Note Splashes', 0, 635, 120);
     setTextSize('y', 20)
     setTextColor('y', red)
     setTextAlignment('y', 'middle')
     addLuaText('y', true)
 
-    makeLuaText('f', 'Press [F] to Change NoteSkin', 0, 660);
+    makeLuaText('f', 'Press [F] to Change NoteSkin', 0, 660, 300);
     setTextSize('f', 20)
     setTextAlignment('f', 'middle')
     addLuaText('f', true)
 
-    makeLuaText('g', 'Press [G] to Check Note Splashes', 0, 635);
+    makeLuaText('g', 'Press [G] to Check Note Splashes', 0, 635, 270);
     setTextSize('g', 20)
     setTextColor('g', red)
     setTextAlignment('g', 'middle')
     addLuaText('g', true)
 
-    makeLuaText('e', 'Press [E] to Change Both NoteSkin', 0, 645);
+    makeLuaText('e', 'Press [E] to Change Both NoteSkin', 0, 645, 360);
     setTextSize('e', 19.5)
     setTextAlignment('e', 'middle')
     addLuaText('e', true)
@@ -35,61 +35,35 @@ function onCreate()
     setTextColor('esc', red)
     addLuaText('esc', true)
 
-    makeLuaText('Arrow', '>', 0, 228);
+    makeLuaText('Arrow', '>', 0, 228, 460);
     setTextSize('Arrow', 16)
     addLuaText('Arrow', true)
-
-    -- Warn --
-
-    makeLuaText('p', 'Press [P] to Change into Pixel Note', 0, 635)
-    setTextSize('p', 18)
-    addLuaText('p', true)
-
-    makeLuaText('warn', 'This only works in Pixel Stages', 0, 655)
-    setTextSize('warn', 19)
-    setTextColor('warn', red)
-    addLuaText('warn', true)
-
-    makeLuaText('warn2', 'Are you sure you want to proceed?', 0, 646)
-    setTextSize('warn2', 19)
-    setTextColor('warn2', red)
-    addLuaText('warn2', true)
-
-    makeLuaText('question', '[K] or [L]', 0, 735)
-    setTextSize('question', 30)
-    setTextColor('question', red)
-    addLuaText('question', true)
-
-    makeLuaText('sidenote', 'SideNote: [K] = Normal and [L] = Pixel', 0, 655)
-    setTextSize('sidenote', 16)
-    setTextColor('sidenote', red)
-    addLuaText('sidenote', true)
 
     -- Setting --
 
     Xe = 248
 
-    makeLuaText('h', 'Press [H] to Change BG to White', 0, 230);
+    makeLuaText('h', 'Press [H] to Change BG to White', 0, 230, 410);
     setTextSize('h', 20)
     addLuaText('h', true)
 
-    makeLuaText('q', 'Press [Q] to Select All the Toggles', 0, 225);
+    makeLuaText('q', 'Press [Q] to Select All the Toggles', 0, 225, 435);
     setTextSize('q', 18.5)
     addLuaText('q', true)
 
-    makeLuaText('e1', 'Toggle Get the NoteSkin in the stage', 0, Xe);
+    makeLuaText('e1', 'Toggle Get the NoteSkin in the stage', 0, Xe, 460);
     setTextSize('e1', 16)
     addLuaText('e1', true)
 
-    makeLuaText('e2', 'Toggle Hitsounds', 0, Xe);
+    makeLuaText('e2', 'Toggle Hitsounds', 0, Xe, 480);
     setTextSize('e2', 16)
     addLuaText('e2', true)
 
-    makeLuaText('e3', 'Toggle Change Opponent Scroll', 0, Xe);
+    makeLuaText('e3', 'Toggle Change Opponent Scroll', 0, Xe, 500);
     setTextSize('e3', 16)
     addLuaText('e3', true)
 
-    makeLuaText('e4', 'Toggle BG behind the Notes ', 0, Xe);
+    makeLuaText('e4', 'Toggle BG behind the Notes ', 0, Xe, 520);
     setTextSize('e4', 16)
     addLuaText('e4', true)
 
@@ -133,45 +107,48 @@ function onCreate()
 
     -- Text Thingy --
 
-    makeLuaText('pl', 'Player', 390, 80)
+    makeLuaText('pl', 'Player', 390, 80, 60)
     setTextSize('pl', 30)
     setObjectCamera('pl', 'camHUD')
     setTextColor('pl', '31b1d1')
     addLuaText('pl', true)
 
-    makeLuaText('op', 'Opponent', 425, 80)
+    makeLuaText('op', 'Opponent', 425, 80, 210)
     setTextSize('op', 30)
     setObjectCamera('op', 'camHUD')
     setTextColor('op', 'af66ce')
     addLuaText('op', true)
 
-    makeLuaText('se', 'Settings', 425, 80)
+    makeLuaText('se', 'Settings', 425, 80, 360)
     setTextSize('se', 30)
     setObjectCamera('se', 'camHUD')
     addLuaText('se', true)
 
     -- Note Text --
 
-    makeLuaText('Note', 'NoteSkin: Normal', 0, 695)
+    makeLuaText('Note', 'NoteSkin: Normal', 0, 695, 80)
     setTextSize('Note', 25)
     setTextAlignment('Note', 'middle')
     addLuaText('Note', true)
 
-    makeLuaText('NoteDAD', 'NoteSkin: Normal', 0, 695)
+    makeLuaText('NoteDAD', 'NoteSkin: Normal', 0, 695, 230)
     setTextSize('NoteDAD', 25)
     setTextAlignment('NoteDAD', 'middle')
     addLuaText('NoteDAD', true)
 
     -- HitSounds -- 
 
-    makeLuaText('hs', '('..HSName[hss]..')', 0, 400);
+    makeLuaText('hs', '('..HSName[hss]..')', 0, 400, 480);
     setTextSize('hs', 16)
     addLuaText('hs', true)
 
+    -- Dumb -- 
+
+    setProperty('BFblacklol.visible', false)
+    setProperty('DADblacklol.visible', false)
+
     -- Functions --
 
-    onVisibleAlpha()
-    onTweenXY()
     onPrecaching() 
     onBlackWhite(black) 
 end    
@@ -284,6 +261,9 @@ white = 'ffffff'
 local count = 1
 local Answer = false;
 function onUpdate(elapsed)
+    inCutscene = getProperty('inCutscene')
+    isPixelStage = getPropertyFromClass('PlayState','isPixelStage')
+
     if Activate then
         onCustomNotes()
         onPlus()
@@ -479,8 +459,6 @@ function onUpdate(elapsed)
         end
     end 
 
-    local inCutscene = getProperty('inCutscene')
-
     if inCutscene == true then
         Activate = false;
         playMusic('')
@@ -492,6 +470,10 @@ function onUpdate(elapsed)
     end
     if botPlay and not Visible then
         setProperty('botplayTxt.visible', true)    
+    end
+
+    if isPixelStage then
+        Answer = true
     end
 end 
 
@@ -907,97 +889,6 @@ function onUpdatePost(elapsed)
             end   
         end
     end   
-
-    if Activate == true then
-        if getPropertyFromClass('flixel.FlxG', 'keys.justPressed.P') then
-            Answer = semifalse;
-
-            setTextString('Note', '')
-            setTextString('NoteDAD', '')
-
-            doTweenAlpha('preAlpha', 'preview', 0, 0.1, 'linear') 
-            doTweenAlpha('preDADAlpha', 'previewDAD', 0, 0.1, 'linear')
-
-            doTweenAlpha('PixelpreAlpha', 'Pixelpreview', 0, 0.1, 'linear') 
-            doTweenAlpha('PixelpreDADAlpha', 'PixelpreviewDAD', 0, 0.1, 'linear')
-
-            WarningScreen(1)   
-        elseif getPropertyFromClass('flixel.FlxG', 'keys.justPressed.L') and Answer == semifalse then
-            Answer = true;
-            playSound('confirmMenu', 0.4, false)  
-
-            doTweenAlpha('PixelpreAlpha', 'Pixelpreview', 1, 0.1, 'linear') 
-            doTweenAlpha('PixelpreDADAlpha', 'PixelpreviewDAD', 1, 0.1, 'linear')
-    
-            WarningScreen(0) 
-        elseif getPropertyFromClass('flixel.FlxG', 'keys.justPressed.K') and Answer == semifalse then 
-            Answer = false;
-            playSound('cancelMenu', 0.4, false)
-
-            doTweenAlpha('preAlpha', 'preview', 1, 0.1, 'linear') 
-            doTweenAlpha('preDADAlpha', 'previewDAD', 1, 0.1, 'linear')
-
-            doTweenAlpha('PixelpreAlpha', 'Pixelpreview', 0, 0.1, 'linear') 
-            doTweenAlpha('PixelpreDADAlpha', 'PixelpreviewDAD', 0, 0.1, 'linear')
-
-            WarningScreen(0)   
-        end
-    end    
-end    
-
-function WarningScreen(opacity)
-    doTweenAlpha('warnAplha', 'warn', opacity, 0.5, 'linear')
-    doTweenAlpha('warnAplha2', 'warn2', opacity, 0.5, 'linear')
-    doTweenAlpha('questionAplha', 'question', opacity, 0.5, 'linear')
-    doTweenAlpha('sidenoteAplha', 'sidenote', opacity, 0.5, 'linear')
-end    
-
-function onVisibleAlpha()
-    setProperty('BFblacklol.visible', false)
-    setProperty('DADblacklol.visible', false)
-
-    setProperty('warn.alpha', 0)
-    setProperty('warn2.alpha', 0)
-    setProperty('question.alpha', 0)
-    setProperty('sidenote.alpha', 0)
-end
-
-function onTweenXY()
-    doTweenY('yY', 'y', 120, 0.1, 'linear')
-    doTweenY('tY', 't', 150, 0.1, 'linear')
-
-    doTweenY('fY', 'f', 300, 0.1, 'linear')
-    doTweenY('gY', 'g', 270, 0.1, 'linear')
-
-    doTweenY('eY', 'e', 360, 0.1, 'linear')
-
-    doTweenY('pY', 'p', 450, 0.1, 'linear')
-    doTweenY('warnY', 'warn', 480, 0.1, 'linear')
-    doTweenY('warn2Y', 'warn2', 510, 0.1, 'linear')
-    doTweenY('questionY', 'question', 550, 0.1, 'linear')
-    doTweenY('sidenoteY', 'sidenote', 590, 0.1, 'linear')
-
-    doTweenY('spaceY', 'space', 410, 0.1, 'linear')
-    doTweenX('spaceX', 'space', 430, 0.1, 'linear') -- Only X lol
-
-    doTweenY('noteY0', 'Note', 80, 0.1, 'linear')
-    doTweenY('noteDADY0', 'NoteDAD', 230, 0.1, 'linear')   
-
-    doTweenY('ArrowY', 'Arrow', 460, 0.1, 'linear')
-
-    doTweenY('hY', 'h', 410, 0.1, 'linear')
-    doTweenY('qY', 'q', 435, 0.1, 'linear')
-
-    doTweenY('e1Y', 'e1', 460, 0.1, 'linear')
-    doTweenY('e2Y', 'e2', 480, 0.1, 'linear')
-    doTweenY('e3Y', 'e3', 500, 0.1, 'linear')
-    doTweenY('e4Y', 'e4', 520, 0.1, 'linear')
-
-    doTweenY('plY', 'pl', 60, 0.1, 'linear')
-    doTweenY('opY', 'op', 210, 0.1, 'linear')
-    doTweenY('seY', 'se', 360, 0.1, 'linear')
-
-    doTweenY('hsY', 'hs', 480, 0.1, 'linear')
 end    
 
 function onPrecaching()
@@ -1061,13 +952,6 @@ function onRemove()
     removeLuaText('op', true);
     removeLuaText('se', true);
     removeLuaText('esc', true);
-
-    removeLuaText('warn', true);
-    removeLuaText('warn2', true);
-    removeLuaText('question', true);
-    removeLuaText('sidenote', true);
-
-    removeLuaText('p', true);
 
     removeLuaText('Arrow', true);
 
