@@ -259,7 +259,7 @@ red = 'ff0000'
 white = 'ffffff'
 
 local count = 1
-local Answer = false;
+local ifPixelNote = false;
 function onUpdate(elapsed)
     inCutscene = getProperty('inCutscene')
     isPixelStage = getPropertyFromClass('PlayState','isPixelStage')
@@ -452,8 +452,6 @@ function onUpdate(elapsed)
             Activate = gaming -- no more lag
         end
     end 
-    
-    -- Other thingys --
 
     if inCutscene == true then
         Activate = false;
@@ -469,7 +467,7 @@ function onUpdate(elapsed)
     end
 
     if isPixelStage then
-        Answer = true
+        ifPixelNote = true
     end
 end 
 
@@ -495,7 +493,7 @@ PixelStringDAD = {pUI..'pixel notes', pUI..'NES notes', pUI..'dokidoki notes'}
 function onCustomNotes()
     if SkipThis == false then
         onNoteText()
-        if Answer == false then
+        if ifPixelNote == false then
             for i = 1, #NoteName do
                 makeLuaSprite('preview', NoteString[ns1], PreX, PreY)
                 setObjectCamera('preview', 'camHUD')
@@ -511,7 +509,7 @@ function onCustomNotes()
             end 
         end  
         
-        if Answer == true then
+        if ifPixelNote == true then
             for i = 1, #PixelName do
                 makeLuaSprite('Pixelpreview', PixelString[ps1], PreX, PreY)
                 setObjectCamera('Pixelpreview', 'camHUD')
@@ -539,7 +537,7 @@ NoteTextDAD = {sn..'Defualt', sn..'Tabi', sn..'Majin', sn..'Creepy'}
 PixelText = {sn..'Defualt', sn..'NES', sn..'DokiDoki'}
 PixelTextDAD = {sn..'Defualt', sn..'NES', sn..'DokiDoki'}
 function onNoteText()
-    if Answer == false then
+    if ifPixelNote == false then
         for i = 1, #NoteText do
             setTextString('Note', NoteText[ns1])
         end
@@ -548,7 +546,7 @@ function onNoteText()
         end
     end 
     
-    if Answer == true then
+    if ifPixelNote == true then
         for i = 1, #PixelText do
             setTextString('Note', PixelText[ps1])
         end
@@ -570,7 +568,7 @@ local s1DAD = 1
 local sp1 = 1
 local sp1DAD = 1
 function onCustomSplash()
-    if Answer == false then
+    if ifPixelNote == false then
         for i = 1, #NameSplash do
             makeAnimatedLuaSprite('Splashpreview', SplashAssets[s1], 100, 1230)
             setObjectCamera('Splashpreview', 'camHUD')
@@ -587,7 +585,7 @@ function onCustomSplash()
     end
 
     --[[
-    if Answer == true then
+    if ifPixelNote == true then
         for i = 1, #PixelSplashskin do
             makeAnimatedLuaSprite('SplashPixelpre', Splashskin[sp1], PreX, PreY)
             setObjectCamera('SplashPixelpre', 'camHUD')
@@ -722,7 +720,7 @@ function onPlus()
         setPos('Arrow', {nil, pos})   
     end    
 
-    if Answer == false then
+    if ifPixelNote == false then
         if getPropertyFromClass('flixel.FlxG', 'keys.justPressed.T') then
             playSound('scrollMenu', 0.5, false)
             ns1 = ns1 + 1
@@ -756,7 +754,7 @@ function onPlus()
         end
     end    
 
-    if Answer == true then
+    if ifPixelNote == true then
         if getPropertyFromClass('flixel.FlxG', 'keys.justPressed.T') then
             playSound('scrollMenu', 0.5, false)
             ps1 = ps1 + 1
@@ -849,22 +847,22 @@ function onUpdatePost(elapsed)
     for i = 0, getProperty('notes.length')-1 do
         if NoteType[getPropertyFromGroup('notes', i, 'noteType')] and GetOGNotes == false then
             if getPropertyFromGroup('notes', i, 'mustPress') then -- Player Section
-                if Answer == false then
+                if ifPixelNote == false then
                     setPropertyFromGroup('notes', i, 'texture', NoteAssets[ns1]);  
                     setPropertyFromGroup('notes', i, 'noteSplashTexture', SplashAssets[ns1]);
                 end
 
-                if Answer == true then
+                if ifPixelNote == true then
                     setPropertyFromGroup('notes', i, 'texture', PixelAssets[ps1]);  
                     setPropertyFromGroup('notes', i, 'noteSplashTexture', PixelSplashAssets[ps1]);  
                 end    
             elseif not getPropertyFromGroup('notes', i, 'mustPress') then -- Opponent Section
-                if Answer == false then
+                if ifPixelNote == false then
                     setPropertyFromGroup('notes', i, 'texture', NoteAssetsDAD[ns2]);  
                     setPropertyFromGroup('notes', i, 'noteSplashTexture', SplashAssetsDAD[ns2]);
                 end
 
-                if Answer == true then
+                if ifPixelNote == true then
                     setPropertyFromGroup('notes', i, 'texture', PixelAssetsDAD[ps2]);  
                     setPropertyFromGroup('notes', i, 'noteSplashTexture', PixelSplashAssetsDAD[ps2]);   
                 end
@@ -874,12 +872,12 @@ function onUpdatePost(elapsed)
     
     for i = 0,4,1 do   
         if GetOGNotes == false then
-            if Answer == false then
+            if ifPixelNote == false then
                 setPropertyFromGroup('playerStrums', i, 'texture', NoteAssets[ns1]);
                 setPropertyFromGroup('opponentStrums', i, 'texture', NoteAssetsDAD[ns2]);  
             end
 
-            if Answer == true then
+            if ifPixelNote == true then
                 setPropertyFromGroup('playerStrums', i, 'texture', PixelAssets[ps1]);
                 setPropertyFromGroup('opponentStrums', i, 'texture', PixelAssetsDAD[ps2]);   
             end   
