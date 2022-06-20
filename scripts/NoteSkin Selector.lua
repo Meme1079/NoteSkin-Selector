@@ -332,8 +332,38 @@ function onUpdate(elapsed)
                 doTweenColor('e1Color', 'e1', white, 0.1, 'linear')
                 playSound('cancelMenu', 0.4, false)
             end    
-        end
-        
+        elseif count == 2 then
+            if AnnoyingSound == false and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.ENTER') then
+                AnnoyingSound = true;
+                doTweenColor('e2Color', 'e2', green, 0.1, 'linear')
+                playSound('confirmMenu', 0.4, false)  
+            elseif AnnoyingSound == true and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.ENTER') then  
+                AnnoyingSound = false;
+                doTweenColor('e2Color', 'e2', white, 0.1, 'linear')
+                playSound('cancelMenu', 0.4, false)
+            end 
+        elseif count == 3 then
+            if ChangeScroll == false and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.ENTER') then
+                ChangeScroll = true;
+                doTweenColor('e3Color', 'e3', green, 0.1, 'linear')
+                playSound('confirmMenu', 0.4, false)  
+            elseif ChangeScroll == true and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.ENTER') then    
+                ChangeScroll = false;
+                doTweenColor('e3Color', 'e3', white, 0.1, 'linear')
+                playSound('cancelMenu', 0.4, false) 
+            end
+        elseif count == 4 then
+            if BGNote == false and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.ENTER') then
+                BGNote = true;
+                doTweenColor('e4Color', 'e4', green, 0.1, 'linear')
+                playSound('confirmMenu', 0.4, false)  
+            elseif BGNote == true and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.ENTER') then    
+                BGNote = false;
+                doTweenColor('e4Color', 'e4', white, 0.1, 'linear')
+                playSound('cancelMenu', 0.4, false) 
+            end           
+        end   
+
         if GetOGNotes == true then            
             doTweenColor('e1Color', 'e1', green, 0.1, 'linear')
             for i = 0, getProperty('notes.length')-1 do
@@ -345,35 +375,11 @@ function onUpdate(elapsed)
                     getPropertyFromGroup('opponentStrums', i, 'texture');  
                 end    
             end
-        end  
-        
-        if count == 2 then
-            if AnnoyingSound == false and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.ENTER') then
-                AnnoyingSound = true;
-                doTweenColor('e2Color', 'e2', green, 0.1, 'linear')
-                playSound('confirmMenu', 0.4, false)  
-            elseif AnnoyingSound == true and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.ENTER') then  
-                AnnoyingSound = false;
-                doTweenColor('e2Color', 'e2', white, 0.1, 'linear')
-                playSound('cancelMenu', 0.4, false)
-            end 
-        end 
+        end    
 
         if AnnoyingSound == true then
             doTweenColor('e2Color', 'e2', green, 0.1, 'linear') 
-        end    
-        
-        if count == 3 then
-            if ChangeScroll == false and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.ENTER') then
-                ChangeScroll = true;
-                doTweenColor('e3Color', 'e3', green, 0.1, 'linear')
-                playSound('confirmMenu', 0.4, false)  
-            elseif ChangeScroll == true and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.ENTER') then    
-                ChangeScroll = false;
-                doTweenColor('e3Color', 'e3', white, 0.1, 'linear')
-                playSound('cancelMenu', 0.4, false) 
-            end
-        end    
+        end     
         
         if ChangeScroll == true then
             doTweenColor('e3Color', 'e3', green, 0.1, 'linear')
@@ -418,19 +424,7 @@ function onUpdate(elapsed)
                 setPos('iconP2', {nil, 8.2})
                 setPos('scoreTxt', {nil, 115.2})
             end       
-        end    
-        
-        if count == 4 then
-            if BGNote == false and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.ENTER') then
-                BGNote = true;
-                doTweenColor('e4Color', 'e4', green, 0.1, 'linear')
-                playSound('confirmMenu', 0.4, false)  
-            elseif BGNote == true and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.ENTER') then    
-                BGNote = false;
-                doTweenColor('e4Color', 'e4', white, 0.1, 'linear')
-                playSound('cancelMenu', 0.4, false) 
-            end           
-        end   
+        end      
 
         if BGNote == true then
             doTweenColor('e4Color', 'e4', green, 0.1, 'linear')
@@ -458,6 +452,8 @@ function onUpdate(elapsed)
             Activate = gaming -- no more lag
         end
     end 
+    
+    -- Other thingys --
 
     if inCutscene == true then
         Activate = false;
