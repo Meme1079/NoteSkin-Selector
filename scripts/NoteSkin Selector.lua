@@ -292,6 +292,10 @@ function onUpdate(elapsed)
         if getPropertyFromClass('flixel.FlxG', 'keys.justPressed.ESCAPE') then
             endSong()      
         end   
+        
+        if getPropertyFromClass('flixel.FlxG', 'keys.justPressed.Y') or getPropertyFromClass('flixel.FlxG', 'keys.justPressed.G') then
+            playSound('deniedMOMENT', 0.5, false)
+        end
 
         if AllToggles == false and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.Q') then
             AllToggles = true;
