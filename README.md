@@ -9,7 +9,7 @@ This script makes you select NoteSkin/NoteSplashes and even on Pixel Notes. Orig
 Got to Wiki tab (Work in Progress)
 
 ### Can I use it in my Mod?
-yes give credit or else
+I don't know why you would use this in your mod? especially lua, it's just weird to see it on there and very unfitting tbh. So it's a maybe just credit me.
 
 ### Why does it crash when I used other scripts?
 Stop using the script and use other script that doesn't interfere the NoteSkin script
