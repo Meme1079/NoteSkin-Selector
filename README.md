@@ -51,7 +51,7 @@ Stop using the script and use other script that doesn't interfere the NoteSkin s
 
 ***
 # Gaming Features
-<img width="1440" alt="Screen Shot 2022-05-11 at 2 53 44 PM" src="https://user-images.githubusercontent.com/101881784/167787269-c0ae2e50-a358-49da-ad8c-48e8266c0485.png">
+<img width="1440" alt="Screen Shot 2022-06-27 at 6 24 49 PM" src="https://user-images.githubusercontent.com/101881784/176103493-c3d797cf-e24d-4005-a6ff-94e1d685868e.png">
 
 ## Main
 
