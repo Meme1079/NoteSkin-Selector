@@ -28,9 +28,6 @@ Stop using the script and use other script that doesn't interfere the NoteSkin s
 
 ***
 # Note
-- BE CAREFUL WHEN PRESSING [R] IT CHRASHES THE GAME!
-- DO NOT PICK NORMAL SKINS IN [Pixel Mode] it crashes the game!
-- DO NOT PICK PIXEL SKINS IN [Normal Mode] it crashes the game!
 - DO NOT DOWNLOAD 0.5.3b
 - DO NOT PRESS [SPACE] WHEN YOUR IN A DIALOGUE
 
