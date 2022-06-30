@@ -297,83 +297,83 @@ function onUpdate(elapsed)
             playSound('deniedMOMENT', 0.5, false)
         end
 
-        if AllToggles == false and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.Q') then
+        if not AllToggles and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.Q') then
             AllToggles = true;
             doTweenColor('qColor', 'q', green, 0.1, 'linear')
             playSound('confirmMenu', 0.4, false)  
 
             onDumbTogglesColor(green)
             onDumbToggles(true)
-        elseif AllToggles == true and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.Q') then
+        elseif AllToggles and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.Q') then
             AllToggles = false;
             doTweenColor('qColor', 'q', white, 0.1, 'linear')
             playSound('cancelMenu', 0.4, false)  
 
             onDumbTogglesColor(white)
             onDumbToggles(false) 
-        elseif AllToggles == true then    
+        elseif AllToggles then    
             doTweenColor('qColor', 'q', green, 0.1, 'linear')
 
             onDumbTogglesColor(white)
             onDumbToggles(true)
         end   
 
-        if WhiteBlack == false and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.H') then
+        if not WhiteBlack and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.H') then
             WhiteBlack = true;
             setTextString('h', "Press [H] to Change BG to Black")
             onBlackWhite(white) 
-        elseif WhiteBlack == true and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.H') then
+        elseif WhiteBlackand and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.H') then
             WhiteBlack = false;
             setTextString('h', "Press [H] to Change BG to White")
             onBlackWhite(black) 
-        elseif WhiteBlack == true then
+        elseif WhiteBlack then
             setTextString('h', "Press [H] to Change BG to White")
             onBlackWhite(white) 
         end  
 
         if count == 1 then
-            if GetOGNotes == false and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.ENTER') then
+            if not GetOGNotes and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.ENTER') then
                 GetOGNotes = true;
                 doTweenColor('e1Color', 'e1', green, 0.1, 'linear')
                 playSound('confirmMenu', 0.4, false) 
-            elseif GetOGNotes == true and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.ENTER') then
+            elseif GetOGNotes and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.ENTER') then
                 GetOGNotes = false;
                 doTweenColor('e1Color', 'e1', white, 0.1, 'linear')
                 playSound('cancelMenu', 0.4, false)
             end    
         elseif count == 2 then
-            if AnnoyingSound == false and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.ENTER') then
+            if not AnnoyingSound and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.ENTER') then
                 AnnoyingSound = true;
                 doTweenColor('e2Color', 'e2', green, 0.1, 'linear')
                 playSound('confirmMenu', 0.4, false)  
-            elseif AnnoyingSound == true and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.ENTER') then  
+            elseif AnnoyingSound and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.ENTER') then  
                 AnnoyingSound = false;
                 doTweenColor('e2Color', 'e2', white, 0.1, 'linear')
                 playSound('cancelMenu', 0.4, false)
             end 
         elseif count == 3 then
-            if ChangeScroll == false and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.ENTER') then
+            if not ChangeScroll and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.ENTER') then
                 ChangeScroll = true;
                 doTweenColor('e3Color', 'e3', green, 0.1, 'linear')
                 playSound('confirmMenu', 0.4, false)  
-            elseif ChangeScroll == true and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.ENTER') then    
+            elseif ChangeScroll and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.ENTER') then    
                 ChangeScroll = false;
                 doTweenColor('e3Color', 'e3', white, 0.1, 'linear')
                 playSound('cancelMenu', 0.4, false) 
             end
         elseif count == 4 then
-            if BGNote == false and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.ENTER') then
+            if not BGNote and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.ENTER') then
                 BGNote = true;
                 doTweenColor('e4Color', 'e4', green, 0.1, 'linear')
                 playSound('confirmMenu', 0.4, false)  
-            elseif BGNote == true and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.ENTER') then    
+            elseif BGNote and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.ENTER') then    
                 BGNote = false;
                 doTweenColor('e4Color', 'e4', white, 0.1, 'linear')
                 playSound('cancelMenu', 0.4, false) 
             end           
         end   
 
-        if GetOGNotes == true then            
+        if GetOGNotes then            
             doTweenColor('e1Color', 'e1', green, 0.1, 'linear')
             for i = 0, getProperty('notes.length')-1 do
                 if NoteType[getPropertyFromGroup('notes', i, 'noteType')] then
@@ -386,11 +386,11 @@ function onUpdate(elapsed)
             end
         end    
 
-        if AnnoyingSound == true then
+        if AnnoyingSound then
             doTweenColor('e2Color', 'e2', green, 0.1, 'linear') 
         end     
         
-        if ChangeScroll == true then
+        if ChangeScroll then
             doTweenColor('e3Color', 'e3', green, 0.1, 'linear')
             for i = 0,7 do
                 setPropertyFromGroup('opponentStrums', i, 'downScroll', true)
@@ -418,7 +418,7 @@ function onUpdate(elapsed)
             end
         end
 
-        if ChangeScroll == false then
+        if not ChangeScroll then
             setPos('healthBar', {343.5, nil})
             setPos('healthBarBG', {339.5, nil})
             setPos('iconP1', {610, nil})
@@ -435,13 +435,13 @@ function onUpdate(elapsed)
             end       
         end     
 
-        if BGNote == true then
+        if BGNote then
             doTweenColor('e4Color', 'e4', green, 0.1, 'linear')
         end    
     end      
     
     if not Activate then
-        if BGNote == true then
+        if BGNote then
             setProperty('BFblacklol.visible', true)
             setProperty('DADblacklol.visible', true) 
     
@@ -449,7 +449,7 @@ function onUpdate(elapsed)
                 removeLuaSprite('DADblacklol', true)
                 setPos('BFblacklol', {410, nil})
                 
-                if ChangeScroll == true then
+                if ChangeScroll then
                     setPos('healthBar', {343.5, nil})
                     setPos('healthBarBG', {339.5, nil})
                     setPos('iconP1', {610, nil})
@@ -520,7 +520,7 @@ PixelNameDAD = {'previewDAD0', 'previewDAD1', 'previewDAD2'}
 PixelString = {pUI..'pixel notes', pUI..'NES notes', pUI..'dokidoki notes'}
 PixelStringDAD = {pUI..'pixel notes', pUI..'NES notes', pUI..'dokidoki notes'}
 function onCustomNotes()
-    if SkipThis == false then
+    if not SkipThis then
         onNoteText()
         if not ifPixelNote then
             for i = 1, #NoteName do
@@ -888,8 +888,8 @@ PixelAssetsDAD = {'NOTE_assets', ns..'NESNOTE_assets', ns..'dokidoki_assets'}
 PixelSplashAssets = {nw..'noteSplashes', nw..'noteSplashes', nw..'dokidokiSplashes'}
 PixelSplashAssetsDAD = {nw..'noteSplashes', nw..'noteSplashes', nw..'dokidokiSplashes'}
 function onUpdatePost(elapsed)
-    for i = 0, getProperty('notes.length')-1 do
-        if NoteType[getPropertyFromGroup('notes', i, 'noteType')] and GetOGNotes == false then
+    for i = 0, getProperty('unspawnNotes.length')-1 do
+        if NoteType[getPropertyFromGroup('notes', i, 'noteType')] and not GetOGNotes then
             if getPropertyFromGroup('notes', i, 'mustPress') then -- Player Section
                 if not ifPixelNote then
                     setPropertyFromGroup('notes', i, 'texture', NoteAssets[ns1]);  
@@ -915,7 +915,7 @@ function onUpdatePost(elapsed)
     end        
     
     for i = 0,4,1 do   
-        if GetOGNotes == false then
+        if not GetOGNotes then
             if not ifPixelNote then
                 setPropertyFromGroup('playerStrums', i, 'texture', NoteAssets[ns1]);
                 setPropertyFromGroup('opponentStrums', i, 'texture', NoteAssetsDAD[ns2]);  
