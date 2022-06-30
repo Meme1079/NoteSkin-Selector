@@ -888,7 +888,7 @@ PixelAssetsDAD = {'NOTE_assets', ns..'NESNOTE_assets', ns..'dokidoki_assets'}
 PixelSplashAssets = {nw..'noteSplashes', nw..'noteSplashes', nw..'dokidokiSplashes'}
 PixelSplashAssetsDAD = {nw..'noteSplashes', nw..'noteSplashes', nw..'dokidokiSplashes'}
 function onUpdatePost(elapsed)
-    for i = 0, getProperty('unspawnNotes.length')-1 do
+    for i = 0, getProperty('notes.length')-1 do
         if NoteType[getPropertyFromGroup('notes', i, 'noteType')] and not GetOGNotes then
             if getPropertyFromGroup('notes', i, 'mustPress') then -- Player Section
                 if not ifPixelNote then
