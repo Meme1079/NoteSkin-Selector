@@ -5,34 +5,29 @@ function onCreate()
 
     makeLuaText('t', 'Press [T] to Change NoteSkin', 0, 660, 150);
     setTextSize('t', 20)
-    setTextAlignment('t', 'middle')
     addLuaText('t', true)
 
     makeLuaText('y', 'Press [Y] to Check Note Splashes', 0, 635, 120);
     setTextSize('y', 20)
-    setTextColor('y', red)
-    setTextAlignment('y', 'middle')
+    setTextColor('y', hex[3])
     addLuaText('y', true)
 
     makeLuaText('f', 'Press [F] to Change NoteSkin', 0, 660, 300);
     setTextSize('f', 20)
-    setTextAlignment('f', 'middle')
     addLuaText('f', true)
 
     makeLuaText('g', 'Press [G] to Check Note Splashes', 0, 635, 270);
     setTextSize('g', 20)
-    setTextColor('g', red)
-    setTextAlignment('g', 'middle')
+    setTextColor('g', hex[3])
     addLuaText('g', true)
 
     makeLuaText('e', 'Press [E] to Change Both NoteSkin', 0, 645, 380);
     setTextSize('e', 19.5)
-    setTextAlignment('e', 'middle')
     addLuaText('e', true)
 
     makeLuaText('esc', 'Press [ESCAPE] to Exit the song', 0, 655);
     setTextSize('esc', 18)
-    setTextColor('esc', red)
+    setTextColor('esc', hex[3])
     addLuaText('esc', true)
 
     makeLuaText('Arrow', '>', 0, 228, 460);
@@ -41,11 +36,11 @@ function onCreate()
 
     makeLuaText('Message1', "You can't use Opponent Notes", 0, 680, 450);
     setTextSize('Message1', 17)
-    setTextColor('Message1', red)
+    setTextColor('Message1', hex[3])
 
     makeLuaText('Message2', 'while disabiling the OpponentStrums', 0, 650, 470);
     setTextSize('Message2', 17)
-    setTextColor('Message2', red)
+    setTextColor('Message2', hex[3])
 
     -- Setting --
 
@@ -154,11 +149,12 @@ function onCreate()
     -- Functions --
 
     onPrecaching() 
-    onBlackWhite(black) 
+    onBlackWhite(hex[1]) 
 end    
 
 function onCreatePost()
     onHideHealthBar(false) 
+    setHealthBarColors('ff0000', '00ff00')
 end   
   
 local Activate = true;
@@ -186,7 +182,7 @@ function onSongStart()
     Visible = false;   
 
     onRemove() 
-    onHideHealthBar(true)  
+    onHideHealthBar(true)
 end 
 
 local WhiteBlack = false;    -- It changes the BG Notes to white or black, also [true] is white and black is [false]
@@ -219,7 +215,7 @@ BLOpacity = 0.5 -- Opacity of the BGNote
 -- [0.5] (Recommended)
 -- [0.5 or below] (Not Recommended)
 
-hs = 'hitsounds/'
+local hs = 'hitsounds/'
 
 HitSounds = {'hitsound', hs..'Hit Alt', hs..'Cherry HitSounds', hs..'Snare Hit'} -- dumb hitsounds
 HSName = {'Defualt', 'Hit Alt', 'Cherry HitSounds', 'Snare Hit'} -- name of hitsounds
@@ -249,18 +245,8 @@ function getPos(obj)
     return {getProperty(obj..'.x'), getProperty(obj..'.y')}
 end
 
-NoteType = {
-    ['No Animation'] = true,
-    ['Alt Animation'] = true,
-    ['Hey!'] = true,
-    ['GF Sing'] = true,
-    [''] = true
-}
-
-black = '000000'
-green = '00ff00'
-red = 'ff0000'
-white = 'ffffff'
+NoteType = {['No Animation'] = true,['Alt Animation'] = true,['Hey!'] = true,['GF Sing'] = true,[''] = true}
+hex = {'000000', '00ff00', 'ff0000', 'ffffff'}
 
 local count = 1
 local ifPixelNote = false;
@@ -277,7 +263,7 @@ function onUpdate(elapsed)
         if getPropertyFromClass('flixel.FlxG', 'keys.justPressed.SPACE') and not SkipThis then
             if Activate then
                 if not flashingLights then
-                    cameraFlash('funny', white, 0.7, false) 
+                    cameraFlash('funny', hex[4], 0.7, false) 
                 end       
                 playSound('ToggleJingle')
                 playMusic('')  
@@ -299,82 +285,82 @@ function onUpdate(elapsed)
 
         if not AllToggles and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.Q') then
             AllToggles = true;
-            doTweenColor('qColor', 'q', green, 0.1, 'linear')
+            doTweenColor('qColor', 'q', hex[2], 0.1, 'linear')
             playSound('confirmMenu', 0.4, false)  
 
-            onDumbTogglesColor(green)
+            onDumbTogglesColor(hex[2])
             onDumbToggles(true)
         elseif AllToggles and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.Q') then
             AllToggles = false;
-            doTweenColor('qColor', 'q', white, 0.1, 'linear')
+            doTweenColor('qColor', 'q', hex[4], 0.1, 'linear')
             playSound('cancelMenu', 0.4, false)  
 
-            onDumbTogglesColor(white)
+            onDumbTogglesColor(hex[4])
             onDumbToggles(false) 
         elseif AllToggles then    
-            doTweenColor('qColor', 'q', green, 0.1, 'linear')
+            doTweenColor('qColor', 'q', hex[2], 0.1, 'linear')
 
-            onDumbTogglesColor(white)
+            onDumbTogglesColor(hex[4])
             onDumbToggles(true)
         end   
 
         if not WhiteBlack and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.H') then
             WhiteBlack = true;
             setTextString('h', "Press [H] to Change BG to Black")
-            onBlackWhite(white) 
+            onBlackWhite(hex[4]) 
         elseif WhiteBlackand and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.H') then
             WhiteBlack = false;
             setTextString('h', "Press [H] to Change BG to White")
-            onBlackWhite(black) 
+            onBlackWhite(hex[1]) 
         elseif WhiteBlack then
             setTextString('h', "Press [H] to Change BG to White")
-            onBlackWhite(white) 
+            onBlackWhite(hex[4]) 
         end  
 
         if count == 1 then
             if not GetOGNotes and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.ENTER') then
                 GetOGNotes = true;
-                doTweenColor('e1Color', 'e1', green, 0.1, 'linear')
+                doTweenColor('e1Color', 'e1', hex[2], 0.1, 'linear')
                 playSound('confirmMenu', 0.4, false) 
             elseif GetOGNotes and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.ENTER') then
                 GetOGNotes = false;
-                doTweenColor('e1Color', 'e1', white, 0.1, 'linear')
+                doTweenColor('e1Color', 'e1', hex[4], 0.1, 'linear')
                 playSound('cancelMenu', 0.4, false)
             end    
         elseif count == 2 then
             if not AnnoyingSound and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.ENTER') then
                 AnnoyingSound = true;
-                doTweenColor('e2Color', 'e2', green, 0.1, 'linear')
+                doTweenColor('e2Color', 'e2', hex[2], 0.1, 'linear')
                 playSound('confirmMenu', 0.4, false)  
             elseif AnnoyingSound and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.ENTER') then  
                 AnnoyingSound = false;
-                doTweenColor('e2Color', 'e2', white, 0.1, 'linear')
+                doTweenColor('e2Color', 'e2', hex[4], 0.1, 'linear')
                 playSound('cancelMenu', 0.4, false)
             end 
         elseif count == 3 then
             if not ChangeScroll and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.ENTER') then
                 ChangeScroll = true;
-                doTweenColor('e3Color', 'e3', green, 0.1, 'linear')
+                doTweenColor('e3Color', 'e3', hex[2], 0.1, 'linear')
                 playSound('confirmMenu', 0.4, false)  
             elseif ChangeScroll and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.ENTER') then    
                 ChangeScroll = false;
-                doTweenColor('e3Color', 'e3', white, 0.1, 'linear')
+                doTweenColor('e3Color', 'e3', hex[4], 0.1, 'linear')
                 playSound('cancelMenu', 0.4, false) 
             end
         elseif count == 4 then
             if not BGNote and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.ENTER') then
                 BGNote = true;
-                doTweenColor('e4Color', 'e4', green, 0.1, 'linear')
+                doTweenColor('e4Color', 'e4', hex[2], 0.1, 'linear')
                 playSound('confirmMenu', 0.4, false)  
             elseif BGNote and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.ENTER') then    
                 BGNote = false;
-                doTweenColor('e4Color', 'e4', white, 0.1, 'linear')
+                doTweenColor('e4Color', 'e4', hex[4], 0.1, 'linear')
                 playSound('cancelMenu', 0.4, false) 
             end           
         end   
 
         if GetOGNotes then            
-            doTweenColor('e1Color', 'e1', green, 0.1, 'linear')
+            doTweenColor('e1Color', 'e1', hex[2], 0.1, 'linear')
             for i = 0, getProperty('notes.length')-1 do
                 if NoteType[getPropertyFromGroup('notes', i, 'noteType')] then
                     getPropertyFromGroup('notes', i, 'texture');   
@@ -387,11 +373,11 @@ function onUpdate(elapsed)
         end    
 
         if AnnoyingSound then
-            doTweenColor('e2Color', 'e2', green, 0.1, 'linear') 
+            doTweenColor('e2Color', 'e2', hex[2], 0.1, 'linear') 
         end     
         
         if ChangeScroll then
-            doTweenColor('e3Color', 'e3', green, 0.1, 'linear')
+            doTweenColor('e3Color', 'e3', hex[2], 0.1, 'linear')
             for i = 0,7 do
                 setPropertyFromGroup('opponentStrums', i, 'downScroll', true)
                 setPropertyFromGroup('opponentStrums', i, 'y', 570)
@@ -436,7 +422,7 @@ function onUpdate(elapsed)
         end     
 
         if BGNote then
-            doTweenColor('e4Color', 'e4', green, 0.1, 'linear')
+            doTweenColor('e4Color', 'e4', hex[2], 0.1, 'linear')
         end    
     end      
     
@@ -484,8 +470,8 @@ function onUpdate(elapsed)
         addLuaText('Message1', true)
         addLuaText('Message2', true)
 
-        setTextColor('f', 'ff0000')
-        setTextColor('g', 'ff0000')
+        setTextColor('f', hex[3])
+        setTextColor('g', hex[3])
     end
 
     if not noResetButton then
@@ -500,25 +486,24 @@ function onUpdate(elapsed)
     end
 end 
 
-PreX = 255
-PreY = 90
+local PreX = 255
+local PreY = 90
+local PreDADY = 240
 
-PreDADY = 240
+local nse = 'noteseen/'
+local pUI = 'pixelUI/noteseen/'
 
-nse = 'noteseen/'
-pUI = 'pixelUI/noteseen/'
+local NoteName = {'preview0', 'preview1', 'preview2', 'preview3'}
+local NoteNameDAD = {'previewDAD0', 'previewDAD1', 'previewDAD2', 'previewDAD3'}
 
-NoteName = {'preview0', 'preview1', 'preview2', 'preview3'}
-NoteNameDAD = {'previewDAD0', 'previewDAD1', 'previewDAD2', 'previewDAD3'}
+local NoteString = {nse..'normal notes', nse..'tabi notes', nse..'majin notes', nse..'creepy notes'}
+local NoteStringDAD = {nse..'normal notes', nse..'tabi notes', nse..'majin notes', nse..'creepy notes'}
 
-NoteString = {nse..'normal notes', nse..'tabi notes', nse..'majin notes', nse..'creepy notes'}
-NoteStringDAD = {nse..'normal notes', nse..'tabi notes', nse..'majin notes', nse..'creepy notes'}
+local PixelName = {'preview0', 'preview1', 'preview2'}
+local PixelNameDAD = {'previewDAD0', 'previewDAD1', 'previewDAD2'}
 
-PixelName = {'preview0', 'preview1', 'preview2'}
-PixelNameDAD = {'previewDAD0', 'previewDAD1', 'previewDAD2'}
-
-PixelString = {pUI..'pixel notes', pUI..'NES notes', pUI..'dokidoki notes'}
-PixelStringDAD = {pUI..'pixel notes', pUI..'NES notes', pUI..'dokidoki notes'}
+local PixelString = {pUI..'pixel notes', pUI..'NES notes', pUI..'dokidoki notes'}
+local PixelStringDAD = {pUI..'pixel notes', pUI..'NES notes', pUI..'dokidoki notes'}
 function onCustomNotes()
     if not SkipThis then
         onNoteText()
@@ -558,13 +543,13 @@ function onCustomNotes()
     end       
 end    
 
-sn = 'NoteSkin: '
+local sn = 'NoteSkin: '
 
-NoteText = {sn..'Defualt', sn..'Tabi', sn..'Majin', sn..'Creepy'}
-NoteTextDAD = {sn..'Defualt', sn..'Tabi', sn..'Majin', sn..'Creepy'}
+local NoteText = {sn..'Defualt', sn..'Tabi', sn..'Majin', sn..'Creepy'}
+local NoteTextDAD = {sn..'Defualt', sn..'Tabi', sn..'Majin', sn..'Creepy'}
 
-PixelText = {sn..'Defualt', sn..'NES', sn..'DokiDoki'}
-PixelTextDAD = {sn..'Defualt', sn..'NES', sn..'DokiDoki'}
+local PixelText = {sn..'Defualt', sn..'NES', sn..'DokiDoki'}
+local PixelTextDAD = {sn..'Defualt', sn..'NES', sn..'DokiDoki'}
 function onNoteText()
     if not ifPixelNote then
         for i = 1, #NoteText do
@@ -732,8 +717,9 @@ function onDumbTogglesColor(color)
     doTweenColor('e4Color', 'e4', color, 0.1, 'linear')
 end
 
-local pos = 460
 function onPlus()
+    local pos = 460
+
     if getPropertyFromClass('flixel.FlxG', 'keys.justPressed.DOWN') then
         playSound('scrollMenu', 0.5, false)
         count = count + 1
@@ -817,9 +803,10 @@ function onPlus()
     end  
 end    
 
-n = 5 -- Normal
-p = 4 -- Pixel
 function onReset()
+    local n = 5 -- Normal
+    local p = 4 -- Pixel
+
     if ns1 == n then
         ns1 = 1
     end    
@@ -871,10 +858,10 @@ function onReset()
     end    
 end
 
-nw = 'notesplash/weeb/'
-npl = 'notesplash/'
+local nw = 'notesplash/weeb/'
+local npl = 'notesplash/'
 
-ns = 'noteskin/'
+local ns = 'noteskin/'
 
 NoteAssets = {'NOTE_assets', ns..'tabi_NOTE_assets', ns..'Majin_Notes', ns..'creepy_assets'}
 NoteAssetsDAD = {'NOTE_assets', ns..'tabi_NOTE_assets', ns..'Majin_Notes', ns..'creepy_assets'}
