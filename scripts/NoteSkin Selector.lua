@@ -154,7 +154,6 @@ end
 
 function onCreatePost()
     onHideHealthBar(false) 
-    setHealthBarColors('ff0000', '00ff00')
 end   
   
 local Activate = true;
