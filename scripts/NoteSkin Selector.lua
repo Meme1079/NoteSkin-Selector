@@ -1,70 +1,70 @@
 function onCreate()
-    makeLuaText('space', 'Press [SPACE] to Start', 800, 430, 410);
+    makeLuaText('space', 'Press [SPACE] to Start', nil, 630, 410);
     setTextSize('space', 30)
     addLuaText('space', true)
 
-    makeLuaText('t', 'Press [T] to Change NoteSkin', 0, 660, 150);
+    makeLuaText('t', 'Press [T] to Change NoteSkin', nil, 660, 150);
     setTextSize('t', 20)
     addLuaText('t', true)
 
-    makeLuaText('y', 'Press [Y] to Check Note Splashes', 0, 635, 120);
+    makeLuaText('y', 'Press [Y] to Check Note Splashes', nil, 635, 120);
     setTextSize('y', 20)
     setTextColor('y', hex[3])
     addLuaText('y', true)
 
-    makeLuaText('f', 'Press [F] to Change NoteSkin', 0, 660, 300);
+    makeLuaText('f', 'Press [F] to Change NoteSkin', nil, 660, 300);
     setTextSize('f', 20)
     addLuaText('f', true)
 
-    makeLuaText('g', 'Press [G] to Check Note Splashes', 0, 635, 270);
+    makeLuaText('g', 'Press [G] to Check Note Splashes', nil, 635, 270);
     setTextSize('g', 20)
     setTextColor('g', hex[3])
     addLuaText('g', true)
 
-    makeLuaText('e', 'Press [E] to Change Both NoteSkin', 0, 645, 380);
+    makeLuaText('e', 'Press [E] to Change Both NoteSkin', nil, 645, 380);
     setTextSize('e', 19.5)
     addLuaText('e', true)
 
-    makeLuaText('esc', 'Press [ESCAPE] to Exit the song', 0, 655);
+    makeLuaText('esc', 'Press [ESCAPE] to Exit the song', nil, 655);
     setTextSize('esc', 18)
     setTextColor('esc', hex[3])
     addLuaText('esc', true)
 
-    makeLuaText('Arrow', '>', 0, 228, 460);
+    makeLuaText('Arrow', '>', nil, 228, 460);
     setTextSize('Arrow', 16)
     addLuaText('Arrow', true)
 
-    makeLuaText('Message1', "You can't use Opponent Notes", 0, 680, 450);
+    makeLuaText('Message1', "You can't use Opponent Notes", nil, 680, 450);
     setTextSize('Message1', 17)
     setTextColor('Message1', hex[3])
 
-    makeLuaText('Message2', 'while disabiling the OpponentStrums', 0, 650, 470);
+    makeLuaText('Message2', 'while disabiling the OpponentStrums', nil, 650, 470);
     setTextSize('Message2', 17)
     setTextColor('Message2', hex[3])
 
     -- Setting --
 
-    makeLuaText('h', 'Press [H] to Change BG to White', 0, 230, 410);
+    makeLuaText('h', 'Press [H] to Change BG to White', nil, 230, 410);
     setTextSize('h', 20)
     addLuaText('h', true)
 
-    makeLuaText('q', 'Press [Q] to Select All the Toggles', 0, 225, 435);
+    makeLuaText('q', 'Press [Q] to Select All the Toggles', nil, 225, 435);
     setTextSize('q', 18.5)
     addLuaText('q', true)
 
-    makeLuaText('e1', 'Toggle Get the NoteSkin in the stage', 0, 248, 460);
+    makeLuaText('e1', 'Toggle Get the NoteSkin in the stage', nil, 248, 460);
     setTextSize('e1', 16)
     addLuaText('e1', true)
 
-    makeLuaText('e2', 'Toggle Hitsounds', 0, 248, 480);
+    makeLuaText('e2', 'Toggle Hitsounds', nil, 248, 480);
     setTextSize('e2', 16)
     addLuaText('e2', true)
 
-    makeLuaText('e3', 'Toggle Change Opponent Scroll', 0, 248, 500);
+    makeLuaText('e3', 'Toggle Change Opponent Scroll', nil, 248, 500);
     setTextSize('e3', 16)
     addLuaText('e3', true)
 
-    makeLuaText('e4', 'Toggle BG behind the Notes ', 0, 248, 520);
+    makeLuaText('e4', 'Toggle BG behind the Notes ', nil, 248, 520);
     setTextSize('e4', 16)
     addLuaText('e4', true)
 
@@ -92,57 +92,63 @@ function onCreate()
 
     -- NoteSkin Background -- 
 
-    makeLuaSprite('playerlol', nil, 220, 100)
+    BGX = 220
+
+    makeLuaSprite('playerlol', nil, BGX, 100)
     setObjectCamera('playerlol', 'camHUD')
     setProperty('playerlol.alpha', 0.3)
     addLuaSprite('playerlol')
 
-    makeLuaSprite('opponentlol', nil, 220, 250)
+    makeLuaSprite('opponentlol', nil, BGX, 250)
     setObjectCamera('opponentlol', 'camHUD')
     setProperty('opponentlol.alpha', 0.3)
     addLuaSprite('opponentlol')
 
     -- Setting BG --
 
-    makeLuaSprite('optionlol', nil, 220, 400)
+    makeLuaSprite('optionlol', nil, BGX, 400)
     setObjectCamera('optionlol', 'camHUD')
     setProperty('optionlol.alpha', 0.3)
     addLuaSprite('optionlol')
 
     -- Text Thingy --
 
-    makeLuaText('pl', 'Player', 390, 80, 60)
+    ThingyX = 218
+
+    makeLuaText('pl', 'Player', nil, ThingyX, 60)
     setTextSize('pl', 30)
     setObjectCamera('pl', 'camHUD')
     setTextColor('pl', '31b1d1')
     addLuaText('pl', true)
 
-    makeLuaText('op', 'Opponent', 425, 80, 210)
+    makeLuaText('op', 'Opponent', nil, ThingyX, 210)
     setTextSize('op', 30)
     setObjectCamera('op', 'camHUD')
     setTextColor('op', 'af66ce')
     addLuaText('op', true)
 
-    makeLuaText('se', 'Settings', 425, 80, 360)
+    makeLuaText('se', 'Settings', nil, ThingyX, 360)
     setTextSize('se', 30)
     setObjectCamera('se', 'camHUD')
     addLuaText('se', true)
 
     -- Note Text --
 
-    makeLuaText('Note', 'NoteSkin: Normal', 0, 695, 80)
+    NoteX = 695
+
+    makeLuaText('Note', 'NoteSkin: Normal', nil, NoteX, 80)
     setTextSize('Note', 25)
     setTextAlignment('Note', 'middle')
     addLuaText('Note', true)
 
-    makeLuaText('NoteDAD', 'NoteSkin: Normal', 0, 695, 230)
+    makeLuaText('NoteDAD', 'NoteSkin: Normal', nil, NoteX, 230)
     setTextSize('NoteDAD', 25)
     setTextAlignment('NoteDAD', 'middle')
     addLuaText('NoteDAD', true)
 
     -- HitSounds -- 
 
-    makeLuaText('hs', '('..HSName[hss]..')', 0, 400, 480);
+    makeLuaText('hs', '('..HSName[hss]..')', nil, 400, 480);
     setTextSize('hs', 16)
     addLuaText('hs', true)
 
@@ -896,9 +902,9 @@ function onUpdatePost(elapsed)
                 end
             end
         end
-    end        
+    end   
     
-    for i = 0,4,1 do   
+    for i = 0,4,1 do
         if not GetOGNotes then
             if not ifPixelNote then
                 setPropertyFromGroup('playerStrums', i, 'texture', NoteAssets[ns1]);
@@ -910,7 +916,7 @@ function onUpdatePost(elapsed)
                 setPropertyFromGroup('opponentStrums', i, 'texture', PixelAssetsDAD[ps2]);   
             end   
         end
-    end   
+    end
 end    
 
 function onPrecaching()
