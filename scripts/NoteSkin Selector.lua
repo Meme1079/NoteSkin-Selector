@@ -716,9 +716,8 @@ function onDumbTogglesColor(color)
     doTweenColor('e4Color', 'e4', color, 0.1, 'linear')
 end
 
+local pos = 460
 function onPlus()
-    local pos = 460
-
     if getPropertyFromClass('flixel.FlxG', 'keys.justPressed.DOWN') then
         playSound('scrollMenu', 0.5, false)
         count = count + 1
@@ -802,10 +801,9 @@ function onPlus()
     end  
 end    
 
+local n = 5 -- Normal
+local p = 4 -- Pixel
 function onReset()
-    local n = 5 -- Normal
-    local p = 4 -- Pixel
-
     if ns1 == n then
         ns1 = 1
     end    
