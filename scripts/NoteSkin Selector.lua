@@ -187,7 +187,7 @@ end
 function onSongStart() 
     onRemove() 
     onHideHealthBar(true)
-    --close('NoteSkin Selector 8.1')
+    removeLuaScript('NoteSkin Selector 8.1', false) -- i wish
 end 
 
 local WhiteBlack = false;    -- It changes the BG Notes to white or black, also [true] is white and black is [false]
@@ -463,14 +463,6 @@ function onUpdate(elapsed)
         onRemove()
     end  
 
-    if botPlay then
-        if Visible then
-            setProperty('botplayTxt.visible', false)
-        elseif not Visible then
-            setProperty('botplayTxt.visible', true)    
-        end
-    end
-
     if not checkDadStrums then
         addLuaText('Message1', true)
         addLuaText('Message2', true)
@@ -483,6 +475,14 @@ function onUpdate(elapsed)
         setPropertyFromClass('ClientPrefs', 'noResetButton', true)
         if curDecBeat == 0.1 then
             setPropertyFromClass('ClientPrefs', 'noResetButton', false)
+        end
+    end
+
+    if botPlay then
+        if Visible then
+            setProperty('botplayTxt.visible', false)
+        elseif not Visible then
+            setProperty('botplayTxt.visible', true)    
         end
     end
 
@@ -878,27 +878,27 @@ PixelSplashAssets = {nw..'noteSplashes', nw..'noteSplashes', nw..'dokidokiSplash
 PixelSplashAssetsDAD = {nw..'noteSplashes', nw..'noteSplashes', nw..'dokidokiSplashes'}
 function onUpdatePost(elapsed)
     if not Activate then
-        for i = 0, getProperty('unspawnNotes.length')-1 do
-            if NoteType[getPropertyFromGroup('unspawnNotes', i, 'noteType')] and not GetOGNotes then
-                if getPropertyFromGroup('unspawnNotes', i, 'mustPress') then -- Player Section
+        for i = 0, getProperty('notes.length')-1 do
+            if NoteType[getPropertyFromGroup('notes', i, 'noteType')] and not GetOGNotes then
+                if getPropertyFromGroup('notes', i, 'mustPress') then -- Player Section
                     if not ifPixelNote then
-                        setPropertyFromGroup('unspawnNotes', i, 'texture', NoteAssets[ns1]);  
-                        setPropertyFromGroup('unspawnNotes', i, 'noteSplashTexture', SplashAssets[ns1]);
+                        setPropertyFromGroup('notes', i, 'texture', NoteAssets[ns1]);  
+                        setPropertyFromGroup('notes', i, 'noteSplashTexture', SplashAssets[ns1]);
                     end
     
                     if ifPixelNote then
-                        setPropertyFromGroup('unspawnNotes', i, 'texture', PixelAssets[ps1]);  
-                        setPropertyFromGroup('unspawnNotes', i, 'noteSplashTexture', PixelSplashAssets[ps1]);  
+                        setPropertyFromGroup('notes', i, 'texture', PixelAssets[ps1]);  
+                        setPropertyFromGroup('notes', i, 'noteSplashTexture', PixelSplashAssets[ps1]);  
                     end    
-                elseif not getPropertyFromGroup('unspawnNotes', i, 'mustPress') then -- Opponent Section
+                elseif not getPropertyFromGroup('notes', i, 'mustPress') then -- Opponent Section
                     if not ifPixelNote then
-                        setPropertyFromGroup('unspawnNotes', i, 'texture', NoteAssetsDAD[ns2]);  
-                        setPropertyFromGroup('unspawnNotes', i, 'noteSplashTexture', SplashAssetsDAD[ns2]);
+                        setPropertyFromGroup('notes', i, 'texture', NoteAssetsDAD[ns2]);  
+                        setPropertyFromGroup('notes', i, 'noteSplashTexture', SplashAssetsDAD[ns2]);
                     end
     
                     if ifPixelNote then
-                        setPropertyFromGroup('unspawnNotes', i, 'texture', PixelAssetsDAD[ps2]);  
-                        setPropertyFromGroup('unspawnNotes', i, 'noteSplashTexture', PixelSplashAssetsDAD[ps2]);   
+                        setPropertyFromGroup('notes', i, 'texture', PixelAssetsDAD[ps2]);  
+                        setPropertyFromGroup('notes', i, 'noteSplashTexture', PixelSplashAssetsDAD[ps2]);   
                     end
                 end
             end
@@ -921,7 +921,7 @@ function onUpdatePost(elapsed)
 end    
 
 function onPrecaching()
-    for i = 1, #NoteAssets or #NoteAssetsDAD or #PixelAssets or #PixelAssetsDAD do
+    for i = 1, #NoteAssets or #NoteAssetsDAD or #PixelAssets or #PixelAssetsDAD do -- soo much better
         precacheImage(NoteAssets[i])
         precacheImage(NoteAssetsDAD[i])
         precacheImage(PixelAssets[i])
@@ -939,6 +939,7 @@ function onPrecaching()
     
     precacheSound('scrollMenu')
     precacheSound('ToggleJingle')  
+    precacheMusic('offsetSong')
 end
 
 local TextCon = {'y', 't', 'g', 'f', 'e', 'h', 'q', 'hs', 'space', 'esc'}
