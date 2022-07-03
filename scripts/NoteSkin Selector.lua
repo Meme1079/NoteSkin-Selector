@@ -690,19 +690,19 @@ end
 
 -- uhh these dumb function are for campcating the code
 local HealthHUD = {'scoreTxt', 'healthBar', 'healthBarBG', 'iconP1', 'iconP2'}
-function onHideHealthBar(boolean) 
+function onHideHealthBar(bool) 
     if not hideHud then
         for i = 1, #HealthHUD do
-            setProperty(HealthHUD[i]..'.visible', boolean)-- uhh ignore the green color, i dunno wut color it is
+            setProperty(HealthHUD[i]..'.visible', bool) -- haha no green thingy
         end
     end    
 end  
 
-function onDumbToggles(boolean)
-    GetOGNotes = boolean;
-    AnnoyingSound = boolean;
-    BGNote = boolean;
-    ChangeScroll = boolean;   
+function onDumbToggles(bool)
+    GetOGNotes = bool;
+    AnnoyingSound = bool;
+    BGNote = bool;
+    ChangeScroll = bool;
 end
 
 function onBlackWhite(color)  
@@ -947,16 +947,16 @@ local Togs = {'e1', 'e2', 'e3', 'e4', 'Arrow'}
 local BGlols = {'blacklol', 'playerlol', 'opponentlol', 'optionlol'}
 local Other = {'Note', 'NoteDAD', 'pl', 'op', 'se', 'Message1', 'Message2'}
 function onRemove() 
-    removeLuaSprite('preview', true)
-    removeLuaSprite('previewDAD', true)
-
-    removeLuaSprite('Splashpreview', true)
-    removeLuaSprite('SplashpreviewDAD', true)
-
     for i = 1, #TextCon or #Togs or #Other or #BGlols do
         removeLuaText(TextCon[i], true)
         removeLuaText(Togs[i], true)
         removeLuaText(Other[i], true)
         removeLuaSprite(BGlols[i], true)
     end
+
+    removeLuaSprite('preview', true)
+    removeLuaSprite('previewDAD', true)
+
+    removeLuaSprite('Splashpreview', true)
+    removeLuaSprite('SplashpreviewDAD', true)
 end 
