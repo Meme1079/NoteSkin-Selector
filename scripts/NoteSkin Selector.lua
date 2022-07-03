@@ -163,6 +163,7 @@ function onCreatePost()
 end   
   
 local Activate = true;
+local Visible = true;
 local allowCountdown = false;
 function onStartCountdown()
     if not allowCountdown then -- Block the first countdown
@@ -179,15 +180,14 @@ function onStartCountdown()
         return Function_Stop; 
     end 
     Activate = false;
+    Visible = false;  
     return Function_Continue;
 end 
 
-local Visible = true;
-function onSongStart()
-    Visible = false;   
-
+function onSongStart() 
     onRemove() 
     onHideHealthBar(true)
+    --close('NoteSkin Selector 8.1')
 end 
 
 local WhiteBlack = false;    -- It changes the BG Notes to white or black, also [true] is white and black is [false]
@@ -689,13 +689,12 @@ end
 --]]
 
 -- uhh these dumb function are for campcating the code
+local HealthHUD = {'scoreTxt', 'healthBar', 'healthBarBG', 'iconP1', 'iconP2'}
 function onHideHealthBar(boolean) 
     if not hideHud then
-        setProperty('scoreTxt.visible', boolean) -- uhh ignore the green color, i dunno wut color it is
-        setProperty('healthBar.visible', boolean)
-        setProperty('healthBarBG.visible', boolean)
-        setProperty('iconP1.visible', boolean)
-        setProperty('iconP2.visible', boolean) 
+        for i = 1, #HealthHUD do
+            setProperty(HealthHUD[i]..'.visible', boolean)-- uhh ignore the green color, i dunno wut color it is
+        end
     end    
 end  
 
@@ -878,116 +877,85 @@ PixelAssetsDAD = {'NOTE_assets', ns..'NESNOTE_assets', ns..'dokidoki_assets'}
 PixelSplashAssets = {nw..'noteSplashes', nw..'noteSplashes', nw..'dokidokiSplashes'}
 PixelSplashAssetsDAD = {nw..'noteSplashes', nw..'noteSplashes', nw..'dokidokiSplashes'}
 function onUpdatePost(elapsed)
-    for i = 0, getProperty('notes.length')-1 do
-        if NoteType[getPropertyFromGroup('notes', i, 'noteType')] and not GetOGNotes then
-            if getPropertyFromGroup('notes', i, 'mustPress') then -- Player Section
-                if not ifPixelNote then
-                    setPropertyFromGroup('notes', i, 'texture', NoteAssets[ns1]);  
-                    setPropertyFromGroup('notes', i, 'noteSplashTexture', SplashAssets[ns1]);
-                end
-
-                if ifPixelNote then
-                    setPropertyFromGroup('notes', i, 'texture', PixelAssets[ps1]);  
-                    setPropertyFromGroup('notes', i, 'noteSplashTexture', PixelSplashAssets[ps1]);  
-                end    
-            elseif not getPropertyFromGroup('notes', i, 'mustPress') then -- Opponent Section
-                if not ifPixelNote then
-                    setPropertyFromGroup('notes', i, 'texture', NoteAssetsDAD[ns2]);  
-                    setPropertyFromGroup('notes', i, 'noteSplashTexture', SplashAssetsDAD[ns2]);
-                end
-
-                if ifPixelNote then
-                    setPropertyFromGroup('notes', i, 'texture', PixelAssetsDAD[ps2]);  
-                    setPropertyFromGroup('notes', i, 'noteSplashTexture', PixelSplashAssetsDAD[ps2]);   
-                end
-            end
-        end
-    end   
+    if not Activate then
+        for i = 0, getProperty('unspawnNotes.length')-1 do
+            if NoteType[getPropertyFromGroup('unspawnNotes', i, 'noteType')] and not GetOGNotes then
+                if getPropertyFromGroup('unspawnNotes', i, 'mustPress') then -- Player Section
+                    if not ifPixelNote then
+                        setPropertyFromGroup('unspawnNotes', i, 'texture', NoteAssets[ns1]);  
+                        setPropertyFromGroup('unspawnNotes', i, 'noteSplashTexture', SplashAssets[ns1]);
+                    end
     
-    for i = 0,4,1 do
-        if not GetOGNotes then
-            if not ifPixelNote then
-                setPropertyFromGroup('playerStrums', i, 'texture', NoteAssets[ns1]);
-                setPropertyFromGroup('opponentStrums', i, 'texture', NoteAssetsDAD[ns2]);  
+                    if ifPixelNote then
+                        setPropertyFromGroup('unspawnNotes', i, 'texture', PixelAssets[ps1]);  
+                        setPropertyFromGroup('unspawnNotes', i, 'noteSplashTexture', PixelSplashAssets[ps1]);  
+                    end    
+                elseif not getPropertyFromGroup('unspawnNotes', i, 'mustPress') then -- Opponent Section
+                    if not ifPixelNote then
+                        setPropertyFromGroup('unspawnNotes', i, 'texture', NoteAssetsDAD[ns2]);  
+                        setPropertyFromGroup('unspawnNotes', i, 'noteSplashTexture', SplashAssetsDAD[ns2]);
+                    end
+    
+                    if ifPixelNote then
+                        setPropertyFromGroup('unspawnNotes', i, 'texture', PixelAssetsDAD[ps2]);  
+                        setPropertyFromGroup('unspawnNotes', i, 'noteSplashTexture', PixelSplashAssetsDAD[ps2]);   
+                    end
+                end
             end
-
-            if ifPixelNote then
-                setPropertyFromGroup('playerStrums', i, 'texture', PixelAssets[ps1]);
-                setPropertyFromGroup('opponentStrums', i, 'texture', PixelAssetsDAD[ps2]);   
-            end   
+        end   
+        
+        for i = 0,4,1 do
+            if not GetOGNotes then
+                if not ifPixelNote then
+                    setPropertyFromGroup('playerStrums', i, 'texture', NoteAssets[ns1]);
+                    setPropertyFromGroup('opponentStrums', i, 'texture', NoteAssetsDAD[ns2]);  
+                end
+    
+                if ifPixelNote then
+                    setPropertyFromGroup('playerStrums', i, 'texture', PixelAssets[ps1]);
+                    setPropertyFromGroup('opponentStrums', i, 'texture', PixelAssetsDAD[ps2]);   
+                end   
+            end
         end
     end
 end    
 
 function onPrecaching()
-    precacheImage('NOTE_assets')
-    precacheImage(ns..'tabi_NOTE_assets')
-    precacheImage(ns..'Majin_Notes')
-    precacheImage(ns..'creepy_assets')
-
-    precacheImage(nse..'normal notes')
-    precacheImage(nse..'tabi notes')
-    precacheImage(nse..'majin notes')
-    precacheImage(nse..'creepy notes')
-
-    precacheImage('noteSplashes')
-    precacheImage(npl..'Majin_Splashes')
-    precacheImage(npl..'creepySplashes')
-    precacheImage(npl..'dokidokiSplashes')
-
-    precacheImage(pUI..'pixel notes')
-    precacheImage(pUI..'NES notes')
-    precacheImage(pUI..'dokidoki notes')
-
-    precacheImage(nw..'noteSplashes')
-    precacheImage(nw..'dokidokiSplashes')
+    for i = 1, #NoteAssets or #NoteAssetsDAD or #PixelAssets or #PixelAssetsDAD do
+        precacheImage(NoteAssets[i])
+        precacheImage(NoteAssetsDAD[i])
+        precacheImage(PixelAssets[i])
+        precacheImage(PixelAssetsDAD[i])
+    end
+    for i = 1, #SplashAssets or #SplashAssetsDAD or #PixelSplashAssets or #PixelSplashAssetsDAD do
+        precacheImage(SplashAssets[i])
+        precacheImage(SplashAssetsDAD[i])
+        precacheImage(PixelSplashAssets[i])
+        precacheImage(PixelSplashAssetsDAD[i])
+    end
+    for i = 1, #HitSounds do
+        precacheSound(HitSounds[i])
+    end
     
     precacheSound('scrollMenu')
     precacheSound('ToggleJingle')  
-
-    precacheSound('hitsound')
 end
 
+local TextCon = {'y', 't', 'g', 'f', 'e', 'h', 'q', 'hs', 'space', 'esc'}
+local Togs = {'e1', 'e2', 'e3', 'e4', 'Arrow'}
+local BGlols = {'blacklol', 'playerlol', 'opponentlol', 'optionlol'}
+local Other = {'Note', 'NoteDAD', 'pl', 'op', 'se', 'Message1', 'Message2'}
 function onRemove() 
-    removeLuaSprite('preview', true);
-    removeLuaSprite('previewDAD', true);
+    removeLuaSprite('preview', true)
+    removeLuaSprite('previewDAD', true)
 
-    removeLuaSprite('Splashpreview', true);
-    removeLuaSprite('SplashpreviewDAD', true);
+    removeLuaSprite('Splashpreview', true)
+    removeLuaSprite('SplashpreviewDAD', true)
 
-    removeLuaSprite('blacklol', true);
-    removeLuaSprite('playerlol', true);
-    removeLuaSprite('opponentlol', true);
-    removeLuaSprite('optionlol', true);
-
-    removeLuaText('y', true);
-    removeLuaText('t', true);
-
-    removeLuaText('g', true);
-    removeLuaText('f', true);
-
-    removeLuaText('e', true);
-    removeLuaText('space', true);
-
-    removeLuaText('Note', true);
-    removeLuaText('NoteDAD', true);
-
-    removeLuaText('pl', true);
-    removeLuaText('op', true);
-    removeLuaText('se', true);
-    removeLuaText('esc', true);
-
-    removeLuaText('Arrow', true);
-
-    removeLuaText('h', true);
-    removeLuaText('q', true);
-    removeLuaText('hs', true);
-
-    removeLuaText('e1', true);
-    removeLuaText('e2', true);
-    removeLuaText('e3', true);
-    removeLuaText('e4', true);
-
-    removeLuaText('Message1', true);
-    removeLuaText('Message2', true);
+    for i = 1, #TextCon or #Togs or #Other or #BGlols do
+        removeLuaText(TextCon[i], true)
+        removeLuaText(Togs[i], true)
+        removeLuaText(Other[i], true)
+        removeLuaSprite(BGlols[i], true)
+    end
 end 
