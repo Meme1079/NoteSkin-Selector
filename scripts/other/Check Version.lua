@@ -17,10 +17,12 @@ function onCheckVersion(bool)
                DeActivate = true
                setProperty('camGame.visible', false)
                setProperty('camHUD.visible', false)
-          else
+          else               
+               local Texts = {'Ceck1', 'Ceck2', 'Ceck3', 'Ceck4'}
+               for i = 1, #Texts do 
+                    removeLuaText(Texts[i], true)
+               end 
                removeLuaSprite('BlackError', true)
-               removeLuaText('Ceck1', true)
-               removeLuaText('Ceck2', true)
           end
 
           if DeActivate then
@@ -29,8 +31,10 @@ function onCheckVersion(bool)
                setObjectCamera('BlackError', 'other')
                addLuaSprite('BlackError', true)
 
-               onShortCutText('Ceck1', 'Uh oh! Psych Engine('..version..') is outdated!', 0, 0, 'ff0000', 35, 'other', true)
-               onShortCutText('Ceck2', 'Download Psych Engine('..CurrentVersion..')', 0, 50, 'ff0000', 35, 'other', true)
+               onShortCutText('Ceck1', 'Uh oh! Psych Engine('..version..') is outdated!', 0, 0, 'ff0000', 25, 'other', true)
+               onShortCutText('Ceck2', 'Download Psych Engine('..CurrentVersion..')', 0, 50, 'ff0000', 25, 'other', true)
+               onShortCutText('Ceck3', 'If you want to play on this Psych Engine('..version..')', 0, 150, 'ff0000', 25, 'other', true)
+               onShortCutText('Ceck4', 'Go to scripts/other folder and set the boolean in onCheckVersion() into false', 0, 200, 'ff0000', 25, 'other', true)
           end
      end
 end
