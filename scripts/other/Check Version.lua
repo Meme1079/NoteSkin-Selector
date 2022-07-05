@@ -10,7 +10,7 @@ function onStartCountdown()
 end
 
 function onCheckVersion(bool)
-     CurrentVersion = '0.6.3'
+     CurrentVersion = '0.6.2'
 
      if bool == true then
           if version < CurrentVersion then
