@@ -159,6 +159,7 @@ function onCreate()
 end    
 
 function onCreatePost()
+    addLuaScript('scripts/other/Check Version')
     onHideHealthBar(false) 
 end   
   
