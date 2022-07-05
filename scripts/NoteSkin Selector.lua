@@ -188,7 +188,7 @@ end
 function onSongStart() 
     onRemove() 
     onHideHealthBar(true)
-    removeLuaScript('NoteSkin Selector 8.1', false) -- i wish
+    removeLuaScript('scripts/other/Check Version')
 end 
 
 local WhiteBlack = false;    -- It changes the BG Notes to white or black, also [true] is white and black is [false]
