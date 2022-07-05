@@ -499,14 +499,8 @@ local PreDADY = 240
 local nse = 'noteseen/'
 local pUI = 'pixelUI/noteseen/'
 
-local NoteName = {'preview0', 'preview1', 'preview2', 'preview3'}
-local NoteNameDAD = {'previewDAD0', 'previewDAD1', 'previewDAD2', 'previewDAD3'}
-
 local NoteString = {nse..'normal notes', nse..'tabi notes', nse..'majin notes', nse..'creepy notes'}
 local NoteStringDAD = {nse..'normal notes', nse..'tabi notes', nse..'majin notes', nse..'creepy notes'}
-
-local PixelName = {'preview0', 'preview1', 'preview2'}
-local PixelNameDAD = {'previewDAD0', 'previewDAD1', 'previewDAD2'}
 
 local PixelString = {pUI..'pixel notes', pUI..'NES notes', pUI..'dokidoki notes'}
 local PixelStringDAD = {pUI..'pixel notes', pUI..'NES notes', pUI..'dokidoki notes'}
@@ -514,14 +508,14 @@ function onCustomNotes()
     if not SkipThis then
         onNoteText()
         if not ifPixelNote then
-            for i = 1, #NoteName do
+            for i = 1, #NoteString do
                 makeLuaSprite('preview', NoteString[ns1], PreX, PreY)
                 setObjectCamera('preview', 'camHUD')
                 scaleObject('preview', 0.5, 0.5)
                 addLuaSprite('preview', false)
             end  
     
-            for i = 1, #NoteNameDAD do
+            for i = 1, #NoteStringDAD do
                 makeLuaSprite('previewDAD', NoteStringDAD[ns2], PreX, PreDADY)
                 setObjectCamera('previewDAD', 'camHUD')
                 scaleObject('previewDAD', 0.5, 0.5)
@@ -530,7 +524,7 @@ function onCustomNotes()
         end  
         
         if ifPixelNote then
-            for i = 1, #PixelName do
+            for i = 1, #PixelString do
                 makeLuaSprite('preview', PixelString[ps1], PreX, PreY)
                 setObjectCamera('preview', 'camHUD')
                 setProperty('preview.antialiasing', false)
@@ -538,7 +532,7 @@ function onCustomNotes()
                 addLuaSprite('preview', false)
             end  
     
-            for i = 1, #PixelNameDAD do
+            for i = 1, #PixelStringDAD do
                 makeLuaSprite('previewDAD', PixelStringDAD[ps2], PreX, PreDADY)
                 setObjectCamera('previewDAD', 'camHUD')
                 setProperty('previewDAD.antialiasing', false)
