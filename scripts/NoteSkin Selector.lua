@@ -1,72 +1,55 @@
 function onCreate()
-    makeLuaText('space', 'Press [SPACE] to Start', nil, 630, 410);
-    setTextSize('space', 30)
-    addLuaText('space', true)
+    onShortCutText('space', 'Press [SPACE] to Start', 630, 410, true)
+    onTextPrefix('space', hex[4], 30, 'camHUD')
 
-    makeLuaText('t', 'Press [T] to Change NoteSkin', nil, 660, 150);
-    setTextSize('t', 20)
-    addLuaText('t', true)
+    onShortCutText('t', 'Press [T] to Change NoteSkin', 660, 150, true)
+    onTextPrefix('t', hex[4], 20, 'camHUD')
 
-    makeLuaText('y', 'Press [Y] to Check Note Splashes', nil, 635, 120);
-    setTextSize('y', 20)
-    setTextColor('y', hex[3])
-    addLuaText('y', true)
+    onShortCutText('y', 'Press [Y] to Check Note Splashes', 635, 120, true)
+    onTextPrefix('y', hex[4], 20, 'camHUD')
 
-    makeLuaText('f', 'Press [F] to Change NoteSkin', nil, 660, 300);
-    setTextSize('f', 20)
-    addLuaText('f', true)
+    onShortCutText('f', 'Press [F] to Change NoteSkin', 660, 300, true)
+    onTextPrefix('f', hex[4], 20, 'camHUD')
 
-    makeLuaText('g', 'Press [G] to Check Note Splashes', nil, 635, 270);
-    setTextSize('g', 20)
-    setTextColor('g', hex[3])
-    addLuaText('g', true)
+    onShortCutText('g', 'Press [G] to Check Note Splashes', 635, 270, true)
+    onTextPrefix('g', hex[4], 20, 'camHUD')
 
-    makeLuaText('e', 'Press [E] to Change Both NoteSkin', nil, 645, 380);
-    setTextSize('e', 19.5)
-    addLuaText('e', true)
+    onShortCutText('e', 'Press [E] to Change Both NoteSkin', 645, 380, true)
+    onTextPrefix('e', hex[4], 19.5, 'camHUD')
 
-    makeLuaText('esc', 'Press [ESCAPE] to Exit the song', nil, 655);
-    setTextSize('esc', 18)
-    setTextColor('esc', hex[3])
-    addLuaText('esc', true)
+    onShortCutText('esc', 'Press [ESCAPE] to Exit the song', 655, nil, true)
+    onTextPrefix('esc', hex[3], 18, 'camHUD')
 
-    makeLuaText('Arrow', '>', nil, 228, 460);
-    setTextSize('Arrow', 16)
-    addLuaText('Arrow', true)
+    onShortCutText('Arrow', '>', 228, 460, nil, true)
+    onTextPrefix('Arrow', hex[4], 16, 'camHUD')
 
-    makeLuaText('Message1', "You can't use Opponent Notes", nil, 680, 450);
-    setTextSize('Message1', 17)
-    setTextColor('Message1', hex[3])
+    onShortCutText('Message1', "You can't use Opponent Notes", 680, 450, nil)
+    onTextPrefix('Message1', hex[3], 17, 'camHUD')
+    setProperty('Message1.visible', false)
 
-    makeLuaText('Message2', 'while disabiling the OpponentStrums', nil, 650, 470);
-    setTextSize('Message2', 17)
-    setTextColor('Message2', hex[3])
+    onShortCutText('Message2', 'while disabiling the OpponentStrums', 650, 470, nil)
+    onTextPrefix('Message2', hex[3], 17, 'camHUD')
+    setProperty('Message2.visible', false)
 
     -- Setting --
 
-    makeLuaText('h', 'Press [H] to Change BG to White', nil, 230, 410);
-    setTextSize('h', 20)
-    addLuaText('h', true)
+    onShortCutText('h', 'Press [H] to Change BG to White', 230, 410, true)
+    onTextPrefix('h', hex[4], 18, 'camHUD')
 
-    makeLuaText('q', 'Press [Q] to Select All the Toggles', nil, 225, 435);
-    setTextSize('q', 18.5)
-    addLuaText('q', true)
+    onShortCutText('q', 'Press [Q] to Select All the Toggles', 225, 435, true)
+    onTextPrefix('q', hex[4], 18.5, 'camHUD')
 
-    makeLuaText('e1', 'Toggle Get the NoteSkin in the stage', nil, 248, 460);
-    setTextSize('e1', 16)
-    addLuaText('e1', true)
+    onShortCutText('e1', 'Toggle Get the NoteSkin in the stage', 248, 460, true)
+    onTextPrefix('e1', hex[4], 16, 'camHUD')
 
-    makeLuaText('e2', 'Toggle Hitsounds', nil, 248, 480);
-    setTextSize('e2', 16)
-    addLuaText('e2', true)
+    onShortCutText('e2', 'Toggle Hitsounds', 248, 480, true)
+    onTextPrefix('e2', hex[4], 16, 'camHUD')
 
-    makeLuaText('e3', 'Toggle Change Opponent Scroll', nil, 248, 500);
-    setTextSize('e3', 16)
-    addLuaText('e3', true)
+    onShortCutText('e3', 'Toggle Change Opponent Scroll', 248, 500, true)
+    onTextPrefix('e3', hex[4], 16, 'camHUD')
 
-    makeLuaText('e4', 'Toggle BG behind the Notes ', nil, 248, 520);
-    setTextSize('e4', 16)
-    addLuaText('e4', true)
+    onShortCutText('e4', 'Toggle BG behind the Notes', 248, 520, true)
+    onTextPrefix('e4', hex[4], 16, 'camHUD')
 
     -- Background --
 
@@ -104,8 +87,6 @@ function onCreate()
     setProperty('opponentlol.alpha', 0.3)
     addLuaSprite('opponentlol')
 
-    -- Setting BG --
-
     makeLuaSprite('optionlol', nil, BGX, 400)
     setObjectCamera('optionlol', 'camHUD')
     setProperty('optionlol.alpha', 0.3)
@@ -115,51 +96,38 @@ function onCreate()
 
     ThingyX = 218
 
-    makeLuaText('pl', 'Player', nil, ThingyX, 60)
-    setTextSize('pl', 30)
-    setObjectCamera('pl', 'camHUD')
-    setTextColor('pl', '31b1d1')
-    addLuaText('pl', true)
+    onShortCutText('pl', 'Player', ThingyX, 60, true)
+    onTextPrefix('pl', '31b1d1', 30, 'camHUD')
 
-    makeLuaText('op', 'Opponent', nil, ThingyX, 210)
-    setTextSize('op', 30)
-    setObjectCamera('op', 'camHUD')
-    setTextColor('op', 'af66ce')
-    addLuaText('op', true)
+    onShortCutText('op', 'Opponent', ThingyX, 210, true)
+    onTextPrefix('op', 'af66ce', 30, 'camHUD')
 
-    makeLuaText('se', 'Settings', nil, ThingyX, 360)
-    setTextSize('se', 30)
-    setObjectCamera('se', 'camHUD')
-    addLuaText('se', true)
+    onShortCutText('se', 'Settings', ThingyX, 360, true)
+    onTextPrefix('se', hex[4], 30, 'camHUD')
 
     -- Note Text --
 
     NoteX = 695
 
-    makeLuaText('Note', 'NoteSkin: Normal', nil, NoteX, 80)
-    setTextSize('Note', 25)
-    setTextAlignment('Note', 'middle')
-    addLuaText('Note', true)
+    onShortCutText('Note', 'NoteSkin: Normal', NoteX, 80, true)
+    onTextPrefix('Note', hex[4], 25, 'camHUD')
 
-    makeLuaText('NoteDAD', 'NoteSkin: Normal', nil, NoteX, 230)
-    setTextSize('NoteDAD', 25)
-    setTextAlignment('NoteDAD', 'middle')
-    addLuaText('NoteDAD', true)
+    onShortCutText('NoteDAD', 'NoteSkin: Normal', NoteX, 230, true)
+    onTextPrefix('NoteDAD', hex[4], 25, 'camHUD')
 
     -- HitSounds -- 
 
-    makeLuaText('hs', '('..HSName[hss]..')', nil, 400, 480);
-    setTextSize('hs', 16)
-    addLuaText('hs', true)
+    onShortCutText('hs', '('..HSName[hss]..')', 400, 480, true)
+    onTextPrefix('hs', hex[4], 16, 'camHUD')
 
     -- Functions --
 
     onPrecaching() 
-    onBlackWhite(hex[1]) 
+    onBlackWhite(hex[1])
+    addLuaScript('scripts/other/Check Version') 
 end    
 
 function onCreatePost()
-    addLuaScript('scripts/other/Check Version')
     onHideHealthBar(false) 
 end   
   
@@ -233,6 +201,17 @@ function goodNoteHit(id, direction, noteType, isSustainNote)
     end  
 end  
 
+function onShortCutText(obj, text, x, y, bool)
+    makeLuaText(obj, text, nil, x, y)
+    addLuaText(obj, bool)
+end
+
+function onTextPrefix(obj, color, size, cam)
+    setTextColor(obj, color)
+    setTextSize(obj, size)
+    setObjectCamera(obj, cam)
+end
+
 function setPos(obj, pos) 
     -- shortcut to setProperty('obj.x') or setProperty('obj.y') AWESOME!
     -- also obj is the string of the object
@@ -256,16 +235,16 @@ hex = {'000000', '00ff00', 'ff0000', 'ffffff'}
 
 local count = 1
 local ifPixelNote = false;
+local SplashCheck = false;
 function onUpdate(elapsed)
     inCutscene = getProperty('inCutscene')
     isPixelStage = getPropertyFromClass('PlayState', 'isPixelStage')
     checkDadStrums = getPropertyFromClass('ClientPrefs', 'opponentStrums')
 
     if Activate then
-        onCustomNotes()
-        onPlus()
+        onCustomNotes() 
+        onPlus() 
         onReset()
-
         if getPropertyFromClass('flixel.FlxG', 'keys.justPressed.SPACE') and not SkipThis then
             if Activate then
                 if not flashingLights then
@@ -284,10 +263,6 @@ function onUpdate(elapsed)
         if getPropertyFromClass('flixel.FlxG', 'keys.justPressed.ESCAPE') then
             endSong()      
         end   
-        
-        if getPropertyFromClass('flixel.FlxG', 'keys.justPressed.Y') or getPropertyFromClass('flixel.FlxG', 'keys.justPressed.G') then
-            playSound('deniedMOMENT', 0.5, false)
-        end
 
         if not AllToggles and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.Q') then
             AllToggles = true;
@@ -395,7 +370,6 @@ function onUpdate(elapsed)
                     setPos('iconP2', {nil, 550})
                     setPos('scoreTxt', {300, 650})
                     setTextSize('scoreTxt', 18) 
-
                     if downscroll then
                         setPropertyFromGroup('opponentStrums', i, 'downScroll', false)
                         setPropertyFromGroup('opponentStrums', i, 'y', 50)
@@ -416,8 +390,8 @@ function onUpdate(elapsed)
             setPos('iconP1', {610, nil})
             setPos('iconP2', {509, nil})
             setPos('scoreTxt', {0, nil})
-            setTextSize('scoreTxt', 20)   
-        
+            setTextSize('scoreTxt', 20)
+
             if downscroll then
                 setPos('healthBar', {nil, 83.2})
                 setPos('healthBarBG', {nil, 79.2})
@@ -465,8 +439,8 @@ function onUpdate(elapsed)
     end  
 
     if not checkDadStrums then
-        addLuaText('Message1', true)
-        addLuaText('Message2', true)
+        setProperty('Message1.visible', true)
+        setProperty('Message2.visible', true)
 
         setTextColor('f', hex[3])
         setTextColor('g', hex[3])
@@ -490,6 +464,12 @@ function onUpdate(elapsed)
     if isPixelStage then
         ifPixelNote = true
     end
+
+    if not SplashCheck then -- after 2 months this is the answer 
+        onCustomSplash()
+        onSplashPrefix()
+        SplashCheck = true;
+    end
 end 
 
 local PreX = 255
@@ -505,42 +485,40 @@ local NoteStringDAD = {nse..'normal notes', nse..'tabi notes', nse..'majin notes
 local PixelString = {pUI..'pixel notes', pUI..'NES notes', pUI..'dokidoki notes'}
 local PixelStringDAD = {pUI..'pixel notes', pUI..'NES notes', pUI..'dokidoki notes'}
 function onCustomNotes()
-    if not SkipThis then
-        onNoteText()
-        if not ifPixelNote then
-            for i = 1, #NoteString do
-                makeLuaSprite('preview', NoteString[ns1], PreX, PreY)
-                setObjectCamera('preview', 'camHUD')
-                scaleObject('preview', 0.5, 0.5)
-                addLuaSprite('preview', false)
-            end  
-    
-            for i = 1, #NoteStringDAD do
-                makeLuaSprite('previewDAD', NoteStringDAD[ns2], PreX, PreDADY)
-                setObjectCamera('previewDAD', 'camHUD')
-                scaleObject('previewDAD', 0.5, 0.5)
-                addLuaSprite('previewDAD', false)
-            end 
+    onNoteText()
+    if not ifPixelNote then
+        for i = 1, #NoteString do
+            makeLuaSprite('preview', NoteString[ns1], PreX, PreY)
+            setObjectCamera('preview', 'camHUD')
+            scaleObject('preview', 0.5, 0.5)
+            addLuaSprite('preview', false)
         end  
-        
-        if ifPixelNote then
-            for i = 1, #PixelString do
-                makeLuaSprite('preview', PixelString[ps1], PreX, PreY)
-                setObjectCamera('preview', 'camHUD')
-                setProperty('preview.antialiasing', false)
-                scaleObject('preview', 0.5, 0.5)
-                addLuaSprite('preview', false)
-            end  
-    
-            for i = 1, #PixelStringDAD do
-                makeLuaSprite('previewDAD', PixelStringDAD[ps2], PreX, PreDADY)
-                setObjectCamera('previewDAD', 'camHUD')
-                setProperty('previewDAD.antialiasing', false)
-                scaleObject('previewDAD', 0.5, 0.5)
-                addLuaSprite('previewDAD', false)
-            end 
+
+        for i = 1, #NoteStringDAD do
+            makeLuaSprite('previewDAD', NoteStringDAD[ns2], PreX, PreDADY)
+            setObjectCamera('previewDAD', 'camHUD')
+            scaleObject('previewDAD', 0.5, 0.5)
+            addLuaSprite('previewDAD', false)
         end 
-    end       
+    end  
+    
+    if ifPixelNote then
+        for i = 1, #PixelString do
+            makeLuaSprite('preview', PixelString[ps1], PreX, PreY)
+            setObjectCamera('preview', 'camHUD')
+            setProperty('preview.antialiasing', false)
+            scaleObject('preview', 0.5, 0.5)
+            addLuaSprite('preview', false)
+        end  
+
+        for i = 1, #PixelStringDAD do
+            makeLuaSprite('previewDAD', PixelStringDAD[ps2], PreX, PreDADY)
+            setObjectCamera('previewDAD', 'camHUD')
+            setProperty('previewDAD.antialiasing', false)
+            scaleObject('previewDAD', 0.5, 0.5)
+            addLuaSprite('previewDAD', false)
+        end 
+    end        
 end    
 
 local sn = 'NoteSkin: '
@@ -570,48 +548,40 @@ function onNoteText()
     end  
 end
 
---[[
-NameSplash = {'Splashpreview0', 'Splashpreview1', 'Splashpreview2', 'Splashpreview4'}
-NameSplashDAD = {'SplashpreviewDAD0', 'SplashpreviewDAD1', 'SplashpreviewDAD2', 'SplashpreviewDAD4'}
-
-NamePixelSplash = {'SplashPixelpre0', 'SplashPixelpre1', 'SplashPixelpre2', 'SplashPixelpre4'}
-NamePixelSplashDAD = {'SplashPixelpreDAD0', 'SplashPixelpreDAD1', 'SplashPixelpreDAD2', 'SplashPixelpreDAD4'}
-
-local s1 = 1
-local s1DAD = 1
-
-local sp1 = 1
-local sp1DAD = 1
 function onCustomSplash()
-    if not ifPixelNote then
-        for i = 1, #NameSplash do
-            makeAnimatedLuaSprite('Splashpreview', SplashAssets[s1], 100, 1230)
-            setObjectCamera('Splashpreview', 'camHUD')
-            scaleLuaSprite('Splashpreview', 0.5, 0.5)
-            addLuaSprite('Splashpreview', true) 
-        end     
-    
-        for i = 1, #NameSplashDAD do
-            makeAnimatedLuaSprite('SplashpreviewDAD', SplashAssets[s1DAD], 100, 1230)
-            setObjectCamera('SplashpreviewDAD', 'camHUD')
-            scaleLuaSprite('SplashpreviewDAD', 0.5, 0.5)
-            addLuaSprite('SplashpreviewDAD', true)
+    if Activate and not SkipThis then
+        if not ifPixelNote then
+            for i = 1, #SplashAssets do
+                makeAnimatedLuaSprite('Splashpreview', SplashAssets[ns1], 100, 1230)
+                setObjectCamera('Splashpreview', 'camHUD')
+                scaleLuaSprite('Splashpreview', 0.5, 0.5)
+                addLuaSprite('Splashpreview', true) 
+            end     
+        
+            for i = 1, #SplashAssetsDAD do
+                makeAnimatedLuaSprite('SplashpreviewDAD', SplashAssetsDAD[ns2], 100, 1230)
+                setObjectCamera('SplashpreviewDAD', 'camHUD')
+                scaleLuaSprite('SplashpreviewDAD', 0.5, 0.5)
+                addLuaSprite('SplashpreviewDAD', true)
+            end
         end
-    end
-
-    if ifPixelNote then
-        for i = 1, #PixelSplashskin do
-            makeAnimatedLuaSprite('SplashPixelpre', Splashskin[sp1], PreX, PreY)
-            setObjectCamera('SplashPixelpre', 'camHUD')
-            scaleLuaSprite('SplashPixelpre', 0.5, 0.5)
-            addLuaSprite('SplashPixelpre', true) 
-        end     
     
-        for i = 1, #PixelSplashskinDAD do
-            makeAnimatedLuaSprite('SplashPixelpreDAD', SplashskinDAD[sp1DAD], PreX, PreDADY)
-            setObjectCamera('SplashPixelpreDAD', 'camHUD')
-            scaleLuaSprite('SplashPixelpreDAD', 0.5, 0.5)
-            addLuaSprite('SplashPixelpreDAD', true)
+        if ifPixelNote then
+            for i = 1, #PixelSplashAssets do
+                makeAnimatedLuaSprite('Splashpreview', PixelSplashAssets[ps1], 100, 1230)
+                setObjectCamera('Splashpreview', 'camHUD')
+                setProperty('Splashpreview.antialiasing', false)
+                scaleLuaSprite('Splashpreview', 0.5, 0.5)
+                addLuaSprite('Splashpreview', true) 
+            end     
+        
+            for i = 1, #PixelSplashAssetsDAD do
+                makeAnimatedLuaSprite('SplashpreviewDAD', PixelSplashAssetsDAD[ps2], 100, 1230)
+                setObjectCamera('SplashpreviewDAD', 'camHUD')
+                setProperty('SplashpreviewDAD.antialiasing', false)
+                scaleLuaSprite('SplashpreviewDAD', 0.5, 0.5)
+                addLuaSprite('SplashpreviewDAD', true)
+            end
         end
     end
 end
@@ -621,67 +591,59 @@ local n2 = 1
 
 local n1DAD = 1
 local n2DAD = 1
-
-local p1 = 1
-local p2 = 1
-
-local p1DAD = 1
-local p2DAD = 1
 function onSplashPrefix()
-    SplashX = {290, 375, 210, 465}
-    SplashDADX = {290, 375, 210, 465}
-                    
-    SplashY = 60
-    SplashDADY = 210
-
-    NamePrefix1 = {'blue1', 'green1', 'purple1', 'red1'}
-    NamePrefix2 = {'blue2', 'green2', 'purple2', 'red2'} 
-       
-    Splashes = {
-        [1] = function()
-            for i = 1, #NameSplash do
-                objectPlayAnimation('Splashpreview', NamePrefix1[n1], false)
-                objectPlayAnimation('Splashpreview', NamePrefix2[n1], false)
-                setProperty('Splashpreview.x', SplashX[n2])
-                setProperty('Splashpreview.y', SplashY)
-            end    
-        end,
-
-        [2] = function()
-            for i = 1, #NameSplashDAD do
-                objectPlayAnimation('SplashpreviewDAD', NamePrefix1[n1DAD], false)
-                objectPlayAnimation('SplashpreviewDAD', NamePrefix2[n1DAD], false)
-                setProperty('SplashpreviewDAD.x', SplashDADX[n2DAD])
-                setProperty('SplashpreviewDAD.y', SplashDADY)
-            end    
-        end,    
-    }  
+    if Activate and not SkipThis then
+        local SplashX = {290, 375, 210, 465}
+        local SplashDADX = {290, 375, 210, 465}
+                        
+        local SplashY = 60
+        local SplashDADY = 210
     
-    for i = 1, #NameSplash do
-        luaSpriteAddAnimationByPrefix('Splashpreview', 'blue1', 'note splash blue 1', 24, false);
-        luaSpriteAddAnimationByPrefix('Splashpreview', 'green1', 'note splash green 1', 24, false);
-        luaSpriteAddAnimationByPrefix('Splashpreview', 'purple1', 'note splash purple 1', 24, false);
-        luaSpriteAddAnimationByPrefix('Splashpreview', 'red1', 'note splash red 1', 24, false);
-                        
-        luaSpriteAddAnimationByPrefix('Splashpreview', 'blue2', 'note splash blue 2', 24, false);
-        luaSpriteAddAnimationByPrefix('Splashpreview', 'green2', 'note splash green 2', 24, false);
-        luaSpriteAddAnimationByPrefix('Splashpreview', 'purple2', 'note splash purple 2', 24, false);
-        luaSpriteAddAnimationByPrefix('Splashpreview', 'red2', 'note splash red 2', 24, false);
-    end
-
-    for i = 1, #NameSplashDAD do
-        luaSpriteAddAnimationByPrefix('SplashpreviewDAD', 'blue1', 'note splash blue 1', 24, false);
-        luaSpriteAddAnimationByPrefix('SplashpreviewDAD', 'green1', 'note splash green 1', 24, false);
-        luaSpriteAddAnimationByPrefix('SplashpreviewDAD', 'purple1', 'note splash purple 1', 24, false);
-        luaSpriteAddAnimationByPrefix('SplashpreviewDAD', 'red1', 'note splash red 1', 24, false);
-                        
-        luaSpriteAddAnimationByPrefix('SplashpreviewDAD', 'blue2', 'note splash blue 2', 24, false);
-        luaSpriteAddAnimationByPrefix('SplashpreviewDAD', 'green2', 'note splash green 2', 24, false);
-        luaSpriteAddAnimationByPrefix('SplashpreviewDAD', 'purple2', 'note splash purple 2', 24, false);
-        luaSpriteAddAnimationByPrefix('SplashpreviewDAD', 'red2', 'note splash red 2', 24, false);
+        local NamePrefix1 = {'blue1', 'green1', 'purple1', 'red1'}
+        local NamePrefix2 = {'blue2', 'green2', 'purple2', 'red2'} 
+           
+        Splashes = {
+            [1] = function()
+                for i = 1, #SplashAssets or #PixelSplashAssets do
+                    objectPlayAnimation('Splashpreview', NamePrefix1[n1], false)
+                    objectPlayAnimation('Splashpreview', NamePrefix2[n1], false)
+                    setPos('Splashpreview', {SplashX[n2], SplashY})
+                end    
+            end,
+    
+            [2] = function()
+                for i = 1, #SplashAssetsDAD or #PixelSplashAssetsDAD do
+                    objectPlayAnimation('SplashpreviewDAD', NamePrefix1[n1DAD], false)
+                    objectPlayAnimation('SplashpreviewDAD', NamePrefix2[n1DAD], false)
+                    setPos('SplashpreviewDAD', {SplashDADX[n2DAD], SplashDADY})
+                end    
+            end,    
+        }  
+        
+        for i = 1, #SplashAssets or #PixelSplashAssets do
+            luaSpriteAddAnimationByPrefix('Splashpreview', 'blue1', 'note splash blue 1', 24, false);
+            luaSpriteAddAnimationByPrefix('Splashpreview', 'green1', 'note splash green 1', 24, false);
+            luaSpriteAddAnimationByPrefix('Splashpreview', 'purple1', 'note splash purple 1', 24, false);
+            luaSpriteAddAnimationByPrefix('Splashpreview', 'red1', 'note splash red 1', 24, false);
+                            
+            luaSpriteAddAnimationByPrefix('Splashpreview', 'blue2', 'note splash blue 2', 24, false);
+            luaSpriteAddAnimationByPrefix('Splashpreview', 'green2', 'note splash green 2', 24, false);
+            luaSpriteAddAnimationByPrefix('Splashpreview', 'purple2', 'note splash purple 2', 24, false);
+            luaSpriteAddAnimationByPrefix('Splashpreview', 'red2', 'note splash red 2', 24, false);
+        end
+        for i = 1, #SplashAssetsDAD or #PixelSplashAssetsDAD do
+            luaSpriteAddAnimationByPrefix('SplashpreviewDAD', 'blue1', 'note splash blue 1', 24, false);
+            luaSpriteAddAnimationByPrefix('SplashpreviewDAD', 'green1', 'note splash green 1', 24, false);
+            luaSpriteAddAnimationByPrefix('SplashpreviewDAD', 'purple1', 'note splash purple 1', 24, false);
+            luaSpriteAddAnimationByPrefix('SplashpreviewDAD', 'red1', 'note splash red 1', 24, false);
+                            
+            luaSpriteAddAnimationByPrefix('SplashpreviewDAD', 'blue2', 'note splash blue 2', 24, false);
+            luaSpriteAddAnimationByPrefix('SplashpreviewDAD', 'green2', 'note splash green 2', 24, false);
+            luaSpriteAddAnimationByPrefix('SplashpreviewDAD', 'purple2', 'note splash purple 2', 24, false);
+            luaSpriteAddAnimationByPrefix('SplashpreviewDAD', 'red2', 'note splash red 2', 24, false);
+        end
     end
 end 
---]]
 
 -- uhh these dumb function are for campcating the code
 local HealthHUD = {'scoreTxt', 'healthBar', 'healthBarBG', 'iconP1', 'iconP2'}
@@ -735,12 +697,14 @@ function onPlus()
     if not ifPixelNote then
         if getPropertyFromClass('flixel.FlxG', 'keys.justPressed.T') then
             playSound('scrollMenu', 0.5, false)
+            SplashCheck = false;
             ns1 = ns1 + 1
         end  
 
         if checkDadStrums then
             if getPropertyFromClass('flixel.FlxG', 'keys.justPressed.F') then
                 playSound('scrollMenu', 0.5, false)
+                SplashCheck = false;
                 ns2 = ns2 + 1
             end 
         elseif not checkDadStrums then
@@ -751,37 +715,26 @@ function onPlus()
 
         if getPropertyFromClass('flixel.FlxG', 'keys.justPressed.E') then
             playSound('scrollMenu', 0.5, false)
+            SplashCheck = false;
             ns1 = ns1 + 1
 
             if checkDadStrums then
                 ns2 = ns2 + 1
             end
         end  
-
-        --[[
-        if getPropertyFromClass('flixel.FlxG', 'keys.justPressed.Y') then
-            Splashes[1]()
-            n1 = n1 + 1
-            n2 = n2 + 1
-        end
-
-        if getPropertyFromClass('flixel.FlxG', 'keys.justPressed.G') then
-            Splashes[2]()
-            n1DAD = n1DAD + 1
-            n2DAD = n2DAD + 1
-        end
-        --]]
     end    
 
     if ifPixelNote then
         if getPropertyFromClass('flixel.FlxG', 'keys.justPressed.T') then
             playSound('scrollMenu', 0.5, false)
+            SplashCheck = false;
             ps1 = ps1 + 1
         end  
     
         if checkDadStrums then
             if getPropertyFromClass('flixel.FlxG', 'keys.justPressed.F') then
                 playSound('scrollMenu', 0.5, false)
+                SplashCheck = false;
                 ps2 = ps2 + 1
             end  
         elseif not checkDadStrums then
@@ -792,6 +745,7 @@ function onPlus()
 
         if getPropertyFromClass('flixel.FlxG', 'keys.justPressed.E') then
             playSound('scrollMenu', 0.5, false)
+            SplashCheck = false;
             ps1 = ps1 + 1
 
             if checkDadStrums then
@@ -799,45 +753,60 @@ function onPlus()
             end
         end 
     end  
+
+    if getPropertyFromClass('flixel.FlxG', 'keys.justPressed.Y') then
+        Splashes[1]()
+        n1 = n1 + 1
+        n2 = n2 + 1
+    end
+
+    if checkDadStrums then
+        if getPropertyFromClass('flixel.FlxG', 'keys.justPressed.G') then
+            Splashes[2]()
+            n1DAD = n1DAD + 1
+            n2DAD = n2DAD + 1
+        end
+    end
 end    
 
-local n = 5 -- Normal
-local p = 4 -- Pixel
+local Nor = 5 -- Normal
+local Pix = 4 -- Pixel
 function onReset()
-    if ns1 == n then
+    if ns1 == Nor then
         ns1 = 1
-    end    
-    if ns2 == n then
+    elseif ns2 == Nor then
         ns2 = 1
     end  
     
-    if ps1 == p then
+    if ps1 == Pix then
         ps1 = 1
-    end
-    if ps2 == p then
+    elseif ps2 == Pix then
         ps2 = 1
     end  
     -- Note texture
 
-    if s1 == n then
+    if s1 == Nor then
         s1 = 1
+    elseif s2 == Nor then
+        s2 = 1
     end
-    if s1DAD == n then
-        s1DAD = 1
+
+    if sp1 == Pix then
+        sp1 = 1
+    elseif sp2 == Pix then
+        sp2 = 1
     end
     -- Splash texture
 
-    if n1 == n then
+    if n1 == Nor then
         n1 = 1
-    end
-    if n2 == n then
+    elseif n2 == Nor then 
         n2 = 1
     end
 
-    if n1DAD == n then
+    if n1DAD == Nor then
         n1DAD = 1
-    end
-    if n2DAD == n then
+    elseif n2DAD == Nor then
         n2DAD = 1
     end
     -- Splash Prefixes
@@ -846,9 +815,7 @@ function onReset()
         setPos('Arrow', {nil, 460})
         pos = 460
         count = 1
-    end  
-    
-    if count == 0 then
+    elseif count == 0 then
         setPos('Arrow', {nil, 520})
         pos = 520
         count = 4
