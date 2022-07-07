@@ -26,7 +26,7 @@ function onCheckVersion(bool)
           end
 
           if DeActivate then
-               makeLuaSprite('BlackError', 0, 0)  -- if you don't know what nil is, it's means no value 
+               makeLuaSprite('BlackError', 0, 0)
                makeGraphic('BlackError', 1500, 1000, '000000')
                setObjectCamera('BlackError', 'other')
                addLuaSprite('BlackError', true)
