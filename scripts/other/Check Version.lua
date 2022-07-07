@@ -18,7 +18,7 @@ function onCheckVersion(bool)
                setProperty('camGame.visible', false)
                setProperty('camHUD.visible', false)
           else               
-               local Texts = {'Ceck1', 'Ceck2', 'Ceck3', 'Ceck4'}
+               local Texts = {'Ceck1', 'Ceck2', 'Ceck3', 'Ceck4', 'Ceck5', 'Ceck6'}
                for i = 1, #Texts do 
                     removeLuaText(Texts[i], true)
                end 
@@ -31,17 +31,23 @@ function onCheckVersion(bool)
                setObjectCamera('BlackError', 'other')
                addLuaSprite('BlackError', true)
 
-               onShortCutText('Ceck1', 'Uh oh! Psych Engine('..version..') is outdated!', 0, 0, true)
-               onTextPrefix('Ceck1', 'ff0000', 25, 'other')
+               onShortCutText('Ceck1', 'Uh oh! this Psych Engine('..version..') is outdated!', 0, 0, true)
+               onTextPrefix('Ceck1', 'ff0000', 23, 'other')
 
-               onShortCutText('Ceck2', 'Download Psych Engine('..CurrentVersion..')', 0, 30, true)
-               onTextPrefix('Ceck2', 'ff0000', 25, 'other')
+               onShortCutText('Ceck2', "NoteSkin Selector (9.0) script might break or crash, if you don't donwload Psych Engine("..CurrentVersion..")", 0, 30, true)
+               onTextPrefix('Ceck2', 'ff0000', 23, 'other')
 
-               onShortCutText('Ceck3', 'If you want to play on Psych Engine('..version..')', 0, 100, true)
-               onTextPrefix('Ceck3', 'ff0000', 25, 'other')
+               onShortCutText('Ceck3', "Or download the NoteSkin Selector (9.0) - 0.5.2h Version, if it's on 0.5.2h", 0, 100, true)
+               onTextPrefix('Ceck3', '00ff00', 23, 'other')
 
-               onShortCutText('Ceck4', "Go to 'scripts/other' folder and set the boolean in onCheckVersion() into false", 0, 130, true)
-               onTextPrefix('Ceck4', 'ff0000', 25, 'other')
+               onShortCutText('Ceck4', "A another solution is to go to 'scripts/other' go to line 3 and set it to false", 0, 130, true)
+               onTextPrefix('Ceck4', 'ff0000', 23, 'other')
+
+               onShortCutText('Ceck5', "if you're taking the risk", 0, 160, true)
+               onTextPrefix('Ceck5', 'ff0000', 23, 'other')
+
+               onShortCutText('Ceck6', "Also if you wan't to exit [Press 7] > [Delete key] > [Escape key]", 0, 230, true)
+               onTextPrefix('Ceck6', '00ff00', 23, 'other')
           end
      end
 end
