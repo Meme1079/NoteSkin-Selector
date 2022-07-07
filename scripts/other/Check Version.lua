@@ -31,18 +31,28 @@ function onCheckVersion(bool)
                setObjectCamera('BlackError', 'other')
                addLuaSprite('BlackError', true)
 
-               onShortCutText('Ceck1', 'Uh oh! Psych Engine('..version..') is outdated!', 0, 0, 'ff0000', 25, 'other', true)
-               onShortCutText('Ceck2', 'Download Psych Engine('..CurrentVersion..')', 0, 50, 'ff0000', 25, 'other', true)
-               onShortCutText('Ceck3', 'If you want to play on this Psych Engine('..version..')', 0, 150, 'ff0000', 25, 'other', true)
-               onShortCutText('Ceck4', 'Go to scripts/other folder and set the boolean in onCheckVersion() into false', 0, 200, 'ff0000', 25, 'other', true)
+               onShortCutText('Ceck1', 'Uh oh! Psych Engine('..version..') is outdated!', 0, 0, true)
+               onTextPrefix('Ceck1', 'ff0000', 25, 'other')
+
+               onShortCutText('Ceck2', 'Download Psych Engine('..CurrentVersion..')', 0, 30, true)
+               onTextPrefix('Ceck2', 'ff0000', 25, 'other')
+
+               onShortCutText('Ceck3', 'If you want to play on Psych Engine('..version..')', 0, 100, true)
+               onTextPrefix('Ceck3', 'ff0000', 25, 'other')
+
+               onShortCutText('Ceck4', "Go to 'scripts/other' folder and set the boolean in onCheckVersion() into false", 0, 130, true)
+               onTextPrefix('Ceck4', 'ff0000', 25, 'other')
           end
      end
 end
 
-function onShortCutText(string, text, x, y, color, size, cam, bool) -- too lazy
-     makeLuaText(string, text, nil, x, y)
-     setTextColor(string, color)
-     setTextSize(string, size)
-     setObjectCamera(string, cam)
-     addLuaText(string, bool)
+function onShortCutText(obj, text, x, y, bool)
+     makeLuaText(obj, text, nil, x, y)
+     addLuaText(obj, bool)
+end
+ 
+function onTextPrefix(obj, color, size, cam)
+     setTextColor(obj, color)
+     setTextSize(obj, size)
+     setObjectCamera(obj, cam)
 end
