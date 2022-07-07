@@ -448,7 +448,7 @@ function onUpdate(elapsed)
 
     if not noResetButton then
         setPropertyFromClass('ClientPrefs', 'noResetButton', true)
-        if curDecBeat == 0.1 then
+        if getSongPosition() == 1 then
             setPropertyFromClass('ClientPrefs', 'noResetButton', false)
         end
     end
