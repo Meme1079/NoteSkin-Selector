@@ -194,9 +194,15 @@ HSName = {'Defualt', 'Hit Alt', 'Cherry HitSounds', 'Snare Hit'} -- name of hits
 
 hss = 1 -- just change the number lol
 function goodNoteHit(id, direction, noteType, isSustainNote)  
+    local hitsoundVolume = getPropertyFromClass('ClientPrefs', 'hitsoundVolume')
+    local ConvertVolume = '0.'..hitsoundVolume
+
     if AnnoyingSound and not isSustainNote then
-        playSound(HitSounds[hss], 0.5, false)
+        playSound(HitSounds[hss], ConvertVolume, false)
     end  
+    if hitsoundVolume == 1 then
+        ConvertVolume = 1
+    end
 end  
 
 function onShortCutText(obj, text, x, y, bool)
