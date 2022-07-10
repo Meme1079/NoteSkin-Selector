@@ -470,6 +470,12 @@ function onUpdate(elapsed)
         onSplashPrefix()
         SplashCheck = true;
     end
+    
+    if AnnoyingSound then
+        hitsoundDisabled = false
+    else
+        hitsoundDisabled = true
+    end
 end 
 
 local PreX = 255
