@@ -136,9 +136,7 @@ local Visible = true;
 local allowCountdown = false;
 function onStartCountdown()
     if not allowCountdown then -- Block the first countdown
-        allowCountdown = true;  
-        --onCustomSplash()
-        --onSplashPrefix()       
+        allowCountdown = true;     
         if Activate and not MuteMusic then
             playMusic('offsetSong', 0.5, true)
         end  
@@ -470,7 +468,7 @@ function onUpdate(elapsed)
         onSplashPrefix()
         SplashCheck = true;
     end
-    
+
     if AnnoyingSound then
         hitsoundDisabled = false
     else
