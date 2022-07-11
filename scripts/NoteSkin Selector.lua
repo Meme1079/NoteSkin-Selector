@@ -499,8 +499,8 @@ local pUI = 'pixelUI/noteseen/'
 local NoteString = {nse..'normal notes', nse..'tabi notes', nse..'majin notes', nse..'creepy notes', nse..'dokidoki notes'}
 local NoteStringDAD = {nse..'normal notes', nse..'tabi notes', nse..'majin notes', nse..'creepy notes', nse..'dokidoki notes'}
 
-local PixelString = {pUI..'pixel notes', pUI..'NES notes', pUI..'dokidoki notes', pUI..'Sonic8bit notes'}
-local PixelStringDAD = {pUI..'pixel notes', pUI..'NES notes', pUI..'dokidoki notes', pUI..'Sonic8bit notes'}
+local PixelString = {pUI..'pixel notes', pUI..'NES notes', pUI..'dokidoki notes', pUI..'Sonic8bit notes', pUI..'mario notes'}
+local PixelStringDAD = {pUI..'pixel notes', pUI..'NES notes', pUI..'dokidoki notes', pUI..'Sonic8bit notes', pUI..'mario notes'}
 function onCustomNotes()
     onNoteText()
     if not ifPixelNote then
@@ -543,8 +543,8 @@ local sn = 'NoteSkin: '
 local NoteText = {sn..'Defualt', sn..'Tabi', sn..'Majin', sn..'Creepy', sn..'DokiDoki'}
 local NoteTextDAD = {sn..'Defualt', sn..'Tabi', sn..'Majin', sn..'Creepy', sn..'DokiDoki'}
 
-local PixelText = {sn..'Defualt', sn..'NES', sn..'DokiDoki', sn..'Sonic 8Bit'}
-local PixelTextDAD = {sn..'Defualt', sn..'NES', sn..'DokiDoki', sn..'Sonic 8Bit'}
+local PixelText = {sn..'Defualt', sn..'NES', sn..'DokiDoki', sn..'Sonic 8Bit', sn..'Mario'}
+local PixelTextDAD = {sn..'Defualt', sn..'NES', sn..'DokiDoki', sn..'Sonic 8Bit', sn..'Mario'}
 function onNoteText()
     if not ifPixelNote then
         for i = 1, #NoteText do
@@ -783,7 +783,7 @@ function onPlus()
 end    
 
 local Nor = 6 -- Normal
-local Pix = 5 -- Pixel
+local Pix = 6 -- Pixel
 function onReset()
     if ns1 == Nor then
         ns1 = 1
@@ -846,11 +846,11 @@ NoteAssetsDAD = {'NOTE_assets', ns..'tabi_NOTE_assets', ns..'Majin_Notes', ns..'
 SplashAssets = {'noteSplashes', 'noteSplashes', npl..'Majin_Splashes', npl..'creepySplashes', npl..'dokidokiSplashes'}
 SplashAssetsDAD = {'noteSplashes', 'noteSplashes', npl..'Majin_Splashes', npl..'creepySplashes', npl..'dokidokiSplashes'}
 
-PixelAssets = {'NOTE_assets', ns..'NESNOTE_assets', ns..'dokidoki_assets', ns..'Sonic8bit_assets'}
-PixelAssetsDAD = {'NOTE_assets', ns..'NESNOTE_assets', ns..'dokidoki_assets', ns..'Sonic8bit_assets'}
+PixelAssets = {'NOTE_assets', ns..'NESNOTE_assets', ns..'dokidoki_assets', ns..'Sonic8bit_assets', ns..'Mario_assets'}
+PixelAssetsDAD = {'NOTE_assets', ns..'NESNOTE_assets', ns..'dokidoki_assets', ns..'Sonic8bit_assets', ns..'Mario_assets'}
 
-PixelSplashAssets = {nw..'noteSplashes', nw..'noteSplashes', nw..'dokidokiSplashes', nw..'Sonic8bitSplashes'}
-PixelSplashAssetsDAD = {nw..'noteSplashes', nw..'noteSplashes', nw..'dokidokiSplashes', nw..'Sonic8bitSplashes'}
+PixelSplashAssets = {nw..'noteSplashes', nw..'noteSplashes', nw..'dokidokiSplashes', nw..'Sonic8bitSplashes', nw..'marioSplashes'}
+PixelSplashAssetsDAD = {nw..'noteSplashes', nw..'noteSplashes', nw..'dokidokiSplashes', nw..'Sonic8bitSplashes', nw..'marioSplashes'}
 function onUpdatePost(elapsed)
     if not Activate then
         for i = 0, getProperty('notes.length')-1 do
