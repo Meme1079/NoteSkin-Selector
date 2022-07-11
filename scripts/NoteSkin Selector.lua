@@ -1,72 +1,72 @@
 function onCreate()
     onShortCutText('space', 'Press [SPACE] to Start', 630, 410, true)
-    onTextPrefix('space', hex[4], 30, 'other')
+    onTextPrefix('space', hex[4], 30, 'camHUD')
 
     onShortCutText('t', 'Press [T] to Change NoteSkin', 660, 150, true)
-    onTextPrefix('t', hex[4], 20, 'other')
+    onTextPrefix('t', hex[4], 20, 'camHUD')
 
     onShortCutText('y', 'Press [Y] to Check Note Splashes', 635, 120, true)
-    onTextPrefix('y', hex[4], 20, 'other')
+    onTextPrefix('y', hex[4], 20, 'camHUD')
 
     onShortCutText('f', 'Press [F] to Change NoteSkin', 660, 300, true)
-    onTextPrefix('f', hex[4], 20, 'other')
+    onTextPrefix('f', hex[4], 20, 'camHUD')
 
     onShortCutText('g', 'Press [G] to Check Note Splashes', 635, 270, true)
-    onTextPrefix('g', hex[4], 20, 'other')
+    onTextPrefix('g', hex[4], 20, 'camHUD')
 
     onShortCutText('e', 'Press [E] to Change Both NoteSkin', 645, 380, true)
-    onTextPrefix('e', hex[4], 19.5, 'other')
+    onTextPrefix('e', hex[4], 19.5, 'camHUD')
 
     onShortCutText('esc', 'Press [ESCAPE] to Exit the song', 655, nil, true)
-    onTextPrefix('esc', hex[3], 18, 'other')
+    onTextPrefix('esc', hex[3], 18, 'camHUD')
 
     onShortCutText('Arrow', '>', 228, 460, nil, true)
-    onTextPrefix('Arrow', hex[4], 16, 'other')
+    onTextPrefix('Arrow', hex[4], 16, 'camHUD')
 
     onShortCutText('Message1', "You can't use Opponent Notes", 680, 450, nil)
-    onTextPrefix('Message1', hex[3], 17, 'other')
+    onTextPrefix('Message1', hex[3], 17, 'camHUD')
     setProperty('Message1.visible', false)
 
     onShortCutText('Message2', 'while disabiling the OpponentStrums', 650, 470, nil)
-    onTextPrefix('Message2', hex[3], 17, 'other')
+    onTextPrefix('Message2', hex[3], 17, 'camHUD')
     setProperty('Message2.visible', false)
 
     -- Setting --
 
     onShortCutText('h', 'Press [H] to Change BG to White', 230, 410, true)
-    onTextPrefix('h', hex[4], 18, 'other')
+    onTextPrefix('h', hex[4], 18, 'camHUD')
 
     onShortCutText('q', 'Press [Q] to Select All the Toggles', 225, 435, true)
-    onTextPrefix('q', hex[4], 18.5, 'other')
+    onTextPrefix('q', hex[4], 18.5, 'camHUD')
 
     onShortCutText('e1', 'Toggle Get the NoteSkin in the stage', 248, 460, true)
-    onTextPrefix('e1', hex[4], 16, 'other')
+    onTextPrefix('e1', hex[4], 16, 'camHUD')
 
     onShortCutText('e2', 'Toggle Hitsounds', 248, 480, true)
-    onTextPrefix('e2', hex[4], 16, 'other')
+    onTextPrefix('e2', hex[4], 16, 'camHUD')
 
     onShortCutText('e3', 'Toggle Change Opponent Scroll', 248, 500, true)
-    onTextPrefix('e3', hex[4], 16, 'other')
+    onTextPrefix('e3', hex[4], 16, 'camHUD')
 
     onShortCutText('e4', 'Toggle BG behind the Notes', 248, 520, true)
-    onTextPrefix('e4', hex[4], 16, 'other')
+    onTextPrefix('e4', hex[4], 16, 'camHUD')
 
     -- Background --
 
     makeLuaSprite('blacklol', nil, 630, 0)  -- if you don't know what nil is, it's means no value 
-    setObjectCamera('blacklol', 'other')
+    setObjectCamera('blacklol', 'camHUD')
     setProperty('blacklol.alpha', 0.3)
     addLuaSprite('blacklol')
 
     -- GamePlay Background --
 
     makeLuaSprite('BFblacklol', nil, 730, 0)
-    setObjectCamera('BFblacklol', 'other')
+    setObjectCamera('BFblacklol', 'camHUD')
     setProperty('BFblacklol.alpha', BLOpacity)
     addLuaSprite('BFblacklol', false)
 
     makeLuaSprite('DADblacklol', nil, 90, 0)
-    setObjectCamera('DADblacklol', 'other')
+    setObjectCamera('DADblacklol', 'camHUD')
     setProperty('DADblacklol.alpha', BLOpacity)
     addLuaSprite('DADblacklol', false)
 
@@ -78,17 +78,17 @@ function onCreate()
     BGX = 220
 
     makeLuaSprite('playerlol', nil, BGX, 100)
-    setObjectCamera('playerlol', 'other')
+    setObjectCamera('playerlol', 'camHUD')
     setProperty('playerlol.alpha', 0.3)
     addLuaSprite('playerlol')
 
     makeLuaSprite('opponentlol', nil, BGX, 250)
-    setObjectCamera('opponentlol', 'other')
+    setObjectCamera('opponentlol', 'camHUD')
     setProperty('opponentlol.alpha', 0.3)
     addLuaSprite('opponentlol')
 
     makeLuaSprite('optionlol', nil, BGX, 400)
-    setObjectCamera('optionlol', 'other')
+    setObjectCamera('optionlol', 'camHUD')
     setProperty('optionlol.alpha', 0.3)
     addLuaSprite('optionlol')
 
@@ -97,34 +97,34 @@ function onCreate()
     ThingyX = 218
 
     onShortCutText('pl', 'Player', ThingyX, 60, true)
-    onTextPrefix('pl', '31b1d1', 30, 'other')
+    onTextPrefix('pl', '31b1d1', 30, 'camHUD')
 
     onShortCutText('op', 'Opponent', ThingyX, 210, true)
-    onTextPrefix('op', 'af66ce', 30, 'other')
+    onTextPrefix('op', 'af66ce', 30, 'camHUD')
 
     onShortCutText('se', 'Settings', ThingyX, 360, true)
-    onTextPrefix('se', hex[4], 30, 'other')
+    onTextPrefix('se', hex[4], 30, 'camHUD')
 
     -- Note Text --
 
     NoteX = 695
 
     onShortCutText('Note', 'NoteSkin: Normal', NoteX, 80, true)
-    onTextPrefix('Note', hex[4], 25, 'other')
+    onTextPrefix('Note', hex[4], 25, 'camHUD')
 
     onShortCutText('NoteDAD', 'NoteSkin: Normal', NoteX, 230, true)
-    onTextPrefix('NoteDAD', hex[4], 25, 'other')
+    onTextPrefix('NoteDAD', hex[4], 25, 'camHUD')
 
     -- HitSounds -- 
 
     onShortCutText('hs', '('..HSName[hss]..')', 400, 480, true)
-    onTextPrefix('hs', hex[4], 16, 'other')
+    onTextPrefix('hs', hex[4], 16, 'camHUD')
 
     -- Functions --
 
     onPrecaching() 
     onBlackWhite(hex[1])
-    addLuaScript('scripts/other/Check Version') 
+    addLuaScript('scripts/camHUD/Check Version') 
 end    
 
 function onCreatePost()
@@ -154,7 +154,7 @@ end
 function onSongStart() 
     onRemove() 
     onHideHealthBar(true)
-    removeLuaScript('scripts/other/Check Version')
+    removeLuaScript('scripts/camHUD/Check Version')
 end 
 
 local WhiteBlack = false;    -- It changes the BG Notes to white or black, also [true] is white and black is [false]
@@ -202,6 +202,8 @@ function goodNoteHit(id, direction, noteType, isSustainNote)
     end  
     if hitsoundVolume == 1 then
         ConvertVolume = 1
+    else
+        ConvertVolume = '0.'..hitsoundVolume
     end
 end  
 
@@ -214,6 +216,10 @@ function onTextPrefix(obj, color, size, cam)
     setTextColor(obj, color)
     setTextSize(obj, size)
     setObjectCamera(obj, cam)
+end
+
+function onGetKey(key) -- I know this useless but I hate long code's they, hurt my brain a lot
+    return getPropertyFromClass('flixel.FlxG', 'keys.justPressed.'..key)
 end
 
 function setPos(obj, pos) 
@@ -240,6 +246,7 @@ hex = {'000000', '00ff00', 'ff0000', 'ffffff'}
 local count = 1
 local ifPixelNote = false;
 local SplashCheck = false;
+local GraphicActivate = true;
 function onUpdate(elapsed)
     inCutscene = getProperty('inCutscene')
     isPixelStage = getPropertyFromClass('PlayState', 'isPixelStage')
@@ -249,7 +256,7 @@ function onUpdate(elapsed)
         onCustomNotes() 
         onPlus() 
         onReset()
-        if getPropertyFromClass('flixel.FlxG', 'keys.justPressed.SPACE') and not SkipThis then
+        if onGetKey('SPACE') and not SkipThis then
             if Activate then
                 if not flashingLights then
                     cameraFlash('funny', hex[4], 0.7, false) 
@@ -264,18 +271,18 @@ function onUpdate(elapsed)
             Activate = false; 
         end 
         
-        if getPropertyFromClass('flixel.FlxG', 'keys.justPressed.ESCAPE') then
+        if onGetKey('ESCAPE') then
             endSong()      
         end   
 
-        if not AllToggles and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.Q') then
+        if not AllToggles and onGetKey('Q') then
             AllToggles = true;
             doTweenColor('qColor', 'q', hex[2], 0.1, 'linear')
             playSound('confirmMenu', 0.4, false)  
 
             onDumbTogglesColor(hex[2])
             onDumbToggles(true)
-        elseif AllToggles and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.Q') then
+        elseif AllToggles and onGetKey('Q') then
             AllToggles = false;
             doTweenColor('qColor', 'q', hex[4], 0.1, 'linear')
             playSound('cancelMenu', 0.4, false)  
@@ -289,11 +296,11 @@ function onUpdate(elapsed)
             onDumbToggles(true)
         end   
 
-        if not WhiteBlack and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.H') then
+        if not WhiteBlack and onGetKey('H') then
             WhiteBlack = true;
             setTextString('h', "Press [H] to Change BG to Black")
             onBlackWhite(hex[4]) 
-        elseif WhiteBlackand and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.H') then
+        elseif WhiteBlack and onGetKey('H') then
             WhiteBlack = false;
             setTextString('h', "Press [H] to Change BG to White")
             onBlackWhite(hex[1]) 
@@ -303,41 +310,41 @@ function onUpdate(elapsed)
         end  
 
         if count == 1 then
-            if not GetOGNotes and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.ENTER') then
+            if not GetOGNotes and onGetKey('ENTER') then
                 GetOGNotes = true;
                 doTweenColor('e1Color', 'e1', hex[2], 0.1, 'linear')
                 playSound('confirmMenu', 0.4, false) 
-            elseif GetOGNotes and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.ENTER') then
+            elseif GetOGNotes and onGetKey('ENTER') then
                 GetOGNotes = false;
                 doTweenColor('e1Color', 'e1', hex[4], 0.1, 'linear')
                 playSound('cancelMenu', 0.4, false)
             end    
         elseif count == 2 then
-            if not AnnoyingSound and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.ENTER') then
+            if not AnnoyingSound and onGetKey('ENTER') then
                 AnnoyingSound = true;
                 doTweenColor('e2Color', 'e2', hex[2], 0.1, 'linear')
                 playSound('confirmMenu', 0.4, false)  
-            elseif AnnoyingSound and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.ENTER') then  
+            elseif AnnoyingSound and onGetKey('ENTER') then  
                 AnnoyingSound = false;
                 doTweenColor('e2Color', 'e2', hex[4], 0.1, 'linear')
                 playSound('cancelMenu', 0.4, false)
             end 
         elseif count == 3 then
-            if not ChangeScroll and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.ENTER') then
+            if not ChangeScroll and onGetKey('ENTER') then
                 ChangeScroll = true;
                 doTweenColor('e3Color', 'e3', hex[2], 0.1, 'linear')
                 playSound('confirmMenu', 0.4, false)  
-            elseif ChangeScroll and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.ENTER') then    
+            elseif ChangeScroll and onGetKey('ENTER') then    
                 ChangeScroll = false;
                 doTweenColor('e3Color', 'e3', hex[4], 0.1, 'linear')
                 playSound('cancelMenu', 0.4, false) 
             end
         elseif count == 4 then
-            if not BGNote and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.ENTER') then
+            if not BGNote and onGetKey('ENTER') then
                 BGNote = true;
                 doTweenColor('e4Color', 'e4', hex[2], 0.1, 'linear')
                 playSound('confirmMenu', 0.4, false)  
-            elseif BGNote and getPropertyFromClass('flixel.FlxG', 'keys.justPressed.ENTER') then    
+            elseif BGNote and onGetKey('ENTER') then    
                 BGNote = false;
                 doTweenColor('e4Color', 'e4', hex[4], 0.1, 'linear')
                 playSound('cancelMenu', 0.4, false) 
@@ -410,7 +417,7 @@ function onUpdate(elapsed)
         end    
     end      
     
-    if not Activate then
+    if not Activate and GraphicActivate then
         if BGNote then
             setProperty('BFblacklol.visible', true)
             setProperty('DADblacklol.visible', true) 
@@ -432,7 +439,7 @@ function onUpdate(elapsed)
             if not checkDadStrums then 
                 removeLuaSprite('DADblacklol', true)
             end
-            Activate = gaming -- no more lag
+            GraphicActivate = false;
         end
     end 
 
@@ -460,7 +467,7 @@ function onUpdate(elapsed)
     if botPlay then
         if Visible then
             setProperty('botplayTxt.visible', false)
-        elseif not Visible then
+        else
             setProperty('botplayTxt.visible', true)    
         end
     end
@@ -499,14 +506,14 @@ function onCustomNotes()
     if not ifPixelNote then
         for i = 1, #NoteString do
             makeLuaSprite('preview', NoteString[ns1], PreX, PreY)
-            setObjectCamera('preview', 'other')
+            setObjectCamera('preview', 'camHUD')
             scaleObject('preview', 0.5, 0.5)
             addLuaSprite('preview', false)
         end  
 
         for i = 1, #NoteStringDAD do
             makeLuaSprite('previewDAD', NoteStringDAD[ns2], PreX, PreDADY)
-            setObjectCamera('previewDAD', 'other')
+            setObjectCamera('previewDAD', 'camHUD')
             scaleObject('previewDAD', 0.5, 0.5)
             addLuaSprite('previewDAD', false)
         end 
@@ -515,7 +522,7 @@ function onCustomNotes()
     if ifPixelNote then
         for i = 1, #PixelString do
             makeLuaSprite('preview', PixelString[ps1], PreX, PreY)
-            setObjectCamera('preview', 'other')
+            setObjectCamera('preview', 'camHUD')
             setProperty('preview.antialiasing', false)
             scaleObject('preview', 0.5, 0.5)
             addLuaSprite('preview', false)
@@ -523,7 +530,7 @@ function onCustomNotes()
 
         for i = 1, #PixelStringDAD do
             makeLuaSprite('previewDAD', PixelStringDAD[ps2], PreX, PreDADY)
-            setObjectCamera('previewDAD', 'other')
+            setObjectCamera('previewDAD', 'camHUD')
             setProperty('previewDAD.antialiasing', false)
             scaleObject('previewDAD', 0.5, 0.5)
             addLuaSprite('previewDAD', false)
@@ -563,14 +570,14 @@ function onCustomSplash()
         if not ifPixelNote then
             for i = 1, #SplashAssets do
                 makeAnimatedLuaSprite('Splashpreview', SplashAssets[ns1], 100, 1230)
-                setObjectCamera('Splashpreview', 'other')
+                setObjectCamera('Splashpreview', 'camHUD')
                 scaleLuaSprite('Splashpreview', 0.5, 0.5)
                 addLuaSprite('Splashpreview', true) 
             end     
         
             for i = 1, #SplashAssetsDAD do
                 makeAnimatedLuaSprite('SplashpreviewDAD', SplashAssetsDAD[ns2], 100, 1230)
-                setObjectCamera('SplashpreviewDAD', 'other')
+                setObjectCamera('SplashpreviewDAD', 'camHUD')
                 scaleLuaSprite('SplashpreviewDAD', 0.5, 0.5)
                 addLuaSprite('SplashpreviewDAD', true)
             end
@@ -579,7 +586,7 @@ function onCustomSplash()
         if ifPixelNote then
             for i = 1, #PixelSplashAssets do
                 makeAnimatedLuaSprite('Splashpreview', PixelSplashAssets[ps1], 100, 1230)
-                setObjectCamera('Splashpreview', 'other')
+                setObjectCamera('Splashpreview', 'camHUD')
                 setProperty('Splashpreview.antialiasing', false)
                 scaleLuaSprite('Splashpreview', 0.5, 0.5)
                 addLuaSprite('Splashpreview', true) 
@@ -587,7 +594,7 @@ function onCustomSplash()
         
             for i = 1, #PixelSplashAssetsDAD do
                 makeAnimatedLuaSprite('SplashpreviewDAD', PixelSplashAssetsDAD[ps2], 100, 1230)
-                setObjectCamera('SplashpreviewDAD', 'other')
+                setObjectCamera('SplashpreviewDAD', 'camHUD')
                 setProperty('SplashpreviewDAD.antialiasing', false)
                 scaleLuaSprite('SplashpreviewDAD', 0.5, 0.5)
                 addLuaSprite('SplashpreviewDAD', true)
@@ -692,14 +699,14 @@ end
 
 local pos = 460
 function onPlus()
-    if getPropertyFromClass('flixel.FlxG', 'keys.justPressed.DOWN') then
+    if onGetKey('DOWN') then
         playSound('scrollMenu', 0.5, false)
         count = count + 1
         pos = pos + 20
         setPos('Arrow', {nil, pos})   
     end  
 
-    if getPropertyFromClass('flixel.FlxG', 'keys.justPressed.UP') then
+    if onGetKey('UP') then
         playSound('scrollMenu', 0.5, false)
         count = count - 1
         pos = pos - 20
@@ -707,25 +714,23 @@ function onPlus()
     end    
 
     if not ifPixelNote then
-        if getPropertyFromClass('flixel.FlxG', 'keys.justPressed.T') then
+        if onGetKey('T') then
             playSound('scrollMenu', 0.5, false)
             SplashCheck = false;
             ns1 = ns1 + 1
         end  
 
-        if checkDadStrums then
-            if getPropertyFromClass('flixel.FlxG', 'keys.justPressed.F') then
+        if onGetKey('F') then
+            if checkDadStrums then
                 playSound('scrollMenu', 0.5, false)
                 SplashCheck = false;
                 ns2 = ns2 + 1
-            end 
-        elseif not checkDadStrums then
-            if getPropertyFromClass('flixel.FlxG', 'keys.justPressed.F') then
+            else
                 playSound('deniedMOMENT', 0.5, false)
-            end 
-        end
+            end
+        end 
 
-        if getPropertyFromClass('flixel.FlxG', 'keys.justPressed.E') then
+        if onGetKey('E') then
             playSound('scrollMenu', 0.5, false)
             SplashCheck = false;
             ns1 = ns1 + 1
@@ -737,25 +742,23 @@ function onPlus()
     end    
 
     if ifPixelNote then
-        if getPropertyFromClass('flixel.FlxG', 'keys.justPressed.T') then
+        if onGetKey('T') then
             playSound('scrollMenu', 0.5, false)
             SplashCheck = false;
             ps1 = ps1 + 1
         end  
     
-        if checkDadStrums then
-            if getPropertyFromClass('flixel.FlxG', 'keys.justPressed.F') then
+        if onGetKey('F') then
+            if checkDadStrums then
                 playSound('scrollMenu', 0.5, false)
                 SplashCheck = false;
                 ps2 = ps2 + 1
-            end  
-        elseif not checkDadStrums then
-            if getPropertyFromClass('flixel.FlxG', 'keys.justPressed.F') then
+            else
                 playSound('deniedMOMENT', 0.5, false)
-            end  
-        end
+            end
+        end  
 
-        if getPropertyFromClass('flixel.FlxG', 'keys.justPressed.E') then
+        if onGetKey('E') then
             playSound('scrollMenu', 0.5, false)
             SplashCheck = false;
             ps1 = ps1 + 1
@@ -766,18 +769,16 @@ function onPlus()
         end 
     end  
 
-    if getPropertyFromClass('flixel.FlxG', 'keys.justPressed.Y') then
+    if onGetKey('Y') then
         Splashes[1]()
         n1 = n1 + 1
         n2 = n2 + 1
     end
 
-    if checkDadStrums then
-        if getPropertyFromClass('flixel.FlxG', 'keys.justPressed.G') then
-            Splashes[2]()
-            n1DAD = n1DAD + 1
-            n2DAD = n2DAD + 1
-        end
+    if onGetKey('G') and checkDadStrums then
+        Splashes[2]()
+        n1DAD = n1DAD + 1
+        n2DAD = n2DAD + 1
     end
 end    
 
@@ -914,12 +915,12 @@ end
 local TextCon = {'y', 't', 'g', 'f', 'e', 'h', 'q', 'hs', 'space', 'esc'}
 local Togs = {'e1', 'e2', 'e3', 'e4', 'Arrow'}
 local BGlols = {'blacklol', 'playerlol', 'opponentlol', 'optionlol'}
-local Other = {'Note', 'NoteDAD', 'pl', 'op', 'se', 'Message1', 'Message2'}
+local OtherThingys = {'Note', 'NoteDAD', 'pl', 'op', 'se', 'Message1', 'Message2'}
 function onRemove() 
-    for i = 1, #TextCon or #Togs or #Other or #BGlols do
+    for i = 1, #TextCon or #Togs or #OtherThingys or #BGlols do
         removeLuaText(TextCon[i], true)
         removeLuaText(Togs[i], true)
-        removeLuaText(Other[i], true)
+        removeLuaText(OtherThingys[i], true)
         removeLuaSprite(BGlols[i], true)
     end
 
