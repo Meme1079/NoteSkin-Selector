@@ -517,9 +517,7 @@ function onCustomNotes()
             scaleObject('previewDAD', 0.5, 0.5)
             addLuaSprite('previewDAD', false)
         end 
-    end  
-    
-    if ifPixelNote then
+    else
         for i = 1, #PixelString do
             makeLuaSprite('preview', PixelString[ps1], PreX, PreY)
             setObjectCamera('preview', 'camHUD')
@@ -553,9 +551,7 @@ function onNoteText()
         for i = 1, #NoteTextDAD do
             setTextString('NoteDAD', NoteText[ns2])
         end
-    end 
-    
-    if ifPixelNote then
+    else
         for i = 1, #PixelText do
             setTextString('Note', PixelText[ps1])
         end
@@ -581,9 +577,7 @@ function onCustomSplash()
                 scaleLuaSprite('SplashpreviewDAD', 0.5, 0.5)
                 addLuaSprite('SplashpreviewDAD', true)
             end
-        end
-    
-        if ifPixelNote then
+        else
             for i = 1, #PixelSplashAssets do
                 makeAnimatedLuaSprite('Splashpreview', PixelSplashAssets[ps1], 100, 1230)
                 setObjectCamera('Splashpreview', 'camHUD')
