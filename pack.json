@@ -1,0 +1,7 @@
+{
+	"name": "NoteSkin Selector",
+	"description": "Script that makes you select you're NoteSkins",
+	"restart": false,
+	"runsGlobally": true,
+	"color": [65, 66, 157]
+}
