@@ -359,7 +359,7 @@ function onUpdate(elapsed)
                     getPropertyFromGroup('notes', i, 'noteSplashTexture'); 
                     
                     getPropertyFromGroup('playerStrums', i, 'texture');
-                    getPropertyFromGroup('opponentStrums', i, 'texture');  
+                    getPropertyFromGroup('opponentStrums', i, 'texture');
                 end    
             end
         end    
@@ -510,7 +510,6 @@ function onCustomNotes()
             scaleObject('preview', 0.5, 0.5)
             addLuaSprite('preview', false)
         end  
-
         for i = 1, #NoteStringDAD do
             makeLuaSprite('previewDAD', NoteStringDAD[ns2], PreX, PreDADY)
             setObjectCamera('previewDAD', 'camHUD')
@@ -525,7 +524,6 @@ function onCustomNotes()
             scaleObject('preview', 0.5, 0.5)
             addLuaSprite('preview', false)
         end  
-
         for i = 1, #PixelStringDAD do
             makeLuaSprite('previewDAD', PixelStringDAD[ps2], PreX, PreDADY)
             setObjectCamera('previewDAD', 'camHUD')
@@ -733,9 +731,7 @@ function onPlus()
                 ns2 = ns2 + 1
             end
         end  
-    end    
-
-    if ifPixelNote then
+    else
         if onGetKey('T') then
             playSound('scrollMenu', 0.5, false)
             SplashCheck = false;
@@ -857,7 +853,7 @@ function onUpdatePost(elapsed)
                         setPropertyFromGroup('notes', i, 'texture', PixelAssets[ps1]);  
                         setPropertyFromGroup('notes', i, 'noteSplashTexture', PixelSplashAssets[ps1]);  
                     end    
-                elseif not getPropertyFromGroup('notes', i, 'mustPress') then -- Opponent Section
+                else -- Opponent Section
                     if not ifPixelNote then
                         setPropertyFromGroup('notes', i, 'texture', NoteAssetsDAD[ns2]);  
                     else
