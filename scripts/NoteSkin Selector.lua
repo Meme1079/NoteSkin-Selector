@@ -859,16 +859,14 @@ function onUpdatePost(elapsed)
                     if not ifPixelNote then
                         setPropertyFromGroup('notes', i, 'texture', NoteAssets[ns1]);  
                         setPropertyFromGroup('notes', i, 'noteSplashTexture', SplashAssets[ns1]);
-                    end
-                    if ifPixelNote then
+                    else
                         setPropertyFromGroup('notes', i, 'texture', PixelAssets[ps1]);  
                         setPropertyFromGroup('notes', i, 'noteSplashTexture', PixelSplashAssets[ps1]);  
                     end    
                 elseif not getPropertyFromGroup('notes', i, 'mustPress') then -- Opponent Section
                     if not ifPixelNote then
                         setPropertyFromGroup('notes', i, 'texture', NoteAssetsDAD[ns2]);  
-                    end
-                    if ifPixelNote then
+                    else
                         setPropertyFromGroup('notes', i, 'texture', PixelAssetsDAD[ps2]);  
                     end
                 end
@@ -880,8 +878,7 @@ function onUpdatePost(elapsed)
                 if not ifPixelNote then
                     setPropertyFromGroup('playerStrums', i, 'texture', NoteAssets[ns1]);
                     setPropertyFromGroup('opponentStrums', i, 'texture', NoteAssetsDAD[ns2]);  
-                end
-                if ifPixelNote then
+                else
                     setPropertyFromGroup('playerStrums', i, 'texture', PixelAssets[ps1]);
                     setPropertyFromGroup('opponentStrums', i, 'texture', PixelAssetsDAD[ps2]);   
                 end   
