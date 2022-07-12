@@ -34,7 +34,9 @@ Stop using the script and use other script that doesn't interfere the NoteSkin s
 ***
 # Credits on the NoteSkins/NoteSplashes Used here
 
-### VS. Sonic | [Majin Notes](https://gamebanana.com/mods/316022)
+### Vs. Sonic.exe 2.0 | [Majin Notes](https://gamebanana.com/mods/316022)
+
+### Vs. Sonic.exe 2.5 / 3.0 INCOMPLETE | [Sonic8Bit Notes](https://gamebanana.com/mods/387978)
 
 ### Vs. Tabi | [Tabi Notes](https://gamebanana.com/mods/286388)
 
@@ -45,6 +47,8 @@ Stop using the script and use other script that doesn't interfere the NoteSkin s
 ### Doki Doki Takeover! | [Doki Doki Notes](https://gamebanana.com/mods/47364)
 
 ### Pixelated Note Splashes! | [Pixel Splashes](https://gamebanana.com/mods/360401)
+
+### Super Mario Bros. Funk Mix DX | [Mario Notes](https://gamebanana.com/mods/346928)
 
 ***
 # Gaming Features
