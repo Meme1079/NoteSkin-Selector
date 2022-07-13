@@ -447,7 +447,7 @@ function onUpdate(elapsed)
         Activate = false;
         playMusic('')
         onRemove()
-    end  
+    end
 
     if not checkDadStrums then
         setProperty('Message1.visible', true)
@@ -568,7 +568,6 @@ function onCustomSplash()
                 scaleLuaSprite('Splashpreview', 0.5, 0.5)
                 addLuaSprite('Splashpreview', true) 
             end     
-        
             for i = 1, #SplashAssetsDAD do
                 makeAnimatedLuaSprite('SplashpreviewDAD', SplashAssetsDAD[ns2], 100, 1230)
                 setObjectCamera('SplashpreviewDAD', 'camHUD')
@@ -583,7 +582,6 @@ function onCustomSplash()
                 scaleLuaSprite('Splashpreview', 0.5, 0.5)
                 addLuaSprite('Splashpreview', true) 
             end     
-        
             for i = 1, #PixelSplashAssetsDAD do
                 makeAnimatedLuaSprite('SplashpreviewDAD', PixelSplashAssetsDAD[ps2], 100, 1230)
                 setObjectCamera('SplashpreviewDAD', 'camHUD')
