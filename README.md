@@ -93,3 +93,6 @@ If you want to use the NoteSkin from that stage
 
 ### Toggle to Change Opponent Scroll
 if your in upscroll then it will be downscroll for the opponent if its in downscroll then upscroll for the opponent 
+
+### Toggle to Activate Bg NoteStrums
+when activate it will have BG behind the Notes for better focusing in gameplay
