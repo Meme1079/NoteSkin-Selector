@@ -42,14 +42,11 @@ function onCreate()
     onShortCutText('e1', 'Toggle Get the NoteSkin in the stage', 248, 460, true)
     onTextPrefix('e1', hex[4], 16, 'camHUD')
 
-    onShortCutText('e2', 'Toggle Hitsounds', 248, 480, true)
+    onShortCutText('e2', 'Toggle Change Opponent Scroll', 248, 480, true)
     onTextPrefix('e2', hex[4], 16, 'camHUD')
 
-    onShortCutText('e3', 'Toggle Change Opponent Scroll', 248, 500, true)
+    onShortCutText('e3', 'Toggle BG NoteStrum', 248, 500, true)
     onTextPrefix('e3', hex[4], 16, 'camHUD')
-
-    onShortCutText('e4', 'Toggle BG behind the Notes', 248, 520, true)
-    onTextPrefix('e4', hex[4], 16, 'camHUD')
 
     -- Background --
 
@@ -115,11 +112,6 @@ function onCreate()
     onShortCutText('NoteDAD', 'NoteSkin: Normal', NoteX, 230, true)
     onTextPrefix('NoteDAD', hex[4], 25, 'camHUD')
 
-    -- HitSounds -- 
-
-    onShortCutText('hs', '('..HSName[hss]..')', 400, 480, true)
-    onTextPrefix('hs', hex[4], 16, 'camHUD')
-
     -- Functions --
 
     onPrecaching() 
@@ -158,9 +150,8 @@ function onSongStart()
 end 
 
 local WhiteBlack = false;    -- It changes the BG Notes to white or black, also [true] is white and black is [false]
-local AnnoyingSound = false; -- Plays a HitSounds when true
-local BGNote = false;        -- Make's a Backround behind the notes! (For concentrating)
 local GetOGNotes = false;    -- Dont use this only if you dont want the NoteSkins from that stage
+local BGNote = false;        -- Make's a Backround behind the notes! (For concentrating)
 local ChangeScroll = false;  -- Changes scroll on the opponent depending on your scroll
 local AllToggles = false;    -- If [true] then all the toggles will be "turn on"
 
@@ -186,26 +177,6 @@ BLOpacity = 0.5 -- Opacity of the BGNote
 -- [0.5 or higer] (Optional)
 -- [0.5] (Recommended)
 -- [0.5 or below] (Not Recommended)
-
-local hs = 'hitsounds/'
-
-HitSounds = {'hitsound', hs..'Hit Alt', hs..'Cherry HitSounds', hs..'Snare Hit'} -- dumb hitsounds
-HSName = {'Defualt', 'Hit Alt', 'Cherry HitSounds', 'Snare Hit'} -- name of hitsounds
-
-hss = 1 -- just change the number lol
-function goodNoteHit(id, direction, noteType, isSustainNote)  
-    local hitsoundVolume = getPropertyFromClass('ClientPrefs', 'hitsoundVolume')
-    local ConvertVolume = '0.'..hitsoundVolume
-
-    if AnnoyingSound and not isSustainNote then
-        playSound(HitSounds[hss], ConvertVolume, false)
-    end  
-    if hitsoundVolume == 1 then
-        ConvertVolume = 1
-    else
-        ConvertVolume = '0.'..hitsoundVolume
-    end
-end  
 
 function onShortCutText(obj, text, x, y, bool)
     makeLuaText(obj, text, nil, x, y)
@@ -320,33 +291,23 @@ function onUpdate(elapsed)
                 playSound('cancelMenu', 0.4, false)
             end    
         elseif count == 2 then
-            if not AnnoyingSound and onGetKey('ENTER') then
-                AnnoyingSound = true;
-                doTweenColor('e2Color', 'e2', hex[2], 0.1, 'linear')
-                playSound('confirmMenu', 0.4, false)  
-            elseif AnnoyingSound and onGetKey('ENTER') then  
-                AnnoyingSound = false;
-                doTweenColor('e2Color', 'e2', hex[4], 0.1, 'linear')
-                playSound('cancelMenu', 0.4, false)
-            end 
-        elseif count == 3 then
             if not ChangeScroll and onGetKey('ENTER') then
                 ChangeScroll = true;
-                doTweenColor('e3Color', 'e3', hex[2], 0.1, 'linear')
+                doTweenColor('e2Color', 'e2', hex[2], 0.1, 'linear')
                 playSound('confirmMenu', 0.4, false)  
             elseif ChangeScroll and onGetKey('ENTER') then    
                 ChangeScroll = false;
-                doTweenColor('e3Color', 'e3', hex[4], 0.1, 'linear')
+                doTweenColor('e2Color', 'e2', hex[4], 0.1, 'linear')
                 playSound('cancelMenu', 0.4, false) 
             end
-        elseif count == 4 then
+        elseif count == 3 then
             if not BGNote and onGetKey('ENTER') then
                 BGNote = true;
-                doTweenColor('e4Color', 'e4', hex[2], 0.1, 'linear')
+                doTweenColor('e3Color', 'e3', hex[2], 0.1, 'linear')
                 playSound('confirmMenu', 0.4, false)  
             elseif BGNote and onGetKey('ENTER') then    
                 BGNote = false;
-                doTweenColor('e4Color', 'e4', hex[4], 0.1, 'linear')
+                doTweenColor('e3Color', 'e3', hex[4], 0.1, 'linear')
                 playSound('cancelMenu', 0.4, false) 
             end           
         end   
@@ -363,13 +324,9 @@ function onUpdate(elapsed)
                 end    
             end
         end    
-
-        if AnnoyingSound then
-            doTweenColor('e2Color', 'e2', hex[2], 0.1, 'linear') 
-        end     
         
         if ChangeScroll then
-            doTweenColor('e3Color', 'e3', hex[2], 0.1, 'linear')
+            doTweenColor('e2Color', 'e2', hex[2], 0.1, 'linear')
             for i = 0,7 do
                 setPropertyFromGroup('opponentStrums', i, 'downScroll', true)
                 setPropertyFromGroup('opponentStrums', i, 'y', 570)
@@ -413,7 +370,7 @@ function onUpdate(elapsed)
         end     
 
         if BGNote then
-            doTweenColor('e4Color', 'e4', hex[2], 0.1, 'linear')
+            doTweenColor('e3Color', 'e3', hex[2], 0.1, 'linear')
         end    
     end      
     
@@ -480,12 +437,6 @@ function onUpdate(elapsed)
         onCustomSplash()
         onSplashPrefix()
         SplashCheck = true;
-    end
-
-    if AnnoyingSound then
-        hitsoundDisabled = false
-    else
-        hitsoundDisabled = true
     end
 end 
 
@@ -665,7 +616,6 @@ end
 
 function onDumbToggles(bool)
     GetOGNotes = bool;
-    AnnoyingSound = bool;
     BGNote = bool;
     ChangeScroll = bool;
 end
@@ -679,8 +629,8 @@ function onBlackWhite(color)
     makeGraphic('DADblacklol', 450, 1000, color)
 end  
 
-local TogsAlt = {'e1', 'e2', 'e3', 'e4'}
-local TogsTag = {'e1Color', 'e2Color', 'e3Color', 'e4Color'}
+local TogsAlt = {'e1', 'e2', 'e3'}
+local TogsTag = {'e1Color', 'e2Color', 'e3Color'}
 function onDumbTogglesColor(color)
     for i = 1, #TogsTag or #TogsAlt do
         doTweenColor(TogsTag[i], TogsAlt[i], color, 0.1, 'linear')
@@ -812,14 +762,14 @@ function onReset()
     end
     -- Splash Prefixes
 
-    if count == 5 then
+    if count == 4 then
         setPos('Arrow', {nil, 460})
         pos = 460
         count = 1
     elseif count == 0 then
-        setPos('Arrow', {nil, 520})
-        pos = 520
-        count = 4
+        setPos('Arrow', {nil, 500})
+        pos = 500
+        count = 3
     end    
 end
 
@@ -888,9 +838,6 @@ function onPrecaching()
         precacheImage(PixelSplashAssets[i])
         precacheImage(PixelSplashAssetsDAD[i])
     end
-    for i = 1, #HitSounds do
-        precacheSound(HitSounds[i])
-    end
     
     precacheSound('scrollMenu')
     precacheSound('ToggleJingle')  
@@ -898,7 +845,7 @@ function onPrecaching()
 end
 
 local TextCon = {'y', 't', 'g', 'f', 'e', 'h', 'q', 'hs', 'space', 'esc'}
-local Togs = {'e1', 'e2', 'e3', 'e4', 'Arrow'}
+local Togs = {'e1', 'e2', 'e3', 'Arrow'}
 local BGlols = {'blacklol', 'playerlol', 'opponentlol', 'optionlol'}
 local OtherThingys = {'Note', 'NoteDAD', 'pl', 'op', 'se', 'Message1', 'Message2'}
 function onRemove() 
