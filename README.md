@@ -91,8 +91,5 @@ Press [Enter] or [Return] to select it
 ### Toggle to get the NoteSkin from that stage
 If you want to use the NoteSkin from that stage
 
-### Toggle to Enable Hitsounds
-Plays a Sound when hitting a note because Why not?
-
 ### Toggle to Change Opponent Scroll
 if your in upscroll then it will be downscroll for the opponent if its in downscroll then upscroll for the opponent 
