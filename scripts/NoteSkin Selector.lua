@@ -653,58 +653,34 @@ function onPlus()
         setPos('Arrow', {nil, pos})   
     end    
 
-    if not ifPixelNote then
-        if onGetKey('T') or mouseClicked('left') then
+    if onGetKey('T') or mouseClicked('left') then
+        playSound('scrollMenu', 0.5, false)
+        SplashCheck = false;
+        ns1 = ns1 + 1
+        ps1 = ps1 + 1
+    end  
+
+    if onGetKey('F') or mouseClicked('right') then
+        if checkDadStrums then
             playSound('scrollMenu', 0.5, false)
             SplashCheck = false;
-            ns1 = ns1 + 1
-        end  
+            ns2 = ns2 + 1
+            ps2 = ps2 + 1
+        else
+            playSound('deniedMOMENT', 0.5, false)
+        end
+    end 
 
-        if onGetKey('F') or mouseClicked('right') then
-            if checkDadStrums then
-                playSound('scrollMenu', 0.5, false)
-                SplashCheck = false;
-                ns2 = ns2 + 1
-            else
-                playSound('deniedMOMENT', 0.5, false)
-            end
-        end 
+    if onGetKey('E') or mouseClicked('middle') then
+        playSound('scrollMenu', 0.5, false)
+        SplashCheck = false;
+        ns1 = ns1 + 1
+        ps1 = ps1 + 1
 
-        if onGetKey('E') or mouseClicked('middle') then
-            playSound('scrollMenu', 0.5, false)
-            SplashCheck = false;
-            ns1 = ns1 + 1
-
-            if checkDadStrums then
-                ns2 = ns2 + 1
-            end
-        end  
-    else
-        if onGetKey('T') or mouseClicked('left') then
-            playSound('scrollMenu', 0.5, false)
-            SplashCheck = false;
-            ps1 = ps1 + 1
-        end  
-    
-        if onGetKey('F') or mouseClicked('right') then
-            if checkDadStrums then
-                playSound('scrollMenu', 0.5, false)
-                SplashCheck = false;
-                ps2 = ps2 + 1
-            else
-                playSound('deniedMOMENT', 0.5, false)
-            end
-        end  
-
-        if onGetKey('E') or mouseClicked('middle') then
-            playSound('scrollMenu', 0.5, false)
-            SplashCheck = false;
-            ps1 = ps1 + 1
-
-            if checkDadStrums then
-                ps2 = ps2 + 1
-            end
-        end 
+        if checkDadStrums then
+            ns2 = ns2 + 1
+            ps2 = ps2 + 1
+        end
     end  
 
     if onGetKey('Y') then
