@@ -75,7 +75,7 @@ function onCreate()
 
     -- NoteSkin Background -- 
 
-    BGX = 220
+    BGX, ThingyX, NoteX = 220, 218, 695
 
     makeLuaSprite('playerlol', nil, BGX, 100)
     setObjectCamera('playerlol', 'camHUD')
@@ -94,8 +94,6 @@ function onCreate()
 
     -- Text Thingy --
 
-    ThingyX = 218
-
     onShortCutText('pl', 'Player', ThingyX, 60, true)
     onTextPrefix('pl', '31b1d1', 30, 'camHUD')
 
@@ -106,8 +104,6 @@ function onCreate()
     onTextPrefix('se', hex[4], 30, 'camHUD')
 
     -- Note Text --
-
-    NoteX = 695
 
     onShortCutText('Note', 'NoteSkin: Normal', NoteX, 80, true)
     onTextPrefix('Note', hex[4], 25, 'camHUD')
