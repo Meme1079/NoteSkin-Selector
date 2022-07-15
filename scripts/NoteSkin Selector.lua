@@ -20,6 +20,9 @@ function onCreate()
     onShortCutText('esc', 'Press [ESCAPE] to Exit the song', 655, nil, true)
     onTextPrefix('esc', hex[3], 18, 'camHUD')
 
+    onShortCutText('ree', 'Press [R] to Reboot', 655 + 60, 20, true)
+    onTextPrefix('ree', hex[3], 18, 'camHUD')
+
     onShortCutText('Arrow', '>', 228, 460, nil, true)
     onTextPrefix('Arrow', hex[4], 16, 'camHUD')
 
@@ -129,7 +132,7 @@ local allowCountdown = false;
 function onStartCountdown()
     if not allowCountdown then -- Block the first countdown
         allowCountdown = true;     
-        if Activate and not MuteMusic then
+        if Activate and not MuteMusic and not inCutscene then
             playMusic('offsetSong', 0.5, true)
         end  
         if SkipThis then
@@ -166,11 +169,10 @@ MuteMusic = false; -- It just mute the music
 
 -- if [false] wont skip, if [true] it's skip
 
-local ns1 = 1 -- BF
-local ns2 = 1 -- DAD
+local ns1, ns2 = 1, 1 -- Normal
+local ps1, ps2 = 1, 1 -- Pixel
 
-local ps1 = 1 -- BF (Pixel) 
-local ps2 = 1 -- BF (Pixel)
+--      Normal = ^  ^ = Pixel
 
 BLOpacity = 0.5 -- Opacity of the BGNote 
 
@@ -244,6 +246,12 @@ function onUpdate(elapsed)
         
         if onGetKey('ESCAPE') then
             endSong()      
+        end   
+
+        if onGetKey('R') then
+            SplashCheck = false
+            ns1, ns2, ps1, ps2 = 1, 1, 1, 1
+            n1, n2, n1DAD, n2DAD = 1, 1, 1, 1
         end   
 
         if not AllToggles and onGetKey('Q') then
@@ -402,7 +410,6 @@ function onUpdate(elapsed)
 
     if inCutscene then
         Activate = false;
-        playMusic('')
         onRemove()
     end
 
@@ -544,11 +551,8 @@ function onCustomSplash()
     end
 end
 
-local n1 = 1
-local n2 = 1
-
-local n1DAD = 1
-local n2DAD = 1
+local n1, n2 = 1, 1
+local n1DAD, n2DAD = 1, 1
 function onSplashPrefix()
     if Activate and not SkipThis then
         SplashX = {290, 375, 210, 465}
@@ -654,13 +658,13 @@ function onPlus()
     end    
 
     if not ifPixelNote then
-        if onGetKey('T') then
+        if onGetKey('T') or mouseClicked('left') then
             playSound('scrollMenu', 0.5, false)
             SplashCheck = false;
             ns1 = ns1 + 1
         end  
 
-        if onGetKey('F') then
+        if onGetKey('F') or mouseClicked('right') then
             if checkDadStrums then
                 playSound('scrollMenu', 0.5, false)
                 SplashCheck = false;
@@ -670,7 +674,7 @@ function onPlus()
             end
         end 
 
-        if onGetKey('E') then
+        if onGetKey('E') or mouseClicked('middle') then
             playSound('scrollMenu', 0.5, false)
             SplashCheck = false;
             ns1 = ns1 + 1
@@ -680,13 +684,13 @@ function onPlus()
             end
         end  
     else
-        if onGetKey('T') then
+        if onGetKey('T') or mouseClicked('left') then
             playSound('scrollMenu', 0.5, false)
             SplashCheck = false;
             ps1 = ps1 + 1
         end  
     
-        if onGetKey('F') then
+        if onGetKey('F') or mouseClicked('right') then
             if checkDadStrums then
                 playSound('scrollMenu', 0.5, false)
                 SplashCheck = false;
@@ -696,7 +700,7 @@ function onPlus()
             end
         end  
 
-        if onGetKey('E') then
+        if onGetKey('E') or mouseClicked('middle') then
             playSound('scrollMenu', 0.5, false)
             SplashCheck = false;
             ps1 = ps1 + 1
@@ -823,7 +827,7 @@ function onUpdatePost(elapsed)
             end
         end
     end
-end    
+end
 
 function onPrecaching()
     for i = 1, #NoteAssets or #NoteAssetsDAD or #PixelAssets or #PixelAssetsDAD do -- soo much better
@@ -844,7 +848,7 @@ function onPrecaching()
     precacheMusic('offsetSong')
 end
 
-local TextCon = {'y', 't', 'g', 'f', 'e', 'h', 'q', 'hs', 'space', 'esc'}
+local TextCon = {'y', 't', 'g', 'f', 'e', 'h', 'q', 'hs', 'space', 'esc', 'ree'}
 local Togs = {'e1', 'e2', 'e3', 'Arrow'}
 local BGlols = {'blacklol', 'playerlol', 'opponentlol', 'optionlol'}
 local OtherThingys = {'Note', 'NoteDAD', 'pl', 'op', 'se', 'Message1', 'Message2'}
