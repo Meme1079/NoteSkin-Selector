@@ -95,10 +95,10 @@ function onCreate()
     -- Text Thingy --
 
     onShortCutText('pl', 'Player', ThingyX, 60, true)
-    onTextPrefix('pl', '31b1d1', 30, 'camHUD')
+    onTextPrefix('pl', 'ffffff', 30, 'camHUD')
 
     onShortCutText('op', 'Opponent', ThingyX, 210, true)
-    onTextPrefix('op', 'af66ce', 30, 'camHUD')
+    onTextPrefix('op', 'ffffff', 30, 'camHUD')
 
     onShortCutText('se', 'Settings', ThingyX, 360, true)
     onTextPrefix('se', hex[4], 30, 'camHUD')
@@ -128,6 +128,8 @@ local allowCountdown = false;
 function onStartCountdown()
     if not allowCountdown then -- Block the first countdown
         allowCountdown = true;     
+        setTextColor('pl', getBfColor())
+        setTextColor('op', getDadColor())
         if Activate and not MuteMusic and not inCutscene then
             playMusic('offsetSong', 0.5, true)
         end  
@@ -185,6 +187,38 @@ function onTextPrefix(obj, color, size, cam)
     setTextColor(obj, color)
     setTextSize(obj, size)
     setObjectCamera(obj, cam)
+end
+
+function getBfColor() -- code by TBiscuit1
+	local colorR = getProperty("boyfriend.healthColorArray")[1]
+	local colorG = getProperty("boyfriend.healthColorArray")[2]
+	local colorB = getProperty("boyfriend.healthColorArray")[3]
+	return DEC_HEX(colorR) .. DEC_HEX(colorG) .. DEC_HEX(colorB)
+end
+
+function getDadColor()
+	local colorR = getProperty("dad.healthColorArray")[1]
+	local colorG = getProperty("dad.healthColorArray")[2]
+	local colorB = getProperty("dad.healthColorArray")[3]
+	return DEC_HEX(colorR) .. DEC_HEX(colorG) .. DEC_HEX(colorB)
+end
+             
+function DEC_HEX(IN) -- rdm code found on the internet that I modified a bit, convert Decimal to Hex
+    local B,K,OUT,I,D,addZero=16,"0123456789ABCDEF","",0,false
+	if IN == 0 then
+		return "00"
+	elseif IN <= 15 and IN ~= 0 then
+		addZero = true
+	end
+    while IN>0 do
+        I=I+1
+        IN,D=math.floor(IN/B),math.mod(IN,B)+1
+        OUT=string.sub(K,D,D)..OUT
+    end
+	if addZero then
+		OUT = "0"..OUT
+	end
+    return OUT
 end
 
 function onGetKey(key) -- I know this useless but I hate long code's they, hurt my brain a lot
