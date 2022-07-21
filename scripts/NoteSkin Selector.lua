@@ -273,20 +273,20 @@ function onUpdate(elapsed)
 
         if not AllToggles and onGetKey('Q') then
             AllToggles = true;
-            doTweenColor('qColor', 'q', hex[2], 0.1, 'linear')
+            setTextColor('q', hex[2])
             playSound('confirmMenu', 0.4, false)  
 
             onDumbTogglesColor(hex[2])
             onDumbToggles(true)
         elseif AllToggles and onGetKey('Q') then
             AllToggles = false;
-            doTweenColor('qColor', 'q', hex[4], 0.1, 'linear')
+            setTextColor('q', hex[4])
             playSound('cancelMenu', 0.4, false)  
 
             onDumbTogglesColor(hex[4])
             onDumbToggles(false) 
         elseif AllToggles then    
-            doTweenColor('qColor', 'q', hex[2], 0.1, 'linear')
+            setTextColor('q', hex[2])
 
             onDumbTogglesColor(hex[4])
             onDumbToggles(true)
