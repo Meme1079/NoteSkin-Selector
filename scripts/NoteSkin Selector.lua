@@ -212,7 +212,7 @@ function DEC_HEX(IN)
     while IN > 0 do
         I = I + 1
         IN, D = math.floor(IN/B), math.mod(IN,B) + 1
-        OUT=string.sub(K,D,D)..OUT
+        OUT = string.sub(K,D,D)..OUT
     end
 	if addZero then
 		OUT = "0"..OUT
