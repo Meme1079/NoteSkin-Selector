@@ -203,15 +203,15 @@ end
 
 -- rdm code found on the internet that I modified a bit, convert Decimal to Hex
 function DEC_HEX(IN)
-    local B,K,OUT,I,D,addZero=16,"0123456789ABCDEF","",0,false
+    local B, K, OUT, I, D, addZero = 16, "0123456789ABCDEF", "", 0, false
 	if IN == 0 then
 		return "00"
 	elseif IN <= 15 and IN ~= 0 then
 		addZero = true
 	end
-    while IN>0 do
-        I=I+1
-        IN,D=math.floor(IN/B),math.mod(IN,B)+1
+    while IN > 0 do
+        I = I + 1
+        IN, D = math.floor(IN/B), math.mod(IN,B) + 1
         OUT=string.sub(K,D,D)..OUT
     end
 	if addZero then
@@ -476,12 +476,8 @@ function onUpdate(elapsed)
     end
 end 
 
-local PreX = 255
-local PreY = 90
-local PreDADY = 240
-
-local nse = 'noteseen/'
-local pUI = 'pixelUI/noteseen/'
+local PreX, PreY, PreDADY = 255, 90, 240
+local nse, pUI, sn = 'noteseen/', 'pixelUI/noteseen/', 'NoteSkin: '
 
 local NoteString = {nse..'normal notes', nse..'tabi notes', nse..'majin notes', nse..'creepy notes', nse..'dokidoki notes'}
 local NoteStringDAD = {nse..'normal notes', nse..'tabi notes', nse..'majin notes', nse..'creepy notes', nse..'dokidoki notes'}
@@ -518,8 +514,6 @@ function onCustomNotes()
         end 
     end        
 end    
-
-local sn = 'NoteSkin: '
 
 local NoteText = {sn..'Defualt', sn..'Tabi', sn..'Majin', sn..'Creepy', sn..'DokiDoki'}
 local NoteTextDAD = {sn..'Defualt', sn..'Tabi', sn..'Majin', sn..'Creepy', sn..'DokiDoki'}
