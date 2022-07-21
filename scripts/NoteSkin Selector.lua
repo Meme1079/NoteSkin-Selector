@@ -313,31 +313,31 @@ function onUpdate(elapsed)
         if count == 1 then
             if not GetOGNotes and onGetKey('ENTER') then
                 GetOGNotes = true;
-                doTweenColor('e1Color', 'e1', hex[2], 0.1, 'linear')
+                setTextColor('e1', hex[2])
                 playSound('confirmMenu', 0.4, false) 
             elseif GetOGNotes and onGetKey('ENTER') then
                 GetOGNotes = false;
-                doTweenColor('e1Color', 'e1', hex[4], 0.1, 'linear')
+                setTextColor('e1', hex[4])
                 playSound('cancelMenu', 0.4, false)
             end    
         elseif count == 2 then
             if not ChangeScroll and onGetKey('ENTER') then
                 ChangeScroll = true;
-                doTweenColor('e2Color', 'e2', hex[2], 0.1, 'linear')
+                setTextColor('e2', hex[2])
                 playSound('confirmMenu', 0.4, false)  
             elseif ChangeScroll and onGetKey('ENTER') then    
                 ChangeScroll = false;
-                doTweenColor('e2Color', 'e2', hex[4], 0.1, 'linear')
+                setTextColor('e2', hex[4])
                 playSound('cancelMenu', 0.4, false) 
             end
         elseif count == 3 then
             if not BGNote and onGetKey('ENTER') then
                 BGNote = true;
-                doTweenColor('e3Color', 'e3', hex[2], 0.1, 'linear')
+                setTextColor('e3', hex[2])
                 playSound('confirmMenu', 0.4, false)  
             elseif BGNote and onGetKey('ENTER') then    
                 BGNote = false;
-                doTweenColor('e3Color', 'e3', hex[4], 0.1, 'linear')
+                setTextColor('e3', hex[4])
                 playSound('cancelMenu', 0.4, false) 
             end           
         end   
@@ -642,10 +642,9 @@ function onBlackWhite(color)
 end  
 
 local TogsAlt = {'e1', 'e2', 'e3'}
-local TogsTag = {'e1Color', 'e2Color', 'e3Color'}
 function onDumbTogglesColor(color)
-    for i = 1, #TogsTag or #TogsAlt do
-        doTweenColor(TogsTag[i], TogsAlt[i], color, 0.1, 'linear')
+    for i = 1, #TogsAlt do
+        setTextColor(TogsAlt[i], color)
     end
 end
 
