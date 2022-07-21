@@ -218,9 +218,6 @@ function onGetKey(key) -- I know this useless but I hate long code's they, hurt 
 end
 
 function setPos(obj, pos) 
-    -- shortcut to setProperty('obj.x') or setProperty('obj.y') AWESOME!
-    -- also obj is the string of the object
-    -- example: ('obj', {x, y})
     if pos[1] ~= nil then
         setProperty(obj..'.x', pos[1])
     end
@@ -230,8 +227,6 @@ function setPos(obj, pos)
 end
 
 function getPos(obj)
-    -- it gets the Position
-    -- example: debugPrint(getPos('obj'))
     return {getProperty(obj..'.x'), getProperty(obj..'.y')}
 end
 
