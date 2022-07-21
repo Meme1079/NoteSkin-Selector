@@ -92,17 +92,6 @@ function onCreate()
     setProperty('optionlol.alpha', 0.3)
     addLuaSprite('optionlol')
 
-    -- Text Thingy --
-
-    onShortCutText('pl', 'Player', ThingyX, 60, true)
-    onTextPrefix('pl', 'ffffff', 30, 'camHUD')
-
-    onShortCutText('op', 'Opponent', ThingyX, 210, true)
-    onTextPrefix('op', 'ffffff', 30, 'camHUD')
-
-    onShortCutText('se', 'Settings', ThingyX, 360, true)
-    onTextPrefix('se', hex[4], 30, 'camHUD')
-
     -- Note Text --
 
     onShortCutText('Note', 'NoteSkin: Normal', NoteX, 80, true)
@@ -120,6 +109,17 @@ end
 
 function onCreatePost()
     onHideHealthBar(false) 
+
+    -- Text Thingy --
+
+    onShortCutText('pl', 'Player', ThingyX, 60, true)
+    onTextPrefix('pl', getBfColor(), 30, 'camHUD')
+
+    onShortCutText('op', 'Opponent', ThingyX, 210, true)
+    onTextPrefix('op', getDadColor(), 30, 'camHUD')
+
+    onShortCutText('se', 'Settings', ThingyX, 360, true)
+    onTextPrefix('se', hex[4], 30, 'camHUD')
 end   
   
 local Activate = true;
@@ -128,8 +128,6 @@ local allowCountdown = false;
 function onStartCountdown()
     if not allowCountdown then -- Block the first countdown
         allowCountdown = true;     
-        setTextColor('pl', getBfColor())
-        setTextColor('op', getDadColor())
         if Activate and not MuteMusic and not inCutscene then
             playMusic('offsetSong', 0.5, true)
         end  
@@ -189,7 +187,7 @@ function onTextPrefix(obj, color, size, cam)
     setObjectCamera(obj, cam)
 end
 
-function getBfColor() -- code by TBiscuit1
+function getBfColor()
 	local colorR = getProperty("boyfriend.healthColorArray")[1]
 	local colorG = getProperty("boyfriend.healthColorArray")[2]
 	local colorB = getProperty("boyfriend.healthColorArray")[3]
@@ -202,8 +200,9 @@ function getDadColor()
 	local colorB = getProperty("dad.healthColorArray")[3]
 	return DEC_HEX(colorR) .. DEC_HEX(colorG) .. DEC_HEX(colorB)
 end
-             
-function DEC_HEX(IN) -- rdm code found on the internet that I modified a bit, convert Decimal to Hex
+
+-- rdm code found on the internet that I modified a bit, convert Decimal to Hex
+function DEC_HEX(IN)
     local B,K,OUT,I,D,addZero=16,"0123456789ABCDEF","",0,false
 	if IN == 0 then
 		return "00"
@@ -492,27 +491,25 @@ local PixelStringDAD = {pUI..'pixel notes', pUI..'NES notes', pUI..'dokidoki not
 function onCustomNotes()
     onNoteText()
     if not ifPixelNote then
-        for i = 1, #NoteString do
+        for i = 1, #NoteString or #NoteStringDAD do
             makeLuaSprite('preview', NoteString[ns1], PreX, PreY)
             setObjectCamera('preview', 'camHUD')
             scaleObject('preview', 0.5, 0.5)
             addLuaSprite('preview', false)
-        end  
-        for i = 1, #NoteStringDAD do
+
             makeLuaSprite('previewDAD', NoteStringDAD[ns2], PreX, PreDADY)
             setObjectCamera('previewDAD', 'camHUD')
             scaleObject('previewDAD', 0.5, 0.5)
             addLuaSprite('previewDAD', false)
         end 
     else
-        for i = 1, #PixelString do
+        for i = 1, #PixelString or #PixelStringDAD do
             makeLuaSprite('preview', PixelString[ps1], PreX, PreY)
             setObjectCamera('preview', 'camHUD')
             setProperty('preview.antialiasing', false)
             scaleObject('preview', 0.5, 0.5)
             addLuaSprite('preview', false)
-        end  
-        for i = 1, #PixelStringDAD do
+
             makeLuaSprite('previewDAD', PixelStringDAD[ps2], PreX, PreDADY)
             setObjectCamera('previewDAD', 'camHUD')
             setProperty('previewDAD.antialiasing', false)
@@ -531,17 +528,13 @@ local PixelText = {sn..'Defualt', sn..'NES', sn..'DokiDoki', sn..'Sonic 8Bit', s
 local PixelTextDAD = {sn..'Defualt', sn..'NES', sn..'DokiDoki', sn..'Sonic 8Bit', sn..'Mario'}
 function onNoteText()
     if not ifPixelNote then
-        for i = 1, #NoteText do
+        for i = 1, #NoteText or #NoteTextDAD do
             setTextString('Note', NoteText[ns1])
-        end
-        for i = 1, #NoteTextDAD do
             setTextString('NoteDAD', NoteText[ns2])
         end
     else
-        for i = 1, #PixelText do
+        for i = 1, #PixelText or #PixelTextDAD do
             setTextString('Note', PixelText[ps1])
-        end
-        for i = 1, #PixelTextDAD do
             setTextString('NoteDAD', PixelText[ps2])
         end
     end  
@@ -550,27 +543,25 @@ end
 function onCustomSplash()
     if Activate and not SkipThis then
         if not ifPixelNote then
-            for i = 1, #SplashAssets do
+            for i = 1, #SplashAssets or #SplashAssetsDAD do
                 makeAnimatedLuaSprite('Splashpreview', SplashAssets[ns1], 100, 1230)
                 setObjectCamera('Splashpreview', 'camHUD')
                 scaleLuaSprite('Splashpreview', 0.5, 0.5)
                 addLuaSprite('Splashpreview', true) 
-            end     
-            for i = 1, #SplashAssetsDAD do
+
                 makeAnimatedLuaSprite('SplashpreviewDAD', SplashAssetsDAD[ns2], 100, 1230)
                 setObjectCamera('SplashpreviewDAD', 'camHUD')
                 scaleLuaSprite('SplashpreviewDAD', 0.5, 0.5)
                 addLuaSprite('SplashpreviewDAD', true)
             end
         else
-            for i = 1, #PixelSplashAssets do
+            for i = 1, #PixelSplashAssets or #PixelSplashAssetsDAD do
                 makeAnimatedLuaSprite('Splashpreview', PixelSplashAssets[ps1], 100, 1230)
                 setObjectCamera('Splashpreview', 'camHUD')
                 setProperty('Splashpreview.antialiasing', false)
                 scaleLuaSprite('Splashpreview', 0.5, 0.5)
                 addLuaSprite('Splashpreview', true) 
-            end     
-            for i = 1, #PixelSplashAssetsDAD do
+
                 makeAnimatedLuaSprite('SplashpreviewDAD', PixelSplashAssetsDAD[ps2], 100, 1230)
                 setObjectCamera('SplashpreviewDAD', 'camHUD')
                 setProperty('SplashpreviewDAD.antialiasing', false)
