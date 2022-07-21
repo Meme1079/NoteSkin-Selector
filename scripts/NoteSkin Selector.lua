@@ -113,10 +113,10 @@ function onCreatePost()
     -- Text Thingy --
 
     onShortCutText('pl', 'Player', ThingyX, 60, true)
-    onTextPrefix('pl', getBfColor(), 30, 'camHUD')
+    onTextPrefix('pl', getIconColor('boyfriend'), 30, 'camHUD')
 
     onShortCutText('op', 'Opponent', ThingyX, 210, true)
-    onTextPrefix('op', getDadColor(), 30, 'camHUD')
+    onTextPrefix('op', getIconColor('dad'), 30, 'camHUD')
 
     onShortCutText('se', 'Settings', ThingyX, 360, true)
     onTextPrefix('se', hex[4], 30, 'camHUD')
@@ -187,17 +187,10 @@ function onTextPrefix(obj, color, size, cam)
     setObjectCamera(obj, cam)
 end
 
-function getBfColor()
-	local colorR = getProperty("boyfriend.healthColorArray")[1]
-	local colorG = getProperty("boyfriend.healthColorArray")[2]
-	local colorB = getProperty("boyfriend.healthColorArray")[3]
-	return DEC_HEX(colorR) .. DEC_HEX(colorG) .. DEC_HEX(colorB)
-end
-
-function getDadColor()
-	local colorR = getProperty("dad.healthColorArray")[1]
-	local colorG = getProperty("dad.healthColorArray")[2]
-	local colorB = getProperty("dad.healthColorArray")[3]
+function getIconColor(char)
+    local colorR = getProperty(char..".healthColorArray")[1]
+    local colorG = getProperty(char..".healthColorArray")[2]
+    local colorB = getProperty(char..".healthColorArray")[3]
 	return DEC_HEX(colorR) .. DEC_HEX(colorG) .. DEC_HEX(colorB)
 end
 
