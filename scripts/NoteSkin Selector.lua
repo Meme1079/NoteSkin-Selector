@@ -109,6 +109,9 @@ end
 
 function onCreatePost()
     onHideHealthBar(false) 
+    inCutscene = getProperty('inCutscene')
+    isPixelStage = getPropertyFromClass('PlayState', 'isPixelStage')
+    checkDadStrums = getPropertyFromClass('ClientPrefs', 'opponentStrums')
 
     -- Text Thingy --
 
@@ -238,10 +241,6 @@ local ifPixelNote = false;
 local SplashCheck = false;
 local GraphicActivate = true;
 function onUpdate(elapsed)
-    inCutscene = getProperty('inCutscene')
-    isPixelStage = getPropertyFromClass('PlayState', 'isPixelStage')
-    checkDadStrums = getPropertyFromClass('ClientPrefs', 'opponentStrums')
-
     if Activate then
         onCustomNotes() 
         onPlus() 
@@ -338,7 +337,7 @@ function onUpdate(elapsed)
         end   
 
         if GetOGNotes then            
-            doTweenColor('e1Color', 'e1', hex[2], 0.1, 'linear')
+            setTextColor('e1', hex[2])
             for i = 0, getProperty('notes.length')-1 do
                 if NoteType[getPropertyFromGroup('notes', i, 'noteType')] then
                     getPropertyFromGroup('notes', i, 'texture');   
@@ -351,7 +350,7 @@ function onUpdate(elapsed)
         end    
         
         if ChangeScroll then
-            doTweenColor('e2Color', 'e2', hex[2], 0.1, 'linear')
+            setTextColor('e2', hex[2])
             for i = 0,7 do
                 setPropertyFromGroup('opponentStrums', i, 'downScroll', true)
                 setPropertyFromGroup('opponentStrums', i, 'y', 570)
@@ -395,7 +394,7 @@ function onUpdate(elapsed)
         end     
 
         if BGNote then
-            doTweenColor('e3Color', 'e3', hex[2], 0.1, 'linear')
+            setTextColor('e3', hex[2])
         end    
     end      
     
