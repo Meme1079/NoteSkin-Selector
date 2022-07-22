@@ -94,10 +94,10 @@ function onCreate()
 
     -- Note Text --
 
-    onShortCutText('Note', 'NoteSkin: Normal', NoteX, 80, true)
+    onShortCutText('Note', 'NoteSkin: Defualt', NoteX, 80, true)
     onTextPrefix('Note', hex[4], 25, 'camHUD')
 
-    onShortCutText('NoteDAD', 'NoteSkin: Normal', NoteX, 230, true)
+    onShortCutText('NoteDAD', 'NoteSkin: Defualt', NoteX, 230, true)
     onTextPrefix('NoteDAD', hex[4], 25, 'camHUD')
 
     -- Functions --
@@ -334,70 +334,64 @@ function onUpdate(elapsed)
                 setTextColor('e3', hex[4])
                 playSound('cancelMenu', 0.4, false) 
             end           
-        end   
-
+        end
+        
         if GetOGNotes then            
             setTextColor('e1', hex[2])
-            for i = 0, getProperty('notes.length')-1 do
-                if NoteType[getPropertyFromGroup('notes', i, 'noteType')] then
-                    getPropertyFromGroup('notes', i, 'texture');   
-                    getPropertyFromGroup('notes', i, 'noteSplashTexture'); 
+            for i = 0, getProperty('unspawnNotes.length')-1 do
+                if NoteType[getPropertyFromGroup('unspawnNotes', i, 'noteType')] then
+                    getPropertyFromGroup('unspawnNotes', i, 'texture');   
+                    getPropertyFromGroup('unspawnNotes', i, 'noteSplashTexture'); 
                     
                     getPropertyFromGroup('playerStrums', i, 'texture');
                     getPropertyFromGroup('opponentStrums', i, 'texture');
                 end    
             end
-        end    
-        
-        if ChangeScroll then
+        elseif ChangeScroll then
             setTextColor('e2', hex[2])
-            for i = 0,7 do
+            for i = 0, getProperty('opponentStrums.length')-1 do
                 setPropertyFromGroup('opponentStrums', i, 'downScroll', true)
                 setPropertyFromGroup('opponentStrums', i, 'y', 570)
         
                 if not middlescroll then
                     setPos('healthBar', {650, 620})
-                    setPos('healthBarBG', {nil, 616})
-                    setPos('iconP1', {nil, 550})
-                    setPos('iconP2', {nil, 550})
+                    setProperty('healthBarBG.y', 616)
+                    setProperty('iconP1.y', 550)
+                    setProperty('iconP2.y', 550)
                     setPos('scoreTxt', {300, 650})
                     setTextSize('scoreTxt', 18) 
                     if downscroll then
                         setPropertyFromGroup('opponentStrums', i, 'downScroll', false)
                         setPropertyFromGroup('opponentStrums', i, 'y', 50)
             
-                        setPos('healthBar', {nil, 100})                
-                        setPos('healthBarBG', {nil, 96})
-                        setPos('iconP1', {nil, 30})
-                        setPos('iconP2', {nil, 30})
-                        setPos('scoreTxt', {nil, 130})
+                        setProperty('healthBar.y', 100)                
+                        setProperty('healthBarBG.y', 96)
+                        setProperty('iconP1.y', 30)
+                        setProperty('iconP2.y', 30)
+                        setProperty('scoreTxt.y', 130)
                     end   
                 end     
             end
-        end
-
-        if not ChangeScroll then
-            setPos('healthBar', {343.5, nil})
-            setPos('healthBarBG', {339.5, nil})
-            setPos('iconP1', {610, nil})
-            setPos('iconP2', {509, nil})
-            setPos('scoreTxt', {0, nil})
+        elseif not ChangeScroll then
+            setProperty('healthBar.x', 343.5)
+            setProperty('healthBarBG.x', 339.5)
+            setProperty('iconP1.x', 610)
+            setProperty('iconP2.x', 509)
+            setProperty('scoreTxt.x', 0)
             setTextSize('scoreTxt', 20)
 
             if downscroll then
-                setPos('healthBar', {nil, 83.2})
-                setPos('healthBarBG', {nil, 79.2})
-                setPos('iconP1', {nil, 8.2})
-                setPos('iconP2', {nil, 8.2})
-                setPos('scoreTxt', {nil, 115.2})
+                setProperty('healthBar.y', 83.2)
+                setProperty('healthBarBG.y', 79.2)
+                setProperty('iconP1.y', 8.2)
+                setProperty('iconP2.y', 8.2)
+                setProperty('scoreTxt.y', 115.2)
             end       
-        end     
-
-        if BGNote then
+        elseif BGNote then
             setTextColor('e3', hex[2])
-        end    
-    end      
-    
+        end  
+    end     
+
     if not Activate and GraphicActivate then
         if BGNote then
             setProperty('BFblacklol.visible', true)
@@ -405,14 +399,14 @@ function onUpdate(elapsed)
     
             if middlescroll then
                 removeLuaSprite('DADblacklol', true)
-                setPos('BFblacklol', {410, nil})
+                setProperty('BFblacklol.x', 410)
                 
                 if ChangeScroll then
-                    setPos('healthBar', {343.5, nil})
-                    setPos('healthBarBG', {339.5, nil})
-                    setPos('iconP1', {610, nil})
-                    setPos('iconP2', {509, nil})
-                    setPos('scoreTxt', {0, nil})
+                    setProperty('healthBar.x', 343.5)
+                    setProperty('healthBarBG.x', 339.5)
+                    setProperty('iconP1.x', 610)
+                    setProperty('iconP2.x', 509)
+                    setProperty('scoreTxt.x', 0)
                     setTextSize('scoreTxt', 20)  
                 end    
             end 
@@ -571,16 +565,14 @@ function onSplashPrefix()
                 for i = 1, #SplashAssets or #PixelSplashAssets do
                     objectPlayAnimation('Splashpreview', NamePrefix1[n1], false)
                     objectPlayAnimation('Splashpreview', NamePrefix2[n1], false)
-                    setProperty('Splashpreview.x', SplashX[n2])
-                    setProperty('Splashpreview.y', SplashY)
+                    setPos('Splashpreview', {SplashX[n2], SplashY})
                 end    
             end,
             [2] = function()
                 for i = 1, #SplashAssetsDAD or #PixelSplashAssetsDAD do
                     objectPlayAnimation('SplashpreviewDAD', NamePrefix1[n1DAD], false)
                     objectPlayAnimation('SplashpreviewDAD', NamePrefix2[n1DAD], false)
-                    setProperty('SplashpreviewDAD.x', SplashDADX[n2DAD])
-                    setProperty('SplashpreviewDAD.y', SplashDADY)
+                    setPos('SplashpreviewDAD', {SplashDADX[n2DAD], SplashDADY})
                 end    
             end,    
         }  
@@ -646,16 +638,16 @@ local pos = 460
 function onPlus()
     if onGetKey('DOWN') then
         playSound('scrollMenu', 0.5, false)
-        setPos('Arrow', {nil, pos})
         count = count + 1
         pos = pos + 20
+        setProperty('Arrow.y', pos)
     end  
 
     if onGetKey('UP') then
-        playSound('scrollMenu', 0.5, false)
-        setPos('Arrow', {nil, pos})   
+        playSound('scrollMenu', 0.5, false) 
         count = count - 1
         pos = pos - 20
+        setProperty('Arrow.y', pos)
     end    
 
     if onGetKey('T') or mouseClicked('left') then
@@ -744,11 +736,11 @@ function onReset()
     -- Splash Prefixes
 
     if count == 4 then
-        setPos('Arrow', {nil, 460})
+        setProperty('Arrow.y', 460)
         pos = 460
         count = 1
     elseif count == 0 then
-        setPos('Arrow', {nil, 500})
+        setProperty('Arrow.y', 500)
         pos = 500
         count = 3
     end    
