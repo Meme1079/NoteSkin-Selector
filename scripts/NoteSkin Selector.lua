@@ -194,7 +194,7 @@ function getIconColor(char)
     local colorR = getProperty(char..".healthColorArray")[1]
     local colorG = getProperty(char..".healthColorArray")[2]
     local colorB = getProperty(char..".healthColorArray")[3]
-	return DEC_HEX(colorR) .. DEC_HEX(colorG) .. DEC_HEX(colorB)
+    return DEC_HEX(colorR) .. DEC_HEX(colorG) .. DEC_HEX(colorB)
 end
 
 -- rdm code found on the internet that I modified a bit, convert Decimal to Hex
