@@ -433,7 +433,7 @@ function onUpdate(elapsed)
 
     if not noResetButton then
         setPropertyFromClass('ClientPrefs', 'noResetButton', true)
-        if getSongPosition() == 1 then
+        if getPropertyClass('Conductor', 'songPosition') == 1 then
             setPropertyFromClass('ClientPrefs', 'noResetButton', false)
         end
     end
