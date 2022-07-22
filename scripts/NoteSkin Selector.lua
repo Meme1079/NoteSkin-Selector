@@ -551,14 +551,9 @@ local n1, n2 = 1, 1
 local n1DAD, n2DAD = 1, 1
 function onSplashPrefix()
     if Activate and not SkipThis then
-        SplashX = {290, 375, 210, 465}
-        SplashDADX = {290, 375, 210, 465}
-                        
-        SplashY = 60
-        SplashDADY = 210
-    
-        NamePrefix1 = {'blue1', 'green1', 'purple1', 'red1'}
-        NamePrefix2 = {'blue2', 'green2', 'purple2', 'red2'} 
+        SplashX, SplashDADX = {290, 375, 210, 465}, {290, 375, 210, 465}       
+        SplashY, SplashDADY = 60, 210
+        NamePrefix1, NamePrefix2 = {'blue1', 'green1', 'purple1', 'red1'}, {'blue2', 'green2', 'purple2', 'red2'}
            
         Splashes = {
             [1] = function()
