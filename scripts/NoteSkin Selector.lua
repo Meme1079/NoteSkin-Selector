@@ -20,7 +20,7 @@ function onCreate()
     onShortCutText('esc', 'Press [ESCAPE] to Exit the song', 655, nil, true)
     onTextPrefix('esc', hex[3], 18, 'camHUD')
 
-    onShortCutText('ree', 'Press [R] to Reboot', 655 + 60, 20, true)
+    onShortCutText('ree', 'Press [R] to Reboot', 715, 20, true)
     onTextPrefix('ree', hex[3], 18, 'camHUD')
 
     onShortCutText('Arrow', '>', 228, 460, nil, true)
@@ -646,16 +646,16 @@ local pos = 460
 function onPlus()
     if onGetKey('DOWN') then
         playSound('scrollMenu', 0.5, false)
+        setPos('Arrow', {nil, pos})
         count = count + 1
         pos = pos + 20
-        setPos('Arrow', {nil, pos})   
     end  
 
     if onGetKey('UP') then
         playSound('scrollMenu', 0.5, false)
+        setPos('Arrow', {nil, pos})   
         count = count - 1
         pos = pos - 20
-        setPos('Arrow', {nil, pos})   
     end    
 
     if onGetKey('T') or mouseClicked('left') then
