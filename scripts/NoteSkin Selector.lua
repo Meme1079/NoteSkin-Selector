@@ -265,9 +265,7 @@ function onUpdate(elapsed)
         end   
 
         if onGetKey('R') then
-            SplashCheck = false
-            ns1, ns2, ps1, ps2 = 1, 1, 1, 1
-            n1, n2, n1DAD, n2DAD = 1, 1, 1, 1
+            ResetTexture[1]()
         end   
 
         if not AllToggles and onGetKey('Q') then
@@ -433,7 +431,7 @@ function onUpdate(elapsed)
 
     if not noResetButton then
         setPropertyFromClass('ClientPrefs', 'noResetButton', true)
-        if getPropertyClass('Conductor', 'songPosition') == 1 then
+        if getSongPosition() == 1 then
             setPropertyFromClass('ClientPrefs', 'noResetButton', false)
         end
     end
@@ -455,6 +453,14 @@ function onUpdate(elapsed)
         onSplashPrefix()
         SplashCheck = true;
     end
+
+    ResetTexture = {
+        [1] = function()
+            SplashCheck = false
+            ns1, ns2, ps1, ps2 = 1, 1, 1, 1
+            n1, n2, n1DAD, n2DAD = 1, 1, 1, 1
+        end,
+    }
 end 
 
 local PreX, PreY, PreDADY = 255, 90, 240
@@ -551,9 +557,9 @@ local n1, n2 = 1, 1
 local n1DAD, n2DAD = 1, 1
 function onSplashPrefix()
     if Activate and not SkipThis then
-        SplashX, SplashDADX = {290, 375, 210, 465}, {290, 375, 210, 465}       
+        SplashX, SplashDADX = {290, 375, 210, 465}, {290, 375, 210, 465}
         SplashY, SplashDADY = 60, 210
-        NamePrefix1, NamePrefix2 = {'blue1', 'green1', 'purple1', 'red1'}, {'blue2', 'green2', 'purple2', 'red2'}
+        NamePrefix1, NamePrefix2 = {'blue1', 'green1', 'purple1', 'red1'}, {'blue2', 'green2', 'purple2', 'red2'} 
            
         Splashes = {
             [1] = function()
@@ -568,7 +574,7 @@ function onSplashPrefix()
                     objectPlayAnimation('SplashpreviewDAD', NamePrefix1[n1DAD], false)
                     objectPlayAnimation('SplashpreviewDAD', NamePrefix2[n1DAD], false)
                     setPos('SplashpreviewDAD', {SplashDADX[n2DAD], SplashDADY})
-                end    
+                end     
             end,    
         }  
         
@@ -645,14 +651,14 @@ function onPlus()
         setProperty('Arrow.y', pos)
     end    
 
-    if onGetKey('T') or mouseClicked('left') then
+    if onGetKey('T') or onGetKey('E') or mouseClicked('left') or mouseClicked('middle') then
         playSound('scrollMenu', 0.5, false)
         SplashCheck = false;
         ns1 = ns1 + 1
         ps1 = ps1 + 1
     end  
 
-    if onGetKey('F') or mouseClicked('right') then
+    if onGetKey('F') or onGetKey('E') or mouseClicked('right') or mouseClicked('middle') then
         if checkDadStrums then
             playSound('scrollMenu', 0.5, false)
             SplashCheck = false;
@@ -662,18 +668,6 @@ function onPlus()
             playSound('deniedMOMENT', 0.5, false)
         end
     end 
-
-    if onGetKey('E') or mouseClicked('middle') then
-        playSound('scrollMenu', 0.5, false)
-        SplashCheck = false;
-        ns1 = ns1 + 1
-        ps1 = ps1 + 1
-
-        if checkDadStrums then
-            ns2 = ns2 + 1
-            ps2 = ps2 + 1
-        end
-    end  
 
     if onGetKey('Y') then
         Splashes[1]()
@@ -692,30 +686,21 @@ local Nor = 6 -- Normal
 local Pix = 6 -- Pixel
 function onReset()
     if ns1 == Nor then
+        ResetTexture[1]()
         ns1 = 1
     elseif ns2 == Nor then
+        ResetTexture[1]()
         ns2 = 1
-    end  
+    end
     
     if ps1 == Pix then
+        ResetTexture[1]()
         ps1 = 1
     elseif ps2 == Pix then
+        ResetTexture[1]()
         ps2 = 1
-    end  
+    end 
     -- Note texture
-
-    if s1 == Nor then
-        s1 = 1
-    elseif s2 == Nor then
-        s2 = 1
-    end
-
-    if sp1 == Pix then
-        sp1 = 1
-    elseif sp2 == Pix then
-        sp2 = 1
-    end
-    -- Splash texture
 
     if n1 == 5 then
         n1 = 1
@@ -741,10 +726,7 @@ function onReset()
     end    
 end
 
-local nw = 'notesplash/weeb/'
-local npl = 'notesplash/'
-
-local ns = 'noteskin/'
+local nw, npl, ns  = 'notesplash/weeb/', 'notesplash/', 'noteskin/'
 
 NoteAssets = {'NOTE_assets', ns..'tabi_NOTE_assets', ns..'Majin_Notes', ns..'creepy_assets', ns..'dokidoki_assets'}
 NoteAssetsDAD = {'NOTE_assets', ns..'tabi_NOTE_assets', ns..'Majin_Notes', ns..'creepy_assets', ns..'dokidoki_assets'}
@@ -813,20 +795,16 @@ function onPrecaching()
 end
 
 local TextCon = {'y', 't', 'g', 'f', 'e', 'h', 'q', 'hs', 'space', 'esc', 'ree'}
-local Togs = {'e1', 'e2', 'e3', 'Arrow'}
+local TextTogs = {'e1', 'e2', 'e3', 'Arrow'}
+local TextOther = {'Note', 'NoteDAD', 'pl', 'op', 'se', 'Message1', 'Message2'}
 local BGlols = {'blacklol', 'playerlol', 'opponentlol', 'optionlol'}
-local OtherThingys = {'Note', 'NoteDAD', 'pl', 'op', 'se', 'Message1', 'Message2'}
+local NoteSplashPre = {'preview', 'previewDAD', 'Splashpreview', 'SplashpreviewDAD'}
 function onRemove() 
-    for i = 1, #TextCon or #Togs or #OtherThingys or #BGlols do
+    for i = 1, #TextCon or #TextTogs or #TextOther or #BGlols or #NoteSplashPre do
         removeLuaText(TextCon[i], true)
-        removeLuaText(Togs[i], true)
-        removeLuaText(OtherThingys[i], true)
+        removeLuaText(TextTogs[i], true)
+        removeLuaText(TextOther[i], true)
         removeLuaSprite(BGlols[i], true)
+        removeLuaSprite(NoteSplashPre[i], true)
     end
-
-    removeLuaSprite('preview', true)
-    removeLuaSprite('previewDAD', true)
-
-    removeLuaSprite('Splashpreview', true)
-    removeLuaSprite('SplashpreviewDAD', true)
 end 
