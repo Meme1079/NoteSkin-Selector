@@ -1,2 +1,4 @@
 NoteSkin Selector
 Meme1079::Meme1079::Creator of the Script::https://gamebanana.com/mods/316022::0000FF
+Epoli::Epoli::The guy who made Pixel NoteSplashes::https://gamebanana.com/members/1998507::00FF00
+TBiscuit1::TBiscuit1::Get Icon Color Script Guy::https://github.com/TBiscuit1::00FFFF
