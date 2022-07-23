@@ -200,19 +200,19 @@ end
 -- rdm code found on the internet that I modified a bit, convert Decimal to Hex
 function DEC_HEX(IN)
     local B, K, OUT, I, D, addZero = 16, "0123456789ABCDEF", "", 0, false
-	if IN == 0 then
-		return "00"
-	elseif IN <= 15 and IN ~= 0 then
-		addZero = true
-	end
+    if IN == 0 then
+	return "00"
+    elseif IN <= 15 and IN ~= 0 then
+	addZero = true
+    end
     while IN > 0 do
         I = I + 1
         IN, D = math.floor(IN/B), math.mod(IN,B) + 1
         OUT = string.sub(K,D,D)..OUT
     end
-	if addZero then
-		OUT = "0"..OUT
-	end
+    if addZero then
+	OUT = "0"..OUT
+    end
     return OUT
 end
 
@@ -419,36 +419,26 @@ function onUpdate(elapsed)
     if inCutscene then
         Activate = false;
         onRemove()
-    end
-
-    if not checkDadStrums then
+    elseif not checkDadStrums then
         setProperty('Message1.visible', true)
         setProperty('Message2.visible', true)
 
         setTextColor('f', hex[3])
         setTextColor('g', hex[3])
-    end
-
-    if not noResetButton then
+    elseif not noResetButton then
         setPropertyFromClass('ClientPrefs', 'noResetButton', true)
         if getSongPosition() == 1 then
             setPropertyFromClass('ClientPrefs', 'noResetButton', false)
         end
-    end
-
-    if botPlay then
+    elseif botPlay then
         if Visible then
             setProperty('botplayTxt.visible', false)
         else
             setProperty('botplayTxt.visible', true)    
         end
-    end
-
-    if isPixelStage then
+    elseif isPixelStage then
         ifPixelNote = true
-    end
-
-    if not SplashCheck then -- after 2 months this is the answer 
+    elseif not SplashCheck then -- after 2 months this is the answer 
         onCustomSplash()
         onSplashPrefix()
         SplashCheck = true;
