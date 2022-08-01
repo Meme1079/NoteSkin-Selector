@@ -265,7 +265,7 @@ function onUpdate(elapsed)
         end   
 
         if onGetKey('R') then
-            ResetTexture[1]()
+            onRebootNote()
         end   
 
         if not AllToggles and onGetKey('Q') then
@@ -416,21 +416,19 @@ function onUpdate(elapsed)
     if isPixelStage then
         ifPixelNote = true
     end
-    
+
     if not SplashCheck then -- after 2 months this is the answer 
         onCustomSplash()
         onSplashPrefix()
         SplashCheck = true;
     end
-
-    ResetTexture = {
-        [1] = function()
-            SplashCheck = false
-            ns1, ns2, ps1, ps2 = 1, 1, 1, 1
-            n1, n2, n1DAD, n2DAD = 1, 1, 1, 1
-        end,
-    }
 end 
+
+function onRebootNote()
+    SplashCheck = false
+    ns1, ns2, ps1, ps2 = 1, 1, 1, 1
+    n1, n2, n1DAD, n2DAD = 1, 1, 1, 1
+end
 
 local PreX, PreY, PreDADY = 255, 90, 240
 local nse, pUI, sn = 'noteseen/', 'pixelUI/noteseen/', 'NoteSkin: '
@@ -664,18 +662,18 @@ local Nor = 6 -- Normal
 local Pix = 6 -- Pixel
 function onReset()
     if ns1 == Nor then
-        ResetTexture[1]()
+        onRebootNote()
         ns1 = 1
     elseif ns2 == Nor then
-        ResetTexture[1]()
+        onRebootNote()
         ns2 = 1
     end
     
     if ps1 == Pix then
-        ResetTexture[1]()
+        onRebootNote()
         ps1 = 1
     elseif ps2 == Pix then
-        ResetTexture[1]()
+        onRebootNote()
         ps2 = 1
     end 
     -- Note texture
