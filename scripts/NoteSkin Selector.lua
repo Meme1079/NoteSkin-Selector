@@ -199,11 +199,11 @@ end
 
 -- rdm code found on the internet that I modified a bit, convert Decimal to Hex
 function DEC_HEX(IN)
-local B, K, OUT, I, D, addZero = 16, "0123456789ABCDEF", "", 0, false
+    local B, K, OUT, I, D, addZero = 16, "0123456789ABCDEF", "", 0, false
     if IN == 0 then
-	return "00"
+	    return "00"
     elseif IN <= 15 and IN ~= 0 then
-	addZero = true
+	    addZero = true
     end
     while IN > 0 do
         I = I + 1
@@ -211,7 +211,7 @@ local B, K, OUT, I, D, addZero = 16, "0123456789ABCDEF", "", 0, false
         OUT = string.sub(K,D,D)..OUT
     end
     if addZero then
-	OUT = "0"..OUT
+	    OUT = "0"..OUT
     end
     return OUT
 end
