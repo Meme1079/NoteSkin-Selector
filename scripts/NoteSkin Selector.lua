@@ -199,7 +199,7 @@ end
 
 -- rdm code found on the internet that I modified a bit, convert Decimal to Hex
 function DEC_HEX(IN)
-    local B, K, OUT, I, D, addZero = 16, "0123456789ABCDEF", "", 0, false
+local B, K, OUT, I, D, addZero = 16, "0123456789ABCDEF", "", 0, false
     if IN == 0 then
 	return "00"
     elseif IN <= 15 and IN ~= 0 then
@@ -350,41 +350,19 @@ function onUpdate(elapsed)
             for i = 0, getProperty('opponentStrums.length')-1 do
                 setPropertyFromGroup('opponentStrums', i, 'downScroll', true)
                 setPropertyFromGroup('opponentStrums', i, 'y', 570)
+
+                if downscroll then
+                    setPropertyFromGroup('opponentStrums', i, 'downScroll', false)
+                    setPropertyFromGroup('opponentStrums', i, 'y', 50)
+                end   
         
                 if not middlescroll then
-                    setPos('healthBar', {650, 620})
-                    setProperty('healthBarBG.y', 616)
-                    setProperty('iconP1.y', 550)
-                    setProperty('iconP2.y', 550)
-                    setPos('scoreTxt', {300, 650})
+                    onMoveHealthBar(80, 0)
                     setTextSize('scoreTxt', 18) 
-                    if downscroll then
-                        setPropertyFromGroup('opponentStrums', i, 'downScroll', false)
-                        setPropertyFromGroup('opponentStrums', i, 'y', 50)
-            
-                        setProperty('healthBar.y', 100)                
-                        setProperty('healthBarBG.y', 96)
-                        setProperty('iconP1.y', 30)
-                        setProperty('iconP2.y', 30)
-                        setProperty('scoreTxt.y', 130)
-                    end   
-                end     
+                end  
             end
         elseif not ChangeScroll then
-            setProperty('healthBar.x', 343.5)
-            setProperty('healthBarBG.x', 339.5)
-            setProperty('iconP1.x', 610)
-            setProperty('iconP2.x', 509)
-            setProperty('scoreTxt.x', 0)
-            setTextSize('scoreTxt', 20)
-
-            if downscroll then
-                setProperty('healthBar.y', 83.2)
-                setProperty('healthBarBG.y', 79.2)
-                setProperty('iconP1.y', 8.2)
-                setProperty('iconP2.y', 8.2)
-                setProperty('scoreTxt.y', 115.2)
-            end       
+            setTextSize('scoreTxt', 20)    
         elseif BGNote then
             setTextColor('e3', hex[2])
         end  
@@ -397,16 +375,7 @@ function onUpdate(elapsed)
     
             if middlescroll then
                 removeLuaSprite('DADblacklol', true)
-                setProperty('BFblacklol.x', 410)
-                
-                if ChangeScroll then
-                    setProperty('healthBar.x', 343.5)
-                    setProperty('healthBarBG.x', 339.5)
-                    setProperty('iconP1.x', 610)
-                    setProperty('iconP2.x', 509)
-                    setProperty('scoreTxt.x', 0)
-                    setTextSize('scoreTxt', 20)  
-                end    
+                setProperty('BFblacklol.x', 410) 
             end 
 
             if not checkDadStrums then 
@@ -601,7 +570,16 @@ function onHideHealthBar(bool)
             setProperty(HealthHUD[i]..'.visible', bool) -- haha no green thingy
         end
     end    
-end  
+end 
+
+function onMoveHealthBar(x, y)
+    if not hideHud then
+         for i = 1, #HealthHUD do
+             setProperty(HealthHUD[i]..'.x', getProperty(HealthHUD[i]..'.x') + x)
+             setProperty(HealthHUD[i]..'.y', getProperty(HealthHUD[i]..'.y') + y)
+         end
+    end    
+end
 
 function onDumbToggles(bool)
     GetOGNotes = bool;
