@@ -388,26 +388,36 @@ function onUpdate(elapsed)
     if inCutscene then
         Activate = false;
         onRemove()
-    elseif not checkDadStrums then
+    end
+
+    if not checkDadStrums then
         setProperty('Message1.visible', true)
         setProperty('Message2.visible', true)
 
         setTextColor('f', hex[3])
         setTextColor('g', hex[3])
-    elseif not noResetButton then
+    end
+
+    if not noResetButton then
         setPropertyFromClass('ClientPrefs', 'noResetButton', true)
         if getSongPosition() == 1 then
             setPropertyFromClass('ClientPrefs', 'noResetButton', false)
         end
-    elseif botPlay then
+    end
+
+    if botPlay then
         if Visible then
             setProperty('botplayTxt.visible', false)
         else
             setProperty('botplayTxt.visible', true)    
         end
-    elseif isPixelStage then
+    end
+
+    if isPixelStage then
         ifPixelNote = true
-    elseif not SplashCheck then -- after 2 months this is the answer 
+    end
+    
+    if not SplashCheck then -- after 2 months this is the answer 
         onCustomSplash()
         onSplashPrefix()
         SplashCheck = true;
