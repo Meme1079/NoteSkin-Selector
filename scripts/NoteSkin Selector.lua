@@ -127,8 +127,8 @@ end
   
 local Activate = true;
 local Visible = true;
-local allowCountdown = false;
 function onStartCountdown()
+    local allowCountdown = false;
     if not allowCountdown then -- Block the first countdown
         allowCountdown = true;     
         if Activate and not MuteMusic and not inCutscene then
@@ -239,8 +239,8 @@ hex = {'000000', '00ff00', 'ff0000', 'ffffff'}
 local count = 1
 local ifPixelNote = false;
 local SplashCheck = false;
-local GraphicActivate = true;
 function onUpdate(elapsed)
+    local GraphicActivate = true;
     if Activate then
         onCustomNotes() 
         onPlus() 
@@ -524,9 +524,9 @@ local n1, n2 = 1, 1
 local n1DAD, n2DAD = 1, 1
 function onSplashPrefix()
     if Activate and not SkipThis then
-        SplashX, SplashDADX = {290, 375, 210, 465}, {290, 375, 210, 465}
-        SplashY, SplashDADY = 60, 210
-        NamePrefix1, NamePrefix2 = {'blue1', 'green1', 'purple1', 'red1'}, {'blue2', 'green2', 'purple2', 'red2'} 
+        local SplashX, SplashDADX = {290, 375, 210, 465}, {290, 375, 210, 465}
+        local SplashY, SplashDADY = 60, 210
+        local NamePrefix1, NamePrefix2 = {'blue1', 'green1', 'purple1', 'red1'}, {'blue2', 'green2', 'purple2', 'red2'} 
            
         Splashes = {
             [1] = function()
