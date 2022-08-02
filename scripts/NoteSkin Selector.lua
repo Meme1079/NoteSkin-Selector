@@ -127,8 +127,8 @@ end
   
 local Activate = true;
 local Visible = true;
+local allowCountdown = false;
 function onStartCountdown()
-    local allowCountdown = false;
     if not allowCountdown then -- Block the first countdown
         allowCountdown = true;     
         if Activate and not MuteMusic and not inCutscene then
