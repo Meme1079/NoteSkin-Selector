@@ -104,7 +104,7 @@ function onCreate()
 
     onPrecaching() 
     onBlackWhite(hex[1])
-    addLuaScript('scripts/camHUD/Check Version') 
+    addLuaScript('scripts/other/Check Version') 
 end    
 
 function onCreatePost()
@@ -148,7 +148,7 @@ end
 function onSongStart() 
     onRemove() 
     onHideHealthBar(true)
-    removeLuaScript('scripts/camHUD/Check Version')
+    removeLuaScript('scripts/other/Check Version')
 end 
 
 local WhiteBlack = false;    -- It changes the BG Notes to white or black, also [true] is white and black is [false]
