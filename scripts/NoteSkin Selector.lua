@@ -260,12 +260,14 @@ function onUpdate(elapsed)
             Activate = false; 
         end 
         
-        if onGetKey('ESCAPE') then
-            endSong()      
-        end   
+        if onGetKey('ESCAPE') then 
+            endSong() 
+        end 
 
         if onGetKey('R') then
-            onRebootNote()
+            SplashCheck = false
+            ns1, ns2, ps1, ps2 = 1, 1, 1, 1
+            n1, n2, n1DAD, n2DAD = 1, 1, 1, 1
         end   
 
         if not AllToggles and onGetKey('Q') then
@@ -424,24 +426,25 @@ function onUpdate(elapsed)
     end
 end 
 
-function onRebootNote()
-    SplashCheck = false
-    ns1, ns2, ps1, ps2 = 1, 1, 1, 1
-    n1, n2, n1DAD, n2DAD = 1, 1, 1, 1
-end
-
-local PreX, PreY, PreDADY = 255, 90, 240
-local nse, pUI, sn = 'noteseen/', 'pixelUI/noteseen/', 'NoteSkin: '
-
-local NoteString = {nse..'normal notes', nse..'tabi notes', nse..'majin notes', nse..'creepy notes', nse..'dokidoki notes'}
-local NoteStringDAD = {nse..'normal notes', nse..'tabi notes', nse..'majin notes', nse..'creepy notes', nse..'dokidoki notes'}
-
-local PixelString = {pUI..'pixel notes', pUI..'NES notes', pUI..'dokidoki notes', pUI..'Sonic8bit notes', pUI..'mario notes'}
-local PixelStringDAD = {pUI..'pixel notes', pUI..'NES notes', pUI..'dokidoki notes', pUI..'Sonic8bit notes', pUI..'mario notes'}
 function onCustomNotes()
-    onNoteText()
+    local PreX, PreY, PreDADY = 255, 90, 240
+    local nse, pUI, sn = 'noteseen/', 'pixelUI/noteseen/', 'NoteSkin: '
+
+    local NoteString = {nse..'normal notes', nse..'tabi notes', nse..'majin notes', nse..'creepy notes', nse..'dokidoki notes', nse..'HD notes'}
+    local NoteStringDAD = {nse..'normal notes', nse..'tabi notes', nse..'majin notes', nse..'creepy notes', nse..'dokidoki notes', nse..'HD notes'}
+    local PixelString = {pUI..'pixel notes', pUI..'NES notes', pUI..'dokidoki notes', pUI..'Sonic8bit notes', pUI..'mario notes'}
+    local PixelStringDAD = {pUI..'pixel notes', pUI..'NES notes', pUI..'dokidoki notes', pUI..'Sonic8bit notes', pUI..'mario notes'}
+    
+    local NoteText = {sn..'Defualt', sn..'Tabi', sn..'Majin', sn..'Creepy', sn..'DokiDoki', sn..'HD'}
+    local NoteTextDAD = {sn..'Defualt', sn..'Tabi', sn..'Majin', sn..'Creepy', sn..'DokiDoki', sn..'HD'}
+    local PixelText = {sn..'Defualt', sn..'NES', sn..'DokiDoki', sn..'Sonic 8Bit', sn..'Mario'}
+    local PixelTextDAD = {sn..'Defualt', sn..'NES', sn..'DokiDoki', sn..'Sonic 8Bit', sn..'Mario'}
+
     if not ifPixelNote then
-        for i = 1, #NoteString or #NoteStringDAD do
+        for i = 1, #NoteString or #NoteStringDAD or #NoteText or #NoteTextDAD do
+            setTextString('Note', NoteText[ns1])
+            setTextString('NoteDAD', NoteText[ns2])
+
             makeLuaSprite('preview', NoteString[ns1], PreX, PreY)
             setObjectCamera('preview', 'camHUD')
             scaleObject('preview', 0.5, 0.5)
@@ -453,7 +456,11 @@ function onCustomNotes()
             addLuaSprite('previewDAD', false)
         end 
     else
-        for i = 1, #PixelString or #PixelStringDAD do
+        
+        for i = 1, #PixelString or #PixelStringDAD or #PixelText or #PixelTextDAD do
+            setTextString('Note', PixelText[ps1])
+            setTextString('NoteDAD', PixelText[ps2])
+
             makeLuaSprite('preview', PixelString[ps1], PreX, PreY)
             setObjectCamera('preview', 'camHUD')
             setProperty('preview.antialiasing', false)
@@ -468,25 +475,6 @@ function onCustomNotes()
         end 
     end        
 end    
-
-local NoteText = {sn..'Defualt', sn..'Tabi', sn..'Majin', sn..'Creepy', sn..'DokiDoki'}
-local NoteTextDAD = {sn..'Defualt', sn..'Tabi', sn..'Majin', sn..'Creepy', sn..'DokiDoki'}
-
-local PixelText = {sn..'Defualt', sn..'NES', sn..'DokiDoki', sn..'Sonic 8Bit', sn..'Mario'}
-local PixelTextDAD = {sn..'Defualt', sn..'NES', sn..'DokiDoki', sn..'Sonic 8Bit', sn..'Mario'}
-function onNoteText()
-    if not ifPixelNote then
-        for i = 1, #NoteText or #NoteTextDAD do
-            setTextString('Note', NoteText[ns1])
-            setTextString('NoteDAD', NoteText[ns2])
-        end
-    else
-        for i = 1, #PixelText or #PixelTextDAD do
-            setTextString('Note', PixelText[ps1])
-            setTextString('NoteDAD', PixelText[ps2])
-        end
-    end  
-end
 
 function onCustomSplash()
     if Activate and not SkipThis then
@@ -658,44 +646,29 @@ function onPlus()
     end
 end    
 
-local Nor = 6 -- Normal
+local Nor = 7 -- Normal
 local Pix = 6 -- Pixel
 function onReset()
-    if ns1 == Nor then
-        onRebootNote()
-        ns1 = 1
-    elseif ns2 == Nor then
-        onRebootNote()
-        ns2 = 1
-    end
+    if ns1 == Nor then ns1 = 1 end -- don't ask 
+    if ns2 == Nor then ns2 = 1 end
     
-    if ps1 == Pix then
-        onRebootNote()
-        ps1 = 1
-    elseif ps2 == Pix then
-        onRebootNote()
-        ps2 = 1
-    end 
+    if ps1 == Pix then ps1 = 1 end
+    if ps2 == Pix then ps2 = 1 end
     -- Note texture
 
-    if n1 == 5 then
-        n1 = 1
-    elseif n2 == 5 then 
-        n2 = 1
-    end
+    if n1 == 5 then n1 = 1 end
+    if n2 == 5 then n2 = 1 end
 
-    if n1DAD == 5 then
-        n1DAD = 1
-    elseif n2DAD == 5 then
-        n2DAD = 1
-    end
+    if n1DAD == 5 then n1DAD = 1 end
+    if n2DAD == 5 then n2DAD = 1 end
     -- Splash Prefixes
 
     if count == 4 then
         setProperty('Arrow.y', 460)
         pos = 460
         count = 1
-    elseif count == 0 then
+    end
+    if count == 0 then
         setProperty('Arrow.y', 500)
         pos = 500
         count = 3
@@ -704,11 +677,11 @@ end
 
 local nw, npl, ns  = 'notesplash/weeb/', 'notesplash/', 'noteskin/'
 
-NoteAssets = {'NOTE_assets', ns..'tabi_NOTE_assets', ns..'Majin_Notes', ns..'creepy_assets', ns..'dokidoki_assets'}
-NoteAssetsDAD = {'NOTE_assets', ns..'tabi_NOTE_assets', ns..'Majin_Notes', ns..'creepy_assets', ns..'dokidoki_assets'}
+NoteAssets = {'NOTE_assets', ns..'tabi_NOTE_assets', ns..'Majin_Notes', ns..'creepy_assets', ns..'dokidoki_assets', ns..'HDNOTE_assets'}
+NoteAssetsDAD = {'NOTE_assets', ns..'tabi_NOTE_assets', ns..'Majin_Notes', ns..'creepy_assets', ns..'dokidoki_assets', ns..'HDNOTE_assets'}
 
-SplashAssets = {'noteSplashes', 'noteSplashes', npl..'Majin_Splashes', npl..'creepySplashes', npl..'dokidokiSplashes'}
-SplashAssetsDAD = {'noteSplashes', 'noteSplashes', npl..'Majin_Splashes', npl..'creepySplashes', npl..'dokidokiSplashes'}
+SplashAssets = {'noteSplashes', 'noteSplashes', npl..'Majin_Splashes', npl..'creepySplashes', npl..'dokidokiSplashes', 'noteSplashes'}
+SplashAssetsDAD = {'noteSplashes', 'noteSplashes', npl..'Majin_Splashes', npl..'creepySplashes', npl..'dokidokiSplashes', 'noteSplashes'}
 
 PixelAssets = {'NOTE_assets', ns..'NESNOTE_assets', ns..'dokidoki_assets', ns..'Sonic8bit_assets', ns..'Mario_assets'}
 PixelAssetsDAD = {'NOTE_assets', ns..'NESNOTE_assets', ns..'dokidoki_assets', ns..'Sonic8bit_assets', ns..'Mario_assets'}
@@ -770,12 +743,13 @@ function onPrecaching()
     precacheMusic('offsetSong')
 end
 
-local TextCon = {'y', 't', 'g', 'f', 'e', 'h', 'q', 'hs', 'space', 'esc', 'ree'}
-local TextTogs = {'e1', 'e2', 'e3', 'Arrow'}
-local TextOther = {'Note', 'NoteDAD', 'pl', 'op', 'se', 'Message1', 'Message2'}
-local BGlols = {'blacklol', 'playerlol', 'opponentlol', 'optionlol'}
-local NoteSplashPre = {'preview', 'previewDAD', 'Splashpreview', 'SplashpreviewDAD'}
 function onRemove() 
+    local TextCon = {'y', 't', 'g', 'f', 'e', 'h', 'q', 'hs', 'space', 'esc', 'ree'}
+    local TextTogs = {'e1', 'e2', 'e3', 'Arrow'}
+    local TextOther = {'Note', 'NoteDAD', 'pl', 'op', 'se', 'Message1', 'Message2'}
+    local BGlols = {'blacklol', 'playerlol', 'opponentlol', 'optionlol'}
+    local NoteSplashPre = {'preview', 'previewDAD', 'Splashpreview', 'SplashpreviewDAD'}
+
     for i = 1, #TextCon or #TextTogs or #TextOther or #BGlols or #NoteSplashPre do
         removeLuaText(TextCon[i], true)
         removeLuaText(TextTogs[i], true)
